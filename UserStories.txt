@@ -1,10 +1,3 @@
-# recipe-project
-
-Summary:
-
-The recipe app will allow users to search, create, and save recipes both to their local device and in the cloud should they decide to make them public.  The app will be designed to complete common recipe actions easily with mobile phone gestures: change ingredients, ingredient portions, or the entire recipe portion size.  The recipe search function will allow for finding recipes based on ingredients, recipe effort, and popularity if the social aspect be implemented.
-
-
 User Stories:
 
 1. Opening the app
