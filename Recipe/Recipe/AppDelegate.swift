@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //Parse initialization
+        initializeParse()
+        
+        //Run a test on parse database
+        parseTest()
+        print("Ran Parse Test")
+        
         return true
     }
 
@@ -39,6 +48,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    //*
+    //**
+    //My Functions
+    //**
+    //*
+    func initializeParse(){
+        //Register PFObject subclasses
+        Recipe.registerSubclass()
+        
+        //Enable local datastore
+        Parse.enableLocalDatastore()
+        
+        // Initialize Parse
+        // Set applicationId and server based on the values in the Heroku settings.
+        // clientKey is not used on Parse open source unless explicitly configured
+        Parse.initialize(
+            with: ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
+                configuration.applicationId = "measuringCupAppId"
+                configuration.clientKey = nil  // set to nil assuming you have not set clientKey
+                configuration.server = "https://measuring-cup.herokuapp.com/parse"
+            })
+        )
+    }
+    
+    func parseTest(){
+        
+        let recipe: Recipe = Recipe()
+        recipe.name = "Apple Pie"
+        recipe.summary = "Delicious desert"
+        recipe.prepTime = 1.5
+        recipe.prepTimeUnits = "hours"
+        
+        var apples  = [String:AnyObject]()
+        apples[Recipe.ingredientNameKey] = "apples" as AnyObject
+        apples[Recipe.ingredientQuantityKey] = 2.0 as AnyObject
+        apples[Recipe.ingredientUnitsKey] = "lbs" as AnyObject
+        
+        var crust = [String:AnyObject]()
+        crust[Recipe.ingredientNameKey] = "pie crust" as AnyObject
+        crust[Recipe.ingredientQuantityKey] = 1.0 as AnyObject
+        crust[Recipe.ingredientUnitsKey] = "none" as AnyObject
+        
+        var ingredients: [Dictionary<String,AnyObject>] = Array<Dictionary<String,AnyObject>>()
+        ingredients.append(apples)
+        ingredients.append(crust)
+        
+        recipe.ingredients = ingredients
+        
+        recipe.saveInBackground(block: {(wasSuccessful: Bool, error: Error?)->Void in
+            if let error = error{
+                print("**********")
+                print("save failed")
+                print(error.localizedDescription)
+            }else{
+                print("**********")
+                print("recipe saved successfully.")
+                print("wasSuccessful: \(wasSuccessful) // error: \(error?.localizedDescription)")
+            }
+        })
+        
     }
 
 
