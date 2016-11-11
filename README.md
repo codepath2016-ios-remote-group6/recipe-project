@@ -27,6 +27,7 @@ User Stories:
 3. Edit mode
 	1. Edit mode will have a gesture interface to:
 		1. Increase and decrease item quantities
-		2. Scale the entire size of the recipe
+		2. (*Optional) Scale the entire size of the recipe
 		3. Add(delete) items to(from) the recipe
-4. (Optional) if user is logged in: Recipes can be made public, liked, copied
+4. (*Optional) if user is logged in: Recipes can be made public, liked, copied
+	1. (*Optional) sharing recepies via external applications
