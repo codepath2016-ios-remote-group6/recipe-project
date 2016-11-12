@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         parseTest()
         print("Ran Parse Test")
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeListViewController") as! RecipeListViewController
+        
+        window?.rootViewController = viewController
+        
         return true
     }
 
@@ -97,6 +103,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ingredients.append(crust)
         
         recipe.ingredients = ingredients
+        
+        print(recipe)
         
         recipe.saveInBackground(block: {(wasSuccessful: Bool, error: Error?)->Void in
             if let error = error{
