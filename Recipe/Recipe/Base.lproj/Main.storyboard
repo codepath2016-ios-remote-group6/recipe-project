@@ -91,6 +91,20 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bM-U0-vVz">
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2W8-hf-Qsb">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="OPX-v8-INZ"/>
+                                            <constraint firstAttribute="height" constant="50" id="PjZ-g8-VuH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <state key="normal" title="+"/>
+                                        <connections>
+                                            <segue destination="qI3-SP-HaB" kind="presentation" id="Hlf-1j-bfu"/>
+                                        </connections>
+                                    </button>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="UZ4-23-JG4">
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DuK-6y-eky">
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
@@ -116,22 +130,18 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2W8-hf-Qsb">
-                                        <frame key="frameInset" minX="162" minY="587" width="51" height="52"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="+"/>
-                                        <connections>
-                                            <segue destination="qI3-SP-HaB" kind="presentation" id="Hlf-1j-bfu"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="DuK-6y-eky" secondAttribute="bottom" constant="60" id="4WQ-ay-b2x"/>
-                                    <constraint firstItem="DuK-6y-eky" firstAttribute="leading" secondItem="8bM-U0-vVz" secondAttribute="leading" id="DPh-fs-TJo"/>
-                                    <constraint firstItem="DuK-6y-eky" firstAttribute="top" secondItem="8bM-U0-vVz" secondAttribute="top" id="laV-WJ-5kS"/>
-                                    <constraint firstAttribute="trailing" secondItem="DuK-6y-eky" secondAttribute="trailing" id="m3t-PU-Sqn"/>
+                                    <constraint firstAttribute="bottom" secondItem="2W8-hf-Qsb" secondAttribute="bottom" constant="8" id="7jH-pd-0fI"/>
+                                    <constraint firstItem="2W8-hf-Qsb" firstAttribute="top" secondItem="DuK-6y-eky" secondAttribute="bottom" id="DrF-5K-j9Z"/>
+                                    <constraint firstAttribute="trailing" secondItem="UZ4-23-JG4" secondAttribute="trailing" id="FAx-gx-0wZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="DuK-6y-eky" secondAttribute="trailing" id="GTZ-Wk-71E"/>
+                                    <constraint firstItem="2W8-hf-Qsb" firstAttribute="centerX" secondItem="8bM-U0-vVz" secondAttribute="centerX" id="L8D-bw-bQ6"/>
+                                    <constraint firstItem="DuK-6y-eky" firstAttribute="leading" secondItem="8bM-U0-vVz" secondAttribute="leading" id="T7e-zY-WI2"/>
+                                    <constraint firstItem="UZ4-23-JG4" firstAttribute="top" secondItem="8bM-U0-vVz" secondAttribute="top" id="WSu-Z3-MrT"/>
+                                    <constraint firstItem="DuK-6y-eky" firstAttribute="top" secondItem="UZ4-23-JG4" secondAttribute="bottom" id="cIs-f9-OI1"/>
+                                    <constraint firstItem="UZ4-23-JG4" firstAttribute="leading" secondItem="8bM-U0-vVz" secondAttribute="leading" id="hSc-SA-riR"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -144,7 +154,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="UZ4-23-JG4" id="sFw-FK-E9f"/>
                         <outlet property="tableView" destination="DuK-6y-eky" id="ZH2-PV-2gd"/>
+                        <segue destination="nmM-9m-AfT" kind="presentation" identifier="recipeViewSegue" id="pb0-cD-T4j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9J-B1-1Hn" userLabel="First Responder" sceneMemberID="firstResponder"/>
