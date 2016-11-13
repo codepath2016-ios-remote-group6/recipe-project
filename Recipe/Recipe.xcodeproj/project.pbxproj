@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AB0A28B1DD6AD91001F53F3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0A28A1DD6AD91001F53F3 /* LoginViewController.swift */; };
+		0AB0A28D1DD6ADA7001F53F3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0A28C1DD6ADA7001F53F3 /* WelcomeViewController.swift */; };
+		0AB0A28F1DD6ADBC001F53F3 /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0A28E1DD6ADBC001F53F3 /* RecipeListViewController.swift */; };
+		0AB0A2911DD6ADCD001F53F3 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0A2901DD6ADCD001F53F3 /* RecipeViewController.swift */; };
+		0AB0A2931DD6ADDB001F53F3 /* RecipeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0A2921DD6ADDB001F53F3 /* RecipeEditViewController.swift */; };
+		0AB0A2951DD7ADF5001F53F3 /* RecipeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB0A2941DD7ADF5001F53F3 /* RecipeListCell.swift */; };
 		0ACC4DAD1DD1410C00701833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC4DAC1DD1410C00701833 /* AppDelegate.swift */; };
-		0ACC4DAF1DD1410C00701833 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC4DAE1DD1410C00701833 /* ViewController.swift */; };
 		0ACC4DB21DD1410C00701833 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ACC4DB01DD1410C00701833 /* Main.storyboard */; };
 		0ACC4DB41DD1410C00701833 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ACC4DB31DD1410C00701833 /* Assets.xcassets */; };
 		0ACC4DB71DD1410C00701833 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ACC4DB51DD1410C00701833 /* LaunchScreen.storyboard */; };
@@ -18,9 +23,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AB0A28A1DD6AD91001F53F3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0AB0A28C1DD6ADA7001F53F3 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		0AB0A28E1DD6ADBC001F53F3 /* RecipeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListViewController.swift; sourceTree = "<group>"; };
+		0AB0A2901DD6ADCD001F53F3 /* RecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		0AB0A2921DD6ADDB001F53F3 /* RecipeEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeEditViewController.swift; sourceTree = "<group>"; };
+		0AB0A2941DD7ADF5001F53F3 /* RecipeListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListCell.swift; sourceTree = "<group>"; };
 		0ACC4DA91DD1410C00701833 /* Recipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ACC4DAC1DD1410C00701833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0ACC4DAE1DD1410C00701833 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0ACC4DB11DD1410C00701833 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0ACC4DB31DD1410C00701833 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0ACC4DB61DD1410C00701833 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -44,6 +54,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AB0A2861DD6AA63001F53F3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0AB0A2941DD7ADF5001F53F3 /* RecipeListCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		0AB0A2871DD6AA6E001F53F3 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0AB0A28A1DD6AD91001F53F3 /* LoginViewController.swift */,
+				0AB0A28C1DD6ADA7001F53F3 /* WelcomeViewController.swift */,
+				0AB0A28E1DD6ADBC001F53F3 /* RecipeListViewController.swift */,
+				0AB0A2901DD6ADCD001F53F3 /* RecipeViewController.swift */,
+				0AB0A2921DD6ADDB001F53F3 /* RecipeEditViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		0ACC4DA01DD1410C00701833 = {
 			isa = PBXGroup;
 			children = (
@@ -66,9 +96,10 @@
 		0ACC4DAB1DD1410C00701833 /* Recipe */ = {
 			isa = PBXGroup;
 			children = (
+				0AB0A2871DD6AA6E001F53F3 /* View Controllers */,
+				0AB0A2861DD6AA63001F53F3 /* Views */,
 				28515DEF1DD3D926000756BA /* Models */,
 				0ACC4DAC1DD1410C00701833 /* AppDelegate.swift */,
-				0ACC4DAE1DD1410C00701833 /* ViewController.swift */,
 				0ACC4DB01DD1410C00701833 /* Main.storyboard */,
 				0ACC4DB31DD1410C00701833 /* Assets.xcassets */,
 				0ACC4DB51DD1410C00701833 /* LaunchScreen.storyboard */,
@@ -236,7 +267,13 @@
 				28515DF11DD3D959000756BA /* Recipe.swift in Sources */,
 				284F0AE31DD797E700434B8B /* FoodToForkClient.swift in Sources */,
 				0ACC4DAF1DD1410C00701833 /* ViewController.swift in Sources */,
+				0AB0A28D1DD6ADA7001F53F3 /* WelcomeViewController.swift in Sources */,
+				0AB0A2911DD6ADCD001F53F3 /* RecipeViewController.swift in Sources */,
+				0AB0A2951DD7ADF5001F53F3 /* RecipeListCell.swift in Sources */,
+				0AB0A28F1DD6ADBC001F53F3 /* RecipeListViewController.swift in Sources */,
 				0ACC4DAD1DD1410C00701833 /* AppDelegate.swift in Sources */,
+				0AB0A2931DD6ADDB001F53F3 /* RecipeEditViewController.swift in Sources */,
+				0AB0A28B1DD6AD91001F53F3 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
