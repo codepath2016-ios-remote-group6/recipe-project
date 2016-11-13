@@ -22,8 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initializeParse()
         
         //Run a test on parse database
-        parseTest()
-        print("Ran Parse Test")
+//        parseTest()
+        
+        //Run Food2Fork test
+        foodToForkTest()
         
         return true
     }
@@ -75,7 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func parseTest(){
-        
+        print("Starting Parse Test")
+
         let recipe: Recipe = Recipe()
         recipe.name = "Apple Pie"
         recipe.summary = "Delicious desert"
@@ -111,7 +114,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         
     }
-
+    
+    func foodToForkTest(){
+        print("**********")
+        print("Calling Food2Fork Search Method")
+        Recipe.searchFoodToFork(
+            query: "chili",
+            page: nil,
+            sort: nil,
+            success: {(recipeDictList: [Dictionary<String,Any>])->Void in
+                print("**********")
+                print("returned recipe list")
+                print(recipeDictList)
+                let recipes = Recipe.recipes(recipeDictList: recipeDictList)
+                print("*********")
+                print("Recipes Count: \(recipes.count)")
+                print(recipes.last?.ingredientList)
+            },
+            failure: {(error: Error?)->Void in
+                print(error?.localizedDescription)})
+    }
 
 }
 
