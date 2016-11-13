@@ -10,7 +10,6 @@ import UIKit
 import Parse
 
 
-
 class Recipe : PFObject, PFSubclassing {
 
     static let ingredientNameKey = "name"

@@ -26,6 +26,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         recipe.prepTime = 1.5
         recipe.prepTimeUnits = "hours"
         
+        var apples  = [String:AnyObject]()
+        apples[Recipe.ingredientNameKey] = "apples" as AnyObject
+        apples[Recipe.ingredientQuantityKey] = 2.0 as AnyObject
+        apples[Recipe.ingredientUnitsKey] = "lbs" as AnyObject
+        
+        var crust = [String:AnyObject]()
+        crust[Recipe.ingredientNameKey] = "pie crust" as AnyObject
+        crust[Recipe.ingredientQuantityKey] = 1.0 as AnyObject
+        crust[Recipe.ingredientUnitsKey] = "none" as AnyObject
+        
+        var ingredients: [Dictionary<String,AnyObject>] = Array<Dictionary<String,AnyObject>>()
+        ingredients.append(apples)
+        ingredients.append(crust)
+        
+        recipe.ingredients = ingredients
+        
         let recipe2: Recipe = Recipe()
         recipe2.name = "Cheesecake"
         recipe2.summary = "Delicious desert"
@@ -59,18 +75,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeListCell", for: indexPath) as! RecipeListCell
         
-        print(filteredData)
-        
         let recipe = filteredData[indexPath.row]
         
         cell.recipeNameLabel.text = recipe.name
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        performSegue(withIdentifier: "recipeViewSegue", sender: nil)
     }
     
     // This method updates filteredData based on the text in the Search Box
@@ -87,15 +96,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
     }
 
-    
-    /*
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let destinationViewController = segue.destination as! RecipeViewController
+        
+        let cell = sender as! UITableViewCell
+        let indexPath = self.tableView.indexPath(for: cell)
+        let recipe = data[(indexPath?.row)!]
+        
+        destinationViewController.recipe = recipe
     }
-    */
 
 }

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initializeParse()
         
         //Run a test on parse database
-        parseTest()
+//        parseTest()
         print("Ran Parse Test")
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

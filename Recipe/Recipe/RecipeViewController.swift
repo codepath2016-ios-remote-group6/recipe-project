@@ -8,36 +8,27 @@
 
 import UIKit
 
-class RecipeViewController: UIViewController {
+class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-
+    @IBOutlet weak var recipeNameLabel: UILabel!
+    @IBOutlet weak var ingredientsTableView: UITableView!
+    @IBOutlet weak var directionsTextView: UITextView!
+    
+    var recipe: Recipe!
+    var ingredientsArray: [Ingredient]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // dummy data
-        let recipe: Recipe = Recipe()
-        recipe.name = "Apple Pie"
-        recipe.summary = "Delicious desert"
-        recipe.prepTime = 1.5
-        recipe.prepTimeUnits = "hours"
+        ingredientsArray = Ingredient.IngredientsWithArray(dictionaries: recipe.ingredients as [NSDictionary])
         
-        var apples  = [String:AnyObject]()
-        apples[Recipe.ingredientNameKey] = "apples" as AnyObject
-        apples[Recipe.ingredientQuantityKey] = 2.0 as AnyObject
-        apples[Recipe.ingredientUnitsKey] = "lbs" as AnyObject
+        recipeNameLabel.text = recipe.name
+        directionsTextView.text = recipe.summary
         
-        var crust = [String:AnyObject]()
-        crust[Recipe.ingredientNameKey] = "pie crust" as AnyObject
-        crust[Recipe.ingredientQuantityKey] = 1.0 as AnyObject
-        crust[Recipe.ingredientUnitsKey] = "none" as AnyObject
-        
-        var ingredients: [Dictionary<String,AnyObject>] = Array<Dictionary<String,AnyObject>>()
-        ingredients.append(apples)
-        ingredients.append(crust)
-        
-        recipe.ingredients = ingredients
-
-        // Do any additional setup after loading the view.
+        ingredientsTableView.dataSource = self
+        ingredientsTableView.delegate = self
+        ingredientsTableView.alwaysBounceVertical = false
+        ingredientsTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +36,28 @@ class RecipeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onCancelButton(_ sender: AnyObject) {
+        let recipeListViewController = self.storyboard?.instantiateViewController(withIdentifier: "RecipeListViewController") as? RecipeListViewController
+        
+        navigationController?.pushViewController(recipeListViewController!, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recipe.ingredients.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: "IngredientListCell", for: indexPath) as! IngredientListCell
+        
+        let ingredient = ingredientsArray?[indexPath.row]
+        
+        cell.quantityLabel.text = "\((ingredient?.quantity)!)"
+        cell.unitLabel.text = ingredient?.unit
+        cell.nameLabel.text = ingredient?.name
+        
+        return cell
+    }
+
 
     /*
     // MARK: - Navigation
