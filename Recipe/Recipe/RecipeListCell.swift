@@ -33,7 +33,7 @@ class RecipeListCell: UITableViewCell {
     var recipe: Recipe?{
         willSet{
             self.recipeNameLabel.text = newValue?.name
-            self.recipeSourceLabel.text = newValue?.sourceName
+            self.recipeSourceLabel.text = newValue?.inspiredBy
             if let url = newValue?.imageUrl{
                 self.recipeImageView.setImageWith(url)
             }

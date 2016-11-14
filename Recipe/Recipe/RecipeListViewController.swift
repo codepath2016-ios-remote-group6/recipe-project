@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import Parse
 
 class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loginLogoutBarButton: UIBarButtonItem!
   
     var data = [Recipe]()
     var filteredData = [Recipe]()
+    var query: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +67,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         //Bring in recipes from the api
         buildGenericRecipeList()
+        
+        setupLoginLogoutButton()
 
         // Do any additional setup after loading the view.
     }
@@ -102,6 +107,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.reloadData()
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.query = searchBar.text
+        getRecipeListResults(pageNum: 0)
+        self.searchBar.endEditing(true)
+    }
+    
+    //*
+    //*
+    //Action outlets
+    //*
+    //*
+    @IBAction func didTapLogoutBarButton(_ sender: UIBarButtonItem) {
+        User.logout()
+    }
+    
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -145,6 +166,28 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             failure: {(error: Error?)->Void in
                 //failure code
         })
+    }
+    
+    func getRecipeListResults(pageNum: Int){
+        Recipe.searchFoodToFork(
+            query: self.query,
+            page: "\(pageNum)",
+            sort: nil,
+            success: {(recipeDictList: [Dictionary<String,Any>])->Void in
+                self.data = Recipe.recipes(recipeDictList: recipeDictList)
+                self.filteredData = self.data
+                self.searchBar.text = ""
+                self.tableView.reloadData()
+            },
+            failure: {(error: Error?)->Void in
+                //failure code
+        })
+    }
+    
+    func setupLoginLogoutButton(){
+        if PFUser.current() == nil {
+            self.loginLogoutBarButton.title = "Log In"
+        }
     }
 
 }

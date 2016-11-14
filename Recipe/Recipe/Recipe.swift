@@ -24,9 +24,9 @@ class Recipe : PFObject, PFSubclassing {
     @NSManaged var imageUrlString: String?
     @NSManaged var imageFile: PFFile?
     @NSManaged var createdByUser: PFRelation<PFUser>?
-    @NSManaged var sourceName: String?
-    @NSManaged var sourceGeneralUrlString: String?
-    @NSManaged var sourceUrlString: String?
+    @NSManaged var inspiredBy: String?
+    @NSManaged var inspiredByUrlString: String?
+    @NSManaged var inspiredByRecipeUrlString: String?
     @NSManaged var sourceId: String?
     @NSManaged var summary: String?
     @NSManaged var prepTimeStr: String?
@@ -39,8 +39,8 @@ class Recipe : PFObject, PFSubclassing {
     @NSManaged var directions: [String]?
     
     var imageUrl: URL?
-    var sourceGeneralUrl: URL?
-    var sourceUrl: URL?
+    var inspiredByUrl: URL?
+    var inspiredByRecipeUrl: URL?
     
     func create(ingredientObjectWith name: String, quantity: Double, units: String)->Dictionary<String,AnyObject>{
         var ingredient = [String:AnyObject]()
@@ -64,17 +64,17 @@ class Recipe : PFObject, PFSubclassing {
     class func recipe(fromFoodToForkDict dictionary: Dictionary<String,Any>) -> Recipe{
         let recipe = Recipe()
         recipe.name = dictionary["title"] as? String
-        recipe.sourceName = dictionary["publisher"] as? String
-        recipe.sourceGeneralUrlString = dictionary["publisher_url"] as? String
-        recipe.sourceUrlString = dictionary["source_url"] as? String
+        recipe.inspiredBy = dictionary["publisher"] as? String
+        recipe.inspiredByUrlString = dictionary["publisher_url"] as? String
+        recipe.inspiredByRecipeUrlString = dictionary["source_url"] as? String
         recipe.sourceId = dictionary["recipe_id"] as? String
         recipe.imageUrlString = dictionary["image_url"] as? String
         recipe.ingredientList = dictionary["ingredients"] as? [String]
         recipe.ingredients = [Dictionary<String,AnyObject>]()
         
         //populateUrls
-        recipe.sourceGeneralUrl = recipe.getUrl(fromOptionalString: recipe.sourceGeneralUrlString)
-        recipe.sourceUrl = recipe.getUrl(fromOptionalString: recipe.sourceUrlString)
+        recipe.inspiredByUrl = recipe.getUrl(fromOptionalString: recipe.inspiredByUrlString)
+        recipe.inspiredByRecipeUrl = recipe.getUrl(fromOptionalString: recipe.inspiredByRecipeUrlString)
         recipe.imageUrl = recipe.getUrl(fromOptionalString: recipe.imageUrlString)
         
         return recipe

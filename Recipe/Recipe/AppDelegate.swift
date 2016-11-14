@@ -18,8 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        //Parse initialization
         initializeParse()
+        loadInitialViewController()
+        setupNotificationObserver()
+
         
         //Run a test on parse database
 //        parseTest()
@@ -27,11 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Run Food2Fork test
 //        foodToForkTest()
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeListViewController") as! RecipeListViewController
-        
-        window?.rootViewController = viewController
+//        window?.rootViewController = viewController
         
         return true
     }
@@ -63,6 +61,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //My Functions
     //**
     //*
+    
+    func loadInitialViewController(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let recipeListNavConroller = storyboard.instantiateViewController(withIdentifier: "RecipeListNavController") as! UINavigationController
+//        let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeListViewController") as! RecipeListViewController
+        
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        
+        if PFUser.current() == nil{
+            window?.rootViewController = loginViewController
+        }else{
+            window?.rootViewController = recipeListNavConroller
+        }
+    }
+    
+    func setupNotificationObserver(){
+        NotificationCenter.default.addObserver(
+            forName: User.logoutNotification,
+            object: nil,
+            queue: OperationQueue.main,
+            using: {(notification: Notification)->Void in
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginVc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                self.window?.rootViewController = loginVc})
+    }
+    
     func initializeParse(){
         //Register PFObject subclasses
         Recipe.registerSubclass()
