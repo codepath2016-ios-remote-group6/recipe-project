@@ -100,7 +100,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="+"/>
                                         <connections>
-                                            <segue destination="qI3-SP-HaB" kind="presentation" id="Hlf-1j-bfu"/>
+                                            <segue destination="qI3-SP-HaB" kind="presentation" identifier="recipeEditSegue" id="Hlf-1j-bfu"/>
                                         </connections>
                                     </button>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="UZ4-23-JG4">
@@ -127,7 +127,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="recipeNameLabel" destination="V2x-lF-oSX" id="cpO-5X-5g9"/>
-                                                    <segue destination="nmM-9m-AfT" kind="presentation" id="u1i-fq-JDx"/>
+                                                    <segue destination="nmM-9m-AfT" kind="presentation" identifier="recipeViewSegue" id="u1i-fq-JDx"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -187,6 +187,9 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pj5-8k-E7S">
                                         <state key="normal" title="Copy"/>
+                                        <connections>
+                                            <segue destination="qI3-SP-HaB" kind="show" id="PUj-WE-3B3"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMh-pQ-heh">
                                         <fontDescription key="fontDescription" type="system" pointSize="35"/>
@@ -247,7 +250,24 @@
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csl-GD-Qvh">
                                         <state key="normal" title="Edit"/>
+                                        <connections>
+                                            <segue destination="qI3-SP-HaB" kind="show" id="uYp-h6-VvM"/>
+                                        </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ip6-nI-VLK">
+                                        <frame key="frameInset" minX="319" minY="53" width="16" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSY-6B-c2S">
+                                        <frame key="frameInset" minX="305" minY="53" width="10" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -281,10 +301,14 @@
                     <connections>
                         <outlet property="directionsTextView" destination="GqQ-Uk-PdQ" id="uE2-cQ-5FH"/>
                         <outlet property="ingredientsTableView" destination="JFG-5I-jk8" id="VtB-ae-koz"/>
+                        <outlet property="prepTimeLabel" destination="MSY-6B-c2S" id="MrV-8E-teM"/>
+                        <outlet property="prepTimeUnitLabel" destination="ip6-nI-VLK" id="sod-K6-9qg"/>
                         <outlet property="recipeNameLabel" destination="6vZ-5v-Lax" id="KBw-IF-Uxi"/>
+                        <segue destination="oYR-jA-yqp" kind="unwind" identifier="unwindToRecipeList" unwindAction="unwindToRecipeListWithSegue:" id="hrb-pe-Yvd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jar-8s-EA6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="oYR-jA-yqp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1064.8" y="795.6521739130435"/>
         </scene>
@@ -325,4 +349,7 @@
             <point key="canvasLocation" x="1494" y="-702"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Hlf-1j-bfu"/>
+    </inferredMetricsTieBreakers>
 </document>

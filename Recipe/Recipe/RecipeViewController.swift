@@ -14,17 +14,26 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var directionsTextView: UITextView!
     
+    @IBOutlet weak var prepTimeLabel: UILabel!
+    @IBOutlet weak var prepTimeUnitLabel: UILabel!
+    
     var recipe: Recipe!
     var ingredientsArray: [Ingredient]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         ingredientsArray = Ingredient.IngredientsWithArray(dictionaries: recipe.ingredients as [NSDictionary])
+        
+        // This assumes there is always at least one ingredient
+//        let tableViewHeight = ingredientsTableView.rowHeight as Int * (ingredientsArray?.count)!
         
         recipeNameLabel.text = recipe.name
         directionsTextView.text = recipe.summary
         
+        prepTimeLabel.text = "\(recipe.prepTime)"
+        prepTimeUnitLabel.text = recipe.prepTimeUnits
+        
+//        ingredientsTableView.size.height = tableViewHeight
         ingredientsTableView.dataSource = self
         ingredientsTableView.delegate = self
         ingredientsTableView.alwaysBounceVertical = false
@@ -37,9 +46,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func onCancelButton(_ sender: AnyObject) {
-        let recipeListViewController = self.storyboard?.instantiateViewController(withIdentifier: "RecipeListViewController") as? RecipeListViewController
-        
-        navigationController?.pushViewController(recipeListViewController!, animated: true)
+        self.performSegue(withIdentifier: "unwindToRecipeList", sender: self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

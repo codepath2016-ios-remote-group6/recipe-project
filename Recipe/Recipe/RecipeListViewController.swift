@@ -98,13 +98,23 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationViewController = segue.destination as! RecipeViewController
         
-        let cell = sender as! UITableViewCell
-        let indexPath = self.tableView.indexPath(for: cell)
-        let recipe = data[(indexPath?.row)!]
+        switch segue.identifier! {
+            case "recipeViewSegue":
+                let destinationViewController = segue.destination as! RecipeViewController
+            
+                let cell = sender as! UITableViewCell
+                let indexPath = self.tableView.indexPath(for: cell)
+                let recipe = data[(indexPath?.row)!]
+                
+                destinationViewController.recipe = recipe
+            
+            default:
+                break
+        }
         
-        destinationViewController.recipe = recipe
-    }
 
+    }
+    
+    @IBAction func unwindToRecipeList(segue: UIStoryboardSegue) {}
 }
