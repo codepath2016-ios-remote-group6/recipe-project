@@ -22,12 +22,12 @@ class Recipe : PFObject, PFSubclassing {
     
     //properties
     @NSManaged var name: String?
-    @NSManaged var imageUrl: URL?
+    @NSManaged var imageUrlString: String?
     @NSManaged var imageFile: PFFile?
     @NSManaged var createdByUser: PFRelation<PFUser>?
     @NSManaged var sourceName: String?
-    @NSManaged var sourceGeneralUrl: URL?
-    @NSManaged var sourceUrl: URL?
+    @NSManaged var sourceGeneralUrlString: String?
+    @NSManaged var sourceUrlString: String?
     @NSManaged var sourceId: String?
     @NSManaged var summary: String?
     @NSManaged var prepTimeStr: String?
@@ -39,6 +39,10 @@ class Recipe : PFObject, PFSubclassing {
     @NSManaged var directionsDict: [Dictionary<Int,String>]?
     @NSManaged var directions: [String]?
     
+    var imageUrl: URL?
+    var sourceGeneralUrl: URL?
+    var sourceUrl: URL?
+    
     func create(ingredientObjectWith name: String, quantity: Double, units: String)->Dictionary<String,AnyObject>{
         var ingredient = [String:AnyObject]()
         ingredient[Recipe.ingredientNameKey] = name as AnyObject
@@ -47,7 +51,7 @@ class Recipe : PFObject, PFSubclassing {
         return ingredient
     }
     
-    func create(derectionObjectWith orderNumber: Int, description: String)->Dictionary<String,AnyObject>{
+    func create(directionObjectWith orderNumber: Int, description: String)->Dictionary<String,AnyObject>{
         var direction = [String:AnyObject]()
         direction[Recipe.directionOrderNumKey] = orderNumber as AnyObject
         direction[Recipe.directionDescriptionKey] = description as AnyObject
@@ -62,11 +66,16 @@ class Recipe : PFObject, PFSubclassing {
         let recipe = Recipe()
         recipe.name = dictionary["title"] as? String
         recipe.sourceName = dictionary["publisher"] as? String
-        recipe.sourceGeneralUrl = dictionary["publisher_url"] as? URL
-        recipe.sourceUrl = dictionary["source_url"] as? URL
+        recipe.sourceGeneralUrlString = dictionary["publisher_url"] as? String
+        recipe.sourceUrlString = dictionary["source_url"] as? String
         recipe.sourceId = dictionary["recipe_id"] as? String
-        recipe.imageUrl = dictionary["image_url"] as? URL
+        recipe.imageUrlString = dictionary["image_url"] as? String
         recipe.ingredientList = dictionary["ingredients"] as? [String]
+        
+        //populateUrls
+        recipe.sourceGeneralUrl = recipe.getUrl(fromOptionalString: recipe.sourceGeneralUrlString)
+        recipe.sourceUrl = recipe.getUrl(fromOptionalString: recipe.sourceUrlString)
+        recipe.imageUrl = recipe.getUrl(fromOptionalString: recipe.imageUrlString)
         
         return recipe
     }
@@ -88,6 +97,14 @@ class Recipe : PFObject, PFSubclassing {
             recipes.append(Recipe.recipe(fromFoodToFork: recipeDict))
         }
         return recipes
+    }
+    
+    func getUrl(fromOptionalString optUrlString: String?)->URL?{
+        if let urlString = optUrlString{
+            return URL(string: urlString)
+        }else{
+            return nil
+        }
     }
     
 }

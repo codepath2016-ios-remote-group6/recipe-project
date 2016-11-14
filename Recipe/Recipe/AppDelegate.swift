@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        parseTest()
         
         //Run Food2Fork test
-        foodToForkTest()
+//        foodToForkTest()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         

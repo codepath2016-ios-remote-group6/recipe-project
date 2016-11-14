@@ -19,29 +19,34 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // dummy data
-        let recipe: Recipe = Recipe()
-        recipe.name = "Apple Pie"
-        recipe.summary = "Delicious desert"
-        recipe.prepTime = 1.5
-        recipe.prepTimeUnits = "hours"
+//        // dummy data
+//        let recipe: Recipe = Recipe()
+//        recipe.name = "Apple Pie"
+//        recipe.summary = "Delicious desert"
+//        recipe.prepTime = 1.5
+//        recipe.prepTimeUnits = "hours"
+//        
+//        let recipe2: Recipe = Recipe()
+//        recipe2.name = "Cheesecake"
+//        recipe2.summary = "Delicious desert"
+//        recipe2.prepTime = 1.5
+//        recipe2.prepTimeUnits = "hours"
+//        
+//        data.append(recipe)
+//        data.append(recipe2)
         
-        let recipe2: Recipe = Recipe()
-        recipe2.name = "Cheesecake"
-        recipe2.summary = "Delicious desert"
-        recipe2.prepTime = 1.5
-        recipe2.prepTimeUnits = "hours"
-        
-        data.append(recipe)
-        data.append(recipe2)
-        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 70
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
         
         filteredData = data
-        
-        tableView.reloadData()
+
+//        tableView.reloadData()
+
+        //Bring in recipes from the api
+        buildGenericRecipeList()
 
         // Do any additional setup after loading the view.
     }
@@ -63,7 +68,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let recipe = filteredData[indexPath.row]
         
-        cell.recipeNameLabel.text = recipe.name
+//        cell.recipeNameLabel.text = recipe.name
+        cell.recipe = recipe
         
         return cell
     }
@@ -81,7 +87,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         // For each item, return true if the item should be included and false if the
         // item should NOT be included
         filteredData = searchText.isEmpty ? data : data.filter({(recipe: Recipe) -> Bool in
-            return recipe.name.range(of: searchText, options: .caseInsensitive) != nil
+            return recipe.name?.range(of: searchText, options: .caseInsensitive) != nil
         })
         
         tableView.reloadData()
@@ -97,5 +103,26 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //*
+    //*
+    //Low level functions
+    //*
+    //*
+    
+    func buildGenericRecipeList(){
+        Recipe.searchFoodToFork(
+            query: nil,
+            page: nil,
+            sort: nil,
+            success: {(recipeDictList: [Dictionary<String,Any>])->Void in
+                self.data = Recipe.recipes(recipeDictList: recipeDictList)
+                self.filteredData = self.data
+                self.tableView.reloadData()
+            },
+            failure: {(error: Error?)->Void in
+                //failure code
+        })
+    }
 
 }
