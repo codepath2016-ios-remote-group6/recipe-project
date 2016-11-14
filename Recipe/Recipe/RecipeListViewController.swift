@@ -19,21 +19,38 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        // dummy data
-//        let recipe: Recipe = Recipe()
-//        recipe.name = "Apple Pie"
-//        recipe.summary = "Delicious desert"
-//        recipe.prepTime = 1.5
-//        recipe.prepTimeUnits = "hours"
-//        
-//        let recipe2: Recipe = Recipe()
-//        recipe2.name = "Cheesecake"
-//        recipe2.summary = "Delicious desert"
-//        recipe2.prepTime = 1.5
-//        recipe2.prepTimeUnits = "hours"
-//        
-//        data.append(recipe)
-//        data.append(recipe2)
+
+        // dummy data
+        let recipe: Recipe = Recipe()
+        recipe.name = "Apple Pie"
+        recipe.summary = "Delicious desert"
+        recipe.prepTime = 1.5
+        recipe.prepTimeUnits = "hours"
+        
+        var apples  = [String:AnyObject]()
+        apples[Recipe.ingredientNameKey] = "apples" as AnyObject
+        apples[Recipe.ingredientQuantityKey] = 2.0 as AnyObject
+        apples[Recipe.ingredientUnitsKey] = "lbs" as AnyObject
+        
+        var crust = [String:AnyObject]()
+        crust[Recipe.ingredientNameKey] = "pie crust" as AnyObject
+        crust[Recipe.ingredientQuantityKey] = 1.0 as AnyObject
+        crust[Recipe.ingredientUnitsKey] = "" as AnyObject
+        
+        var ingredients: [Dictionary<String,AnyObject>] = Array<Dictionary<String,AnyObject>>()
+        ingredients.append(apples)
+        ingredients.append(crust)
+        
+        recipe.ingredients = ingredients
+        
+        let recipe2: Recipe = Recipe()
+        recipe2.name = "Cheesecake"
+        recipe2.summary = "Delicious desert"
+        recipe2.prepTime = 1.5
+        recipe2.prepTimeUnits = "hours"
+        
+        data.append(recipe)
+        data.append(recipe2)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
@@ -64,19 +81,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeListCell", for: indexPath) as! RecipeListCell
         
-        print(filteredData)
-        
         let recipe = filteredData[indexPath.row]
         
 //        cell.recipeNameLabel.text = recipe.name
         cell.recipe = recipe
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        performSegue(withIdentifier: "recipeViewSegue", sender: nil)
     }
     
     // This method updates filteredData based on the text in the Search Box
@@ -93,16 +103,28 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
     }
 
-    
-    /*
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        switch segue.identifier! {
+            case "recipeViewSegue":
+                let destinationViewController = segue.destination as! RecipeViewController
+            
+                let cell = sender as! UITableViewCell
+                let indexPath = self.tableView.indexPath(for: cell)
+                let recipe = data[(indexPath?.row)!]
+                
+                destinationViewController.recipe = recipe
+            
+            default:
+                break
+        }
     }
-    */
+    
+    @IBAction func unwindToRecipeList(segue: UIStoryboardSegue) {}
+    
     
     //*
     //*

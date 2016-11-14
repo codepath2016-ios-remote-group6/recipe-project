@@ -20,6 +20,8 @@ class RecipeListCell: UITableViewCell {
         recipeImageView.layer.cornerRadius = 4
         recipeImageView.clipsToBounds = true
         // Initialization code
+        
+        self.accessoryType = UITableViewCellAccessoryType.none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

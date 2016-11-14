@@ -74,6 +74,57 @@ class FoodToForkClient: BDBOAuth1SessionManager {
             task.resume()
         }
     }
+    
+    
+    //
+    class func getRecpie(withRecipeId recipeId: String, success: @escaping (Dictionary<String,Any>)->(), failure: @escaping (Error?)->()){
+        print("Food2Fork get recipie started")
+        
+        let baseUrlString = "\(self.foodToForkBaseUrlString)/\(self.getEndpoint)"
+        let baseUrl = URL(string: baseUrlString)
+        let baseUrlRequest = URLRequest(url: baseUrl!)
+        
+        var parameters = Dictionary<String,AnyObject>()
+        parameters["key"] = self.apiKey as AnyObject
+        parameters["rId"] = recipeId as AnyObject
+        
+        let serializedRequest = AFHTTPRequestSerializer().request(bySerializingRequest: baseUrlRequest, withParameters: parameters, error: nil)
+        
+        //        print("serializedRequest: \(serializedRequest)")
+        
+        if let serializedRequest = serializedRequest{
+            let session = URLSession(
+                configuration: URLSessionConfiguration.default,
+                delegate:nil,
+                delegateQueue:OperationQueue.main
+            )
+            
+            let task : URLSessionDataTask =
+                session.dataTask(with: serializedRequest, completionHandler:{(dataOrNil, response, error) in
+                    if let data = dataOrNil {
+                        if let responseDictionary =
+                            try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
+                            
+                            if let recipe = responseDictionary["recipe"] as? Dictionary<String,Any>{
+                                success(recipe)
+                            }else{
+                                print("Food2ForkClient: Error parsing the response dictionary")
+                            }
+                            
+                        }else{
+                            print("something went wrong with conversion to dictionary")
+                        }
+                    }else{
+                        print("something went wrong with request")
+                        print("Error: \(error?.localizedDescription)")
+                        failure(error)
+                    }
+                    
+                });
+            task.resume()
+        }
+    }
+
 
     
     /*

@@ -10,7 +10,6 @@ import UIKit
 import Parse
 
 
-
 class Recipe : PFObject, PFSubclassing {
 
     static let ingredientNameKey = "name"
@@ -34,7 +33,7 @@ class Recipe : PFObject, PFSubclassing {
     @NSManaged var prepTime: Double
     @NSManaged var prepTimeUnits: String?
     @NSManaged var difficulty: Int
-    @NSManaged var ingredients: [Dictionary<String,AnyObject>]?
+    @NSManaged var ingredients: [Dictionary<String,AnyObject>]
     @NSManaged var ingredientList: [String]?
     @NSManaged var directionsDict: [Dictionary<Int,String>]?
     @NSManaged var directions: [String]?
@@ -62,7 +61,7 @@ class Recipe : PFObject, PFSubclassing {
         return "Recipe"
     }
     
-    class func recipe(fromFoodToFork dictionary: Dictionary<String,Any>) -> Recipe{
+    class func recipe(fromFoodToForkDict dictionary: Dictionary<String,Any>) -> Recipe{
         let recipe = Recipe()
         recipe.name = dictionary["title"] as? String
         recipe.sourceName = dictionary["publisher"] as? String
@@ -71,6 +70,7 @@ class Recipe : PFObject, PFSubclassing {
         recipe.sourceId = dictionary["recipe_id"] as? String
         recipe.imageUrlString = dictionary["image_url"] as? String
         recipe.ingredientList = dictionary["ingredients"] as? [String]
+        recipe.ingredients = [Dictionary<String,AnyObject>]()
         
         //populateUrls
         recipe.sourceGeneralUrl = recipe.getUrl(fromOptionalString: recipe.sourceGeneralUrlString)
@@ -78,6 +78,14 @@ class Recipe : PFObject, PFSubclassing {
         recipe.imageUrl = recipe.getUrl(fromOptionalString: recipe.imageUrlString)
         
         return recipe
+    }
+    
+    class func recipe(fromFoodToForkApiRequestWith recipeId: String, success: @escaping (Dictionary<String,Any>)->(), failure: @escaping (Error?)->()){
+        FoodToForkClient.getRecpie(withRecipeId: recipeId,
+            success: {(recipe: Dictionary<String,Any>)->Void in
+                success(recipe)},
+            failure: {(error: Error?)->Void in
+                failure(error)})
     }
     
     class func searchFoodToFork(query: String?, page: String?, sort: String?, success: @escaping ([Dictionary<String,Any>])->(), failure: @escaping (Error?)->()){
@@ -94,7 +102,7 @@ class Recipe : PFObject, PFSubclassing {
     class func recipes(recipeDictList: [Dictionary<String,Any>])->[Recipe]{
         var recipes = [Recipe]()
         for recipeDict in recipeDictList{
-            recipes.append(Recipe.recipe(fromFoodToFork: recipeDict))
+            recipes.append(Recipe.recipe(fromFoodToForkDict: recipeDict))
         }
         return recipes
     }
