@@ -34,7 +34,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         var crust = [String:AnyObject]()
         crust[Recipe.ingredientNameKey] = "pie crust" as AnyObject
         crust[Recipe.ingredientQuantityKey] = 1.0 as AnyObject
-        crust[Recipe.ingredientUnitsKey] = "none" as AnyObject
+        crust[Recipe.ingredientUnitsKey] = "" as AnyObject
         
         var ingredients: [Dictionary<String,AnyObject>] = Array<Dictionary<String,AnyObject>>()
         ingredients.append(apples)

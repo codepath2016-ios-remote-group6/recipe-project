@@ -37,6 +37,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ingredientsTableView.dataSource = self
         ingredientsTableView.delegate = self
         ingredientsTableView.alwaysBounceVertical = false
+        ingredientsTableView.allowsSelection = false
+        ingredientsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         ingredientsTableView.reloadData()
     }
 
