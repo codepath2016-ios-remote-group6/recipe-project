@@ -17,5 +17,9 @@ class User: NSObject {
         PFUser.logOut()
         NotificationCenter.default.post(name: User.logoutNotification, object: nil)
     }
+    
+    class func login(){
+//        NotificationCenter.default.post(name: User.logoutNotification, object: nil)
+    }
 
 }

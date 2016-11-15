@@ -19,11 +19,16 @@ class Recipe : PFObject, PFSubclassing {
     static let directionOrderNumKey = "orderNumber"
     static let directionDescriptionKey = "directionDescription"
     
+    static let className = "Recipe"
+    
+    static let createdByUserKey = "createdByUser"
+    
     //properties
     @NSManaged var name: String?
     @NSManaged var imageUrlString: String?
     @NSManaged var imageFile: PFFile?
-    @NSManaged var createdByUser: PFRelation<PFUser>?
+//    @NSManaged var createdByUser: PFRelation<PFUser>?
+    @NSManaged var createdByUser: PFUser?
     @NSManaged var inspiredBy: String?
     @NSManaged var inspiredByUrlString: String?
     @NSManaged var inspiredByRecipeUrlString: String?
@@ -59,6 +64,7 @@ class Recipe : PFObject, PFSubclassing {
     
     static func parseClassName() -> String {
         return "Recipe"
+//        return Recipe.className
     }
     
     class func recipe(fromFoodToForkDict dictionary: Dictionary<String,Any>) -> Recipe{
@@ -112,6 +118,37 @@ class Recipe : PFObject, PFSubclassing {
             return URL(string: urlString)
         }else{
             return nil
+        }
+    }
+    
+    class func getMyRecipes(success: @escaping ([Recipe])->(), failure: @escaping (Error?)->()){
+        
+        
+//        var currentUser = PFUser.current()
+        if let currentUser = PFUser.current(){
+            print("currentUser: \(currentUser)")
+            var query = PFQuery(className: Recipe.className)
+            query.whereKey(Recipe.createdByUserKey, equalTo: currentUser)
+            query.findObjectsInBackground(block: {(results: [PFObject]?, error: Error?)->Void in
+                if error == nil{
+                    //successful query
+                    print("found 'MyRecipes' successfully in parse DB")
+                    var recipes = [Recipe]()
+                    if let results = results{
+                        for result in results{
+                            if let recipe = result as? Recipe{
+                                recipes.append(recipe)
+                            }
+                        }
+                        success(recipes)
+                    }
+                }else{
+                    failure(error)
+                }
+            })
+        }else{
+            print("user is not logged in")
+            User.login()
         }
     }
     

@@ -69,6 +69,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         buildGenericRecipeList()
         
         setupLoginLogoutButton()
+        
+        getMyRecipes()
 
         // Do any additional setup after loading the view.
     }
@@ -165,6 +167,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             },
             failure: {(error: Error?)->Void in
                 //failure code
+                print("Error in RecipeList: \(error?.localizedDescription)")
+                print(error)
         })
     }
     
@@ -188,6 +192,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if PFUser.current() == nil {
             self.loginLogoutBarButton.title = "Log In"
         }
+    }
+    
+    func getMyRecipes(){
+        print("getting my recipes")
+        Recipe.getMyRecipes(
+            success: {(myRecipes: [Recipe]) -> Void in
+                print("My recipes: \(myRecipes)")},
+            failure: {(error: Error?) -> Void in
+                print("Error retrieving my recipes: \(error?.localizedDescription)")})
     }
 
 }
