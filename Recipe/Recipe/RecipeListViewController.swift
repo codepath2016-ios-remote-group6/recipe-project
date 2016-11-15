@@ -24,36 +24,36 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
 
         // dummy data
-        let recipe: Recipe = Recipe()
-        recipe.name = "Apple Pie"
-        recipe.summary = "Delicious desert"
-        recipe.prepTime = 1.5
-        recipe.prepTimeUnits = "hours"
-        
-        var apples  = [String:AnyObject]()
-        apples[Recipe.ingredientNameKey] = "apples" as AnyObject
-        apples[Recipe.ingredientQuantityKey] = 2.0 as AnyObject
-        apples[Recipe.ingredientUnitsKey] = "lbs" as AnyObject
-        
-        var crust = [String:AnyObject]()
-        crust[Recipe.ingredientNameKey] = "pie crust" as AnyObject
-        crust[Recipe.ingredientQuantityKey] = 1.0 as AnyObject
-        crust[Recipe.ingredientUnitsKey] = "" as AnyObject
-        
-        var ingredients: [Dictionary<String,AnyObject>] = Array<Dictionary<String,AnyObject>>()
-        ingredients.append(apples)
-        ingredients.append(crust)
-        
-        recipe.ingredients = ingredients
-        
-        let recipe2: Recipe = Recipe()
-        recipe2.name = "Cheesecake"
-        recipe2.summary = "Delicious desert"
-        recipe2.prepTime = 1.5
-        recipe2.prepTimeUnits = "hours"
-        
-        data.append(recipe)
-        data.append(recipe2)
+//        let recipe: Recipe = Recipe()
+//        recipe.name = "Apple Pie"
+//        recipe.summary = "Delicious desert"
+//        recipe.prepTime = 1.5
+//        recipe.prepTimeUnits = "hours"
+//        
+//        var apples  = [String:AnyObject]()
+//        apples[Recipe.ingredientNameKey] = "apples" as AnyObject
+//        apples[Recipe.ingredientQuantityKey] = 2.0 as AnyObject
+//        apples[Recipe.ingredientUnitsKey] = "lbs" as AnyObject
+//        
+//        var crust = [String:AnyObject]()
+//        crust[Recipe.ingredientNameKey] = "pie crust" as AnyObject
+//        crust[Recipe.ingredientQuantityKey] = 1.0 as AnyObject
+//        crust[Recipe.ingredientUnitsKey] = "" as AnyObject
+//        
+//        var ingredients: [Dictionary<String,AnyObject>] = Array<Dictionary<String,AnyObject>>()
+//        ingredients.append(apples)
+//        ingredients.append(crust)
+//        
+//        recipe.ingredients = ingredients
+//        
+//        let recipe2: Recipe = Recipe()
+//        recipe2.name = "Cheesecake"
+//        recipe2.summary = "Delicious desert"
+//        recipe2.prepTime = 1.5
+//        recipe2.prepTimeUnits = "hours"
+//        
+//        data.append(recipe)
+//        data.append(recipe2)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
@@ -63,14 +63,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         filteredData = data
 
-//        tableView.reloadData()
-
         //Bring in recipes from the api
         buildGenericRecipeList()
         
         setupLoginLogoutButton()
         
         getMyRecipes()
+        
+        tableView.reloadData()
 
         // Do any additional setup after loading the view.
     }
@@ -163,9 +163,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             success: {(recipeDictList: [Dictionary<String,Any>])->Void in
                 self.data = Recipe.recipes(recipeDictList: recipeDictList)
                 self.filteredData = self.data
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
             },
             failure: {(error: Error?)->Void in
+                
                 //failure code
                 print("Error in RecipeList: \(error?.localizedDescription)")
                 print(error)
@@ -181,7 +182,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.data = Recipe.recipes(recipeDictList: recipeDictList)
                 self.filteredData = self.data
                 self.searchBar.text = ""
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
             },
             failure: {(error: Error?)->Void in
                 //failure code
@@ -198,8 +199,20 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         print("getting my recipes")
         Recipe.getMyRecipes(
             success: {(myRecipes: [Recipe]) -> Void in
-                print("My recipes: \(myRecipes)")},
+                self.data = myRecipes
+                self.filteredData = myRecipes
+                
+                if myRecipes.isEmpty {
+                    print("empty success")
+                    let defaultList = Recipe.getDefaultRecipeList()
+                    self.data = defaultList
+                    self.filteredData = defaultList
+                }
+                
+                print("My recipes: \(myRecipes)"
+            )},
             failure: {(error: Error?) -> Void in
+                
                 print("Error retrieving my recipes: \(error?.localizedDescription)")})
     }
 

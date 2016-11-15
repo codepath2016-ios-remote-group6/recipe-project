@@ -121,6 +121,24 @@ class Recipe : PFObject, PFSubclassing {
         }
     }
     
+    class func getDefaultRecipeList() -> [Recipe] {
+        var recipeList = [Recipe]();
+        
+        if let path = Bundle.main.path(forResource: "default_recipes", ofType: "json")
+        {
+            let jsonData = try! NSData(contentsOfFile: path, options: .dataReadingMapped)
+            
+//            if let jsonData = try! NSData(contentsOfFile: path, options: .dataReadingMapped) {
+                if let jsonResult: NSDictionary = try! JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
+                    
+
+                }
+//            }
+        }
+        
+        return recipeList;
+    }
+    
     class func getMyRecipes(success: @escaping ([Recipe])->(), failure: @escaping (Error?)->()){
         
         
