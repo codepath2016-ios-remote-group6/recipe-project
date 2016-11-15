@@ -163,7 +163,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             success: {(recipeDictList: [Dictionary<String,Any>])->Void in
                 self.data = Recipe.recipes(recipeDictList: recipeDictList)
                 self.filteredData = self.data
-//                self.tableView.reloadData()
+                self.tableView.reloadData()
             },
             failure: {(error: Error?)->Void in
                 
@@ -182,7 +182,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.data = Recipe.recipes(recipeDictList: recipeDictList)
                 self.filteredData = self.data
                 self.searchBar.text = ""
-//                self.tableView.reloadData()
+                self.tableView.reloadData()
             },
             failure: {(error: Error?)->Void in
                 //failure code
@@ -207,6 +207,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     let defaultList = Recipe.getDefaultRecipeList()
                     self.data = defaultList
                     self.filteredData = defaultList
+                    self.tableView.reloadData()
                 }
                 
                 print("My recipes: \(myRecipes)"
