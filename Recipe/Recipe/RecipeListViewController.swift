@@ -68,7 +68,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         setupLoginLogoutButton()
         
-        getMyRecipes()
+//        getMyRecipes()
+        getRecipesFromDb()
         
         tableView.reloadData()
 
@@ -90,7 +91,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let recipe = filteredData[indexPath.row]
         
-//        cell.recipeNameLabel.text = recipe.name
         cell.recipe = recipe
         
         return cell
@@ -212,7 +212,27 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 print("My recipes: \(myRecipes)"
             )},
             failure: {(error: Error?) -> Void in
+                print("Error retrieving my recipes: \(error?.localizedDescription)")})
+    }
+    
+    func getRecipesFromDb(){
+        print("getting my recipes")
+        Recipe.getRecipesFromDb(
+            success: {(myRecipes: [Recipe]) -> Void in
+                self.data = myRecipes
+                self.filteredData = myRecipes
+                self.tableView.reloadData()
                 
+                if myRecipes.isEmpty {
+                    print("empty success")
+                    let defaultList = Recipe.getDefaultRecipeList()
+                    self.data = defaultList
+                    self.filteredData = defaultList
+                }
+                
+                print("My recipes: \(myRecipes)"
+                )},
+            failure: {(error: Error?) -> Void in
                 print("Error retrieving my recipes: \(error?.localizedDescription)")})
     }
 

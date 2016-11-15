@@ -13,6 +13,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var recipeNameLabel: UILabel!
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var directionsTextView: UITextView!
+    @IBOutlet weak var recipeImageView: UIImageView!
     
     @IBOutlet weak var prepTimeLabel: UILabel!
     @IBOutlet weak var prepTimeUnitLabel: UILabel!
@@ -26,6 +27,12 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // This assumes there is always at least one ingredient
 //        let tableViewHeight = ingredientsTableView.rowHeight as Int * (ingredientsArray?.count)!
+        
+        if let urlString = recipe.imageUrlString{
+            if let url = URL(string: urlString){
+                recipeImageView.setImageWith(url)
+            }
+        }
         
         recipeNameLabel.text = recipe.name
         directionsTextView.text = recipe.summary

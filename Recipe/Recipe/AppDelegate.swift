@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loadInitialViewController()
         setupNotificationObserver()
         
+        parseTest()
+        
         return true
     }
 
@@ -56,13 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func loadInitialViewController(){
         
         let notFirstAppLaunch = UserDefaults.standard.bool(forKey: User.notFirstAppLaunchKey)
-        if(notFirstAppLaunch == nil){
-            print("notFirstAppLaunch is nil")
-        }else{
-            print("notFirstAppLaunch: \(notFirstAppLaunch)")
-        }
         
-        if notFirstAppLaunch {
+        if false {
             showFirstViewController()
         }else{
             UserDefaults.standard.set(true, forKey: User.notFirstAppLaunchKey)
@@ -149,20 +146,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Starting Parse Test")
 
         let recipe: Recipe = Recipe()
-        recipe.name = "Apple Pie"
-        recipe.summary = "Delicious desert"
-        recipe.prepTime = 1.5
-        recipe.prepTimeUnits = "hours"
+        recipe.name = "Guacamole"
+        recipe.summary = "Smooth avocado delight"
+        recipe.prepTime = 20
+        recipe.prepTimeUnits = "minutes"
+        recipe.imageUrlString = "https://mylatinatable.com/wp-content/uploads/2016/02/guacamole-foto-heroe.jpg"
         
         var apples  = [String:AnyObject]()
-        apples[Recipe.ingredientNameKey] = "apples" as AnyObject
+        apples[Recipe.ingredientNameKey] = "Avocado" as AnyObject
         apples[Recipe.ingredientQuantityKey] = 2.0 as AnyObject
-        apples[Recipe.ingredientUnitsKey] = "lbs" as AnyObject
+        apples[Recipe.ingredientUnitsKey] = "Avocados" as AnyObject
         
         var crust = [String:AnyObject]()
-        crust[Recipe.ingredientNameKey] = "pie crust" as AnyObject
-        crust[Recipe.ingredientQuantityKey] = 1.0 as AnyObject
-        crust[Recipe.ingredientUnitsKey] = "none" as AnyObject
+        crust[Recipe.ingredientNameKey] = "Onion" as AnyObject
+        crust[Recipe.ingredientQuantityKey] = 0.5 as AnyObject
+        crust[Recipe.ingredientUnitsKey] = "small onion" as AnyObject
         
         var ingredients: [Dictionary<String,AnyObject>] = Array<Dictionary<String,AnyObject>>()
         ingredients.append(apples)

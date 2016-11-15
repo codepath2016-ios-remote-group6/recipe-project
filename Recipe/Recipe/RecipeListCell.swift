@@ -35,7 +35,13 @@ class RecipeListCell: UITableViewCell {
             self.recipeNameLabel.text = newValue?.name
             self.recipeSourceLabel.text = newValue?.inspiredBy
             if let url = newValue?.imageUrl{
+                print("imageUrl")
                 self.recipeImageView.setImageWith(url)
+            }else if let urlString = newValue?.imageUrlString{
+                if let url = URL(string: urlString){
+                    print("imageUrlString")
+                    self.recipeImageView.setImageWith(url)
+                }
             }
         }
     }

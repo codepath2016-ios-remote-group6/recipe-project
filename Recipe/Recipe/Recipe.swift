@@ -145,7 +145,7 @@ class Recipe : PFObject, PFSubclassing {
 //        var currentUser = PFUser.current()
         if let currentUser = PFUser.current(){
             print("currentUser: \(currentUser)")
-            var query = PFQuery(className: Recipe.className)
+            let query = PFQuery(className: Recipe.className)
             query.whereKey(Recipe.createdByUserKey, equalTo: currentUser)
             query.findObjectsInBackground(block: {(results: [PFObject]?, error: Error?)->Void in
                 if error == nil{
@@ -169,5 +169,27 @@ class Recipe : PFObject, PFSubclassing {
             User.login()
         }
     }
+    
+    class func getRecipesFromDb(success: @escaping ([Recipe])->(), failure: @escaping (Error?)->()){
+        let query = PFQuery(className: Recipe.className)
+        query.findObjectsInBackground(block: {(results: [PFObject]?, error: Error?)->Void in
+            if error == nil{
+                //successful query
+                print("found 'MyRecipes' successfully in parse DB")
+                var recipes = [Recipe]()
+                if let results = results{
+                    for result in results{
+                        if let recipe = result as? Recipe{
+                            recipes.append(recipe)
+                        }
+                    }
+                    success(recipes)
+                }
+            }else{
+                failure(error)
+            }
+        })
+    }
+
     
 }
