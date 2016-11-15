@@ -21,15 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initializeParse()
         loadInitialViewController()
         setupNotificationObserver()
-
-        
-        //Run a test on parse database
-//        parseTest()
-        
-        //Run Food2Fork test
-//        foodToForkTest()
-        
-//        window?.rootViewController = viewController
         
         return true
     }
@@ -63,18 +54,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*
     
     func loadInitialViewController(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let recipeListNavConroller = storyboard.instantiateViewController(withIdentifier: "RecipeListNavController") as! UINavigationController
-//        let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeListViewController") as! RecipeListViewController
-        
-        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        
-        if PFUser.current() == nil{
-            window?.rootViewController = loginViewController
+        let notFirstAppLaunch = UserDefaults.standard.bool(forKey: User.notFirstAppLaunchKey)
+        if(notFirstAppLaunch == nil){
+            print("notFirstAppLaunch is nil")
         }else{
-            window?.rootViewController = recipeListNavConroller
+            print("notFirstAppLaunch: \(notFirstAppLaunch)")
         }
+        
+        if notFirstAppLaunch {
+            showFirstViewController()
+        }else{
+            UserDefaults.standard.set(true, forKey: User.notFirstAppLaunchKey)
+            UserDefaults.standard.synchronize()
+            showIntroViewController()
+        }
+        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//        let recipeListNavConroller = storyboard.instantiateViewController(withIdentifier: "RecipeListNavController") as! UINavigationController
+////        let viewController = storyboard.instantiateViewController(withIdentifier: "RecipeListViewController") as! RecipeListViewController
+//        
+//        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//        
+//        if PFUser.current() == nil{
+//            window?.rootViewController = loginViewController
+//        }else{
+//            window?.rootViewController = recipeListNavConroller
+//        }
     }
     
     func setupNotificationObserver(){
@@ -83,9 +90,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             object: nil,
             queue: OperationQueue.main,
             using: {(notification: Notification)->Void in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let loginVc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                self.window?.rootViewController = loginVc})
+                self.showLoginViewController()})
+        
+        NotificationCenter.default.addObserver(
+            forName: IntroViewController.finishedIntroNotification,
+            object: nil,
+            queue: OperationQueue.main,
+            using: {(notification: Notification)->Void in
+                self.showFirstViewController()})
+    }
+    
+    func showFirstViewController(){
+        if PFUser.current() == nil{
+            showLoginViewController()
+        }else{
+            showRecipeListViewController()
+        }
+    }
+    
+    func showLoginViewController(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginVc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        window?.rootViewController = loginVc
+    }
+    
+    func showRecipeListViewController(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let recipeListNavCtrl = storyboard.instantiateViewController(withIdentifier: "RecipeListNavController") as! UINavigationController
+        window?.rootViewController = recipeListNavCtrl
+    }
+    
+    func showIntroViewController(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let introVc = storyboard.instantiateViewController(withIdentifier: "IntroViewController") as! IntroViewController
+        window?.rootViewController = introVc
     }
     
     func initializeParse(){
