@@ -13,6 +13,8 @@ class User: NSObject {
     
     public static let logoutNotification = Notification.Name("userLogout")
     
+    public static let notFirstAppLaunchKey = "notFirstAppLaunch"
+    
     class func logout(){
         PFUser.logOut()
         NotificationCenter.default.post(name: User.logoutNotification, object: nil)

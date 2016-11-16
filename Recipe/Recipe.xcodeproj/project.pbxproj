@@ -22,6 +22,7 @@
 		0ACC4DB71DD1410C00701833 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ACC4DB51DD1410C00701833 /* LaunchScreen.storyboard */; };
 		284F0AE31DD797E700434B8B /* FoodToForkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284F0AE21DD797E700434B8B /* FoodToForkClient.swift */; };
 		284F0AE51DDA377300434B8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284F0AE41DDA377300434B8B /* User.swift */; };
+		284F0AE91DDAB50B00434B8B /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284F0AE81DDAB50B00434B8B /* IntroViewController.swift */; };
 		28515DF11DD3D959000756BA /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28515DF01DD3D959000756BA /* Recipe.swift */; };
 		66D465CC43B56ECB24BA096E /* Pods_Recipe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF869BEB955DA1AA74F00A /* Pods_Recipe.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		0ACC4DB81DD1410C00701833 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284F0AE21DD797E700434B8B /* FoodToForkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodToForkClient.swift; sourceTree = "<group>"; };
 		284F0AE41DDA377300434B8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		284F0AE81DDAB50B00434B8B /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		28515DF01DD3D959000756BA /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		9BC98465461E91B4978B4FA7 /* Pods-Recipe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recipe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Recipe/Pods-Recipe.release.xcconfig"; sourceTree = "<group>"; };
 		9F62D52326437E1B0E751E5B /* Pods-Recipe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recipe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Recipe/Pods-Recipe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				0AB0A28E1DD6ADBC001F53F3 /* RecipeListViewController.swift */,
 				0AB0A2901DD6ADCD001F53F3 /* RecipeViewController.swift */,
 				0AB0A2921DD6ADDB001F53F3 /* RecipeEditViewController.swift */,
+				284F0AE81DDAB50B00434B8B /* IntroViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28515DF11DD3D959000756BA /* Recipe.swift in Sources */,
+				284F0AE91DDAB50B00434B8B /* IntroViewController.swift in Sources */,
 				284F0AE31DD797E700434B8B /* FoodToForkClient.swift in Sources */,
 				0AB0A28D1DD6ADA7001F53F3 /* WelcomeViewController.swift in Sources */,
 				0A84807B1DD90526009A3F5A /* Ingredient.swift in Sources */,
