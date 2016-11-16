@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loadInitialViewController()
         setupNotificationObserver()
         
-        parseTest()
+//        parseTest()
         
         return true
     }
@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let notFirstAppLaunch = UserDefaults.standard.bool(forKey: User.notFirstAppLaunchKey)
         
-        if false {
+        if notFirstAppLaunch {
             showFirstViewController()
         }else{
             UserDefaults.standard.set(true, forKey: User.notFirstAppLaunchKey)
@@ -195,7 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("**********")
                 print("returned recipe list")
                 print(recipeDictList)
-                let recipes = Recipe.recipes(recipeDictList: recipeDictList)
+                let recipes = Recipe.recipes(withF2fRecipeDictList: recipeDictList)
                 print("*********")
                 print("Recipes Count: \(recipes.count)")
                 print(recipes.last?.ingredientList)

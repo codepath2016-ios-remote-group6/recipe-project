@@ -20,6 +20,7 @@
 		0ACC4DB21DD1410C00701833 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ACC4DB01DD1410C00701833 /* Main.storyboard */; };
 		0ACC4DB41DD1410C00701833 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ACC4DB31DD1410C00701833 /* Assets.xcassets */; };
 		0ACC4DB71DD1410C00701833 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ACC4DB51DD1410C00701833 /* LaunchScreen.storyboard */; };
+		282390A91DDBDB8C00454731 /* EdamamClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282390A81DDBDB8C00454731 /* EdamamClient.swift */; };
 		284F0AE31DD797E700434B8B /* FoodToForkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284F0AE21DD797E700434B8B /* FoodToForkClient.swift */; };
 		284F0AE51DDA377300434B8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284F0AE41DDA377300434B8B /* User.swift */; };
 		284F0AE91DDAB50B00434B8B /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284F0AE81DDAB50B00434B8B /* IntroViewController.swift */; };
@@ -43,6 +44,7 @@
 		0ACC4DB31DD1410C00701833 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0ACC4DB61DD1410C00701833 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ACC4DB81DD1410C00701833 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		282390A81DDBDB8C00454731 /* EdamamClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EdamamClient.swift; path = Recipe/EdamamClient.swift; sourceTree = "<group>"; };
 		284F0AE21DD797E700434B8B /* FoodToForkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodToForkClient.swift; sourceTree = "<group>"; };
 		284F0AE41DDA377300434B8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		284F0AE81DDAB50B00434B8B /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				284F0AE21DD797E700434B8B /* FoodToForkClient.swift */,
+				282390A81DDBDB8C00454731 /* EdamamClient.swift */,
 			);
 			name = Clients;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28515DF11DD3D959000756BA /* Recipe.swift in Sources */,
+				282390A91DDBDB8C00454731 /* EdamamClient.swift in Sources */,
 				284F0AE91DDAB50B00434B8B /* IntroViewController.swift in Sources */,
 				284F0AE31DD797E700434B8B /* FoodToForkClient.swift in Sources */,
 				0AB0A28D1DD6ADA7001F53F3 /* WelcomeViewController.swift in Sources */,

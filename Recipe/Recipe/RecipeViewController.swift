@@ -33,6 +33,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 recipeImageView.setImageWith(url)
             }
         }
+        recipeImageView.layer.cornerRadius = 10
+        recipeImageView.clipsToBounds = true
         
         recipeNameLabel.text = recipe.name
         directionsTextView.text = recipe.summary

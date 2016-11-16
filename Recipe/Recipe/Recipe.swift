@@ -15,6 +15,7 @@ class Recipe : PFObject, PFSubclassing {
     static let ingredientNameKey = "name"
     static let ingredientQuantityKey = "quantity"
     static let ingredientUnitsKey = "units"
+    static let ingredientAuxTextKey = "auxText"
     
     static let directionOrderNumKey = "orderNumber"
     static let directionDescriptionKey = "directionDescription"
@@ -67,6 +68,7 @@ class Recipe : PFObject, PFSubclassing {
 //        return Recipe.className
     }
     
+    //Build recipe with Food 2 Fork dictionary
     class func recipe(fromFoodToForkDict dictionary: Dictionary<String,Any>) -> Recipe{
         let recipe = Recipe()
         recipe.name = dictionary["title"] as? String
@@ -83,6 +85,38 @@ class Recipe : PFObject, PFSubclassing {
         recipe.inspiredByRecipeUrl = recipe.getUrl(fromOptionalString: recipe.inspiredByRecipeUrlString)
         recipe.imageUrl = recipe.getUrl(fromOptionalString: recipe.imageUrlString)
         
+        return recipe
+    }
+    
+    //Build recipe with Edamam dictionary
+    class func recipe(fromEdamamDict dictionary: Dictionary<String,Any>) -> Recipe{
+        let recipe = Recipe()
+        if let recipeDict = dictionary["recipe"] as? Dictionary<String,Any>{
+            recipe.name = recipeDict["label"] as? String
+            recipe.inspiredBy = recipeDict["source"] as? String
+            recipe.inspiredByUrlString = recipeDict["url"] as? String
+            recipe.inspiredByRecipeUrlString = recipeDict["shareAs"] as? String
+            recipe.sourceId = recipeDict["uri"] as? String
+            recipe.imageUrlString = recipeDict["image"] as? String
+            
+            //TODO work on ingredient list next
+            if let ingredientDictList = recipeDict["ingredients"] as? [Dictionary<String,Any>]{
+                recipe.ingredients = [Dictionary<String,AnyObject>]()
+                var ingredient = Dictionary<String,AnyObject>()
+                for ingredientDict in ingredientDictList{
+                    ingredient[self.ingredientNameKey] = ingredientDict["food"] as AnyObject
+                    ingredient[self.ingredientQuantityKey] = ingredientDict["quantity"] as AnyObject
+                    ingredient[self.ingredientUnitsKey] = ingredientDict["measure"] as AnyObject
+                    ingredient[self.ingredientAuxTextKey] = ingredientDict["text"] as AnyObject
+                    recipe.ingredients.append(ingredient)
+                }
+            }
+            
+            //populateUrls
+            recipe.inspiredByUrl = recipe.getUrl(fromOptionalString: recipe.inspiredByUrlString)
+            recipe.inspiredByRecipeUrl = recipe.getUrl(fromOptionalString: recipe.inspiredByRecipeUrlString)
+            recipe.imageUrl = recipe.getUrl(fromOptionalString: recipe.imageUrlString)
+        }
         return recipe
     }
     
@@ -105,10 +139,44 @@ class Recipe : PFObject, PFSubclassing {
                 failure(error)})
     }
     
-    class func recipes(recipeDictList: [Dictionary<String,Any>])->[Recipe]{
+    //Search Edamam with query
+    class func searchEdamam(forRecipesWithQuery query: String?, startIndex: Int?, numResults: Int?, success: @escaping ([Dictionary<String,Any>])->(), failure: @escaping (Error?)->()){
+        EdamamClient.search(
+            query: query,
+            startIndex: startIndex,
+            numResults: numResults,
+            recipeUri: nil,
+            success: {(recipeList: [Dictionary<String,Any>])->Void in
+                success(recipeList)},
+            failure: {(error: Error?)->Void in
+                failure(error)})
+    }
+    
+    //Search Edamam with recipeUri
+    class func searchEdamam(forRecipeWith recipeUri: String, success: @escaping ([Dictionary<String,Any>])->(), failure: @escaping (Error?)->()){
+        EdamamClient.search(
+            query: nil,
+            startIndex: nil,
+            numResults: nil,
+            recipeUri: recipeUri,
+            success: {(recipeList: [Dictionary<String,Any>])->Void in
+                success(recipeList)},
+            failure: {(error: Error?)->Void in
+                failure(error)})
+    }
+    
+    class func recipes(withF2fRecipeDictList recipeDictList: [Dictionary<String,Any>])->[Recipe]{
         var recipes = [Recipe]()
         for recipeDict in recipeDictList{
             recipes.append(Recipe.recipe(fromFoodToForkDict: recipeDict))
+        }
+        return recipes
+    }
+    
+    class func recipes(withEdamamRecipeDictList recipeDictList: [Dictionary<String,Any>])->[Recipe]{
+        var recipes = [Recipe]()
+        for recipeDict in recipeDictList{
+            recipes.append(Recipe.recipe(fromEdamamDict: recipeDict))
         }
         return recipes
     }

@@ -11,6 +11,10 @@ import Parse
 
 class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
+    private static let numResultsPerRequest = 30
+    private static let initialResultsIndex = 0
+    private static let genericQuery = "recipe"
+
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loginLogoutBarButton: UIBarButtonItem!
@@ -64,14 +68,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         filteredData = data
 
         //Bring in recipes from the api
-        buildGenericRecipeList()
+        query = RecipeListViewController.genericQuery
+        getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
         
         setupLoginLogoutButton()
         
 //        getMyRecipes()
-        getRecipesFromDb()
+//        getRecipesFromDb()
         
-        tableView.reloadData()
+//        tableView.reloadData()
 
         // Do any additional setup after loading the view.
     }
@@ -94,6 +99,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.recipe = recipe
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // This method updates filteredData based on the text in the Search Box
@@ -161,7 +170,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             page: nil,
             sort: nil,
             success: {(recipeDictList: [Dictionary<String,Any>])->Void in
-                self.data = Recipe.recipes(recipeDictList: recipeDictList)
+                self.data = Recipe.recipes(withF2fRecipeDictList: recipeDictList)
                 self.filteredData = self.data
 //                self.tableView.reloadData()
             },
@@ -174,19 +183,35 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getRecipeListResults(pageNum: Int){
-        Recipe.searchFoodToFork(
-            query: self.query,
-            page: "\(pageNum)",
-            sort: nil,
+        let startIndex = pageNum * RecipeListViewController.numResultsPerRequest
+        Recipe.searchEdamam(
+            forRecipesWithQuery: self.query,
+            startIndex: startIndex,
+            numResults: RecipeListViewController.numResultsPerRequest,
             success: {(recipeDictList: [Dictionary<String,Any>])->Void in
-                self.data = Recipe.recipes(recipeDictList: recipeDictList)
+                self.data = Recipe.recipes(withEdamamRecipeDictList: recipeDictList)
                 self.filteredData = self.data
                 self.searchBar.text = ""
-//                self.tableView.reloadData()
-            },
+                print("lets see the data: \(self.filteredData[0].imageUrlString)")
+                self.tableView.reloadData()},
             failure: {(error: Error?)->Void in
                 //failure code
         })
+        
+        
+//        Recipe.searchFoodToFork(
+//            query: self.query,
+//            page: "\(pageNum)",
+//            sort: nil,
+//            success: {(recipeDictList: [Dictionary<String,Any>])->Void in
+//                self.data = Recipe.recipes(recipeDictList: recipeDictList)
+//                self.filteredData = self.data
+//                self.searchBar.text = ""
+////                self.tableView.reloadData()
+//            },
+//            failure: {(error: Error?)->Void in
+//                //failure code
+//        })
     }
     
     func setupLoginLogoutButton(){

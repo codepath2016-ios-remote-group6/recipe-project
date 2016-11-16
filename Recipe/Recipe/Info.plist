@@ -6,6 +6,20 @@
 	<dict>
         <key>NSExceptionDomains</key>
         <dict>
+            <key>api.edamam.com</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
+            <key>edamam.com</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
             <key>food2fork.com</key>
             <dict>
                 <key>NSIncludesSubdomains</key>
