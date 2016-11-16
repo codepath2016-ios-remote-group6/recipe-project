@@ -50,21 +50,21 @@ class Recipe : PFObject, PFSubclassing {
     class func createRecipeFromDictionary (dictionary: NSDictionary) -> Recipe {
         let recipe = Recipe()
         
-        recipe.name = dictionary["name"] as! String
+        recipe.name = dictionary["name"] as? String
         recipe.difficulty = (dictionary["difficulty"] as! NSString).integerValue
 //        recipe.directions = dictionary["directions"] as! String
-        recipe.ingredients = dictionary["ingredients"]
+//        recipe.ingredients = dictionary["ingredients"]
         
         return recipe
     }
     
-    func create(ingredientObjectWith name: String, quantity: Double, units: String)->Dictionary<String,AnyObject>{
-        var ingredient = [String:AnyObject]()
-        ingredient[Recipe.ingredientNameKey] = name as AnyObject
-        ingredient[Recipe.ingredientQuantityKey] = quantity as AnyObject
-        ingredient[Recipe.ingredientUnitsKey] = units as AnyObject
-        return ingredient
-    }
+//    func create(ingredientObjectWith name: String, quantity: Double, units: String)->Dictionary<String,AnyObject>{
+//        var ingredient = [String:AnyObject]()
+//        ingredient[Recipe.ingredientNameKey] = name as AnyObject
+//        ingredient[Recipe.ingredientQuantityKey] = quantity as AnyObject
+//        ingredient[Recipe.ingredientUnitsKey] = units as AnyObject
+//        return ingredient
+//    }
     
     func create(directionObjectWith orderNumber: Int, description: String)->Dictionary<String,AnyObject>{
         var direction = [String:AnyObject]()
@@ -179,7 +179,7 @@ class Recipe : PFObject, PFSubclassing {
                 }
             })
         }else{
-            print("user is not logged in")
+//            print("user is not logged in")
             User.login()
         }
     }

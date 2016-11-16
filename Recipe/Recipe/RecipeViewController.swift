@@ -49,7 +49,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ingredientsTableView.reloadData()
         
         //Refresh Recipe
-        refreshRecipe()
+//        refreshRecipe()
     }
 
     override func didReceiveMemoryWarning() {
