@@ -14,6 +14,20 @@ class RecipeListCell: UITableViewCell {
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var recipeSourceLabel: UILabel!
     
+    var recipe: Recipe?{
+        willSet{
+            self.recipeNameLabel.text = newValue?.name
+            self.recipeSourceLabel.text = newValue?.inspiredBy
+            if let url = newValue?.imageUrl{
+                self.recipeImageView.setImageWith(url)
+            }else if let urlString = newValue?.imageUrlString{
+                if let url = URL(string: urlString){
+                    self.recipeImageView.setImageWith(url)
+                }
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -29,21 +43,4 @@ class RecipeListCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    var recipe: Recipe?{
-        willSet{
-            self.recipeNameLabel.text = newValue?.name
-            self.recipeSourceLabel.text = newValue?.inspiredBy
-            if let url = newValue?.imageUrl{
-                print("imageUrl")
-                self.recipeImageView.setImageWith(url)
-            }else if let urlString = newValue?.imageUrlString{
-                if let url = URL(string: urlString){
-                    print("imageUrlString")
-                    self.recipeImageView.setImageWith(url)
-                }
-            }
-        }
-    }
-
 }

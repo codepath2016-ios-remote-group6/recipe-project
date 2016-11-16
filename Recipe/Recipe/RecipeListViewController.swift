@@ -26,39 +26,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        // dummy data
-//        let recipe: Recipe = Recipe()
-//        recipe.name = "Apple Pie"
-//        recipe.summary = "Delicious desert"
-//        recipe.prepTime = 1.5
-//        recipe.prepTimeUnits = "hours"
-//        
-//        var apples  = [String:AnyObject]()
-//        apples[Recipe.ingredientNameKey] = "apples" as AnyObject
-//        apples[Recipe.ingredientQuantityKey] = 2.0 as AnyObject
-//        apples[Recipe.ingredientUnitsKey] = "lbs" as AnyObject
-//        
-//        var crust = [String:AnyObject]()
-//        crust[Recipe.ingredientNameKey] = "pie crust" as AnyObject
-//        crust[Recipe.ingredientQuantityKey] = 1.0 as AnyObject
-//        crust[Recipe.ingredientUnitsKey] = "" as AnyObject
-//        
-//        var ingredients: [Dictionary<String,AnyObject>] = Array<Dictionary<String,AnyObject>>()
-//        ingredients.append(apples)
-//        ingredients.append(crust)
-//        
-//        recipe.ingredients = ingredients
-//        
-//        let recipe2: Recipe = Recipe()
-//        recipe2.name = "Cheesecake"
-//        recipe2.summary = "Delicious desert"
-//        recipe2.prepTime = 1.5
-//        recipe2.prepTimeUnits = "hours"
-//        
-//        data.append(recipe)
-//        data.append(recipe2)
-        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
         tableView.dataSource = self
@@ -70,15 +37,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         //Bring in recipes from the api
         query = RecipeListViewController.genericQuery
         getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
+
         
         setupLoginLogoutButton()
         
 //        getMyRecipes()
 //        getRecipesFromDb()
-        
-//        tableView.reloadData()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,7 +57,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeListCell", for: indexPath) as! RecipeListCell
-        
         let recipe = filteredData[indexPath.row]
         
         cell.recipe = recipe
@@ -172,7 +135,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             success: {(recipeDictList: [Dictionary<String,Any>])->Void in
                 self.data = Recipe.recipes(withF2fRecipeDictList: recipeDictList)
                 self.filteredData = self.data
-//                self.tableView.reloadData()
+                self.tableView.reloadData()
             },
             failure: {(error: Error?)->Void in
                 
@@ -218,26 +181,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if PFUser.current() == nil {
             self.loginLogoutBarButton.title = "Log In"
         }
-    }
-    
-    func getMyRecipes(){
-        print("getting my recipes")
-        Recipe.getMyRecipes(
-            success: {(myRecipes: [Recipe]) -> Void in
-                self.data = myRecipes
-                self.filteredData = myRecipes
-                
-                if myRecipes.isEmpty {
-                    print("empty success")
-                    let defaultList = Recipe.getDefaultRecipeList()
-                    self.data = defaultList
-                    self.filteredData = defaultList
-                }
-                
-                print("My recipes: \(myRecipes)"
-            )},
-            failure: {(error: Error?) -> Void in
-                print("Error retrieving my recipes: \(error?.localizedDescription)")})
     }
     
     func getRecipesFromDb(){

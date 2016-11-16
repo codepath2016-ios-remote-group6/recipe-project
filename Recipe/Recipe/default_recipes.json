@@ -1,16 +1,28 @@
-{
-    "recipes": [
-        {
-        "id": 12345,
-        "name": "choco chip",
-        "summary": "recipe number one",
-        "prepTime": "1",
-        "prepTimeUnits": "hr",
-        "difficulty" : "easy",
-        "ingredients": [{
-            "name": "flour",
-            "quantity": "1"
-        }]
-        }
-    ]
-}
+[
+ {
+    "id": 1,
+    "name": "Chocolate Chip Cookies",
+    "prepTime": "1",
+    "prepTimeUnits": "hr",
+    "difficulty" : "1",
+    "ingredients": [{
+        "name": "flour",
+        "quantity": "1"
+    }]
+ },
+ 
+ {
+ 
+ "id": 2,
+ "name": "Banana Bread",
+ "summary": "recipe number one",
+ "prepTime": "1",
+ "prepTimeUnits": "hr",
+ "difficulty" : "easy",
+ "ingredients": [{
+                 "name": "flour",
+                 "quantity": "1"
+                 }]
+ 
+ }
+]
