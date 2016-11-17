@@ -48,17 +48,6 @@ class Recipe : PFObject, PFSubclassing {
     var inspiredByUrl: URL?
     var inspiredByRecipeUrl: URL?
     
-    class func createRecipeFromDictionary (dictionary: NSDictionary) -> Recipe {
-        let recipe = Recipe()
-        
-        recipe.name = dictionary["name"] as? String
-        recipe.difficulty = (dictionary["difficulty"] as! NSString).integerValue
-//        recipe.directions = dictionary["directions"] as! String
-//        recipe.ingredients = dictionary["ingredients"]
-        
-        return recipe
-    }
-    
 //    func create(ingredientObjectWith name: String, quantity: Double, units: String)->Dictionary<String,AnyObject>{
 //        var ingredient = [String:AnyObject]()
 //        ingredient[Recipe.ingredientNameKey] = name as AnyObject
@@ -67,19 +56,29 @@ class Recipe : PFObject, PFSubclassing {
 //        return ingredient
 //    }
     
-    func create(directionObjectWith orderNumber: Int, description: String)->Dictionary<String,AnyObject>{
-        var direction = [String:AnyObject]()
-        direction[Recipe.directionOrderNumKey] = orderNumber as AnyObject
-        direction[Recipe.directionDescriptionKey] = description as AnyObject
-        return direction
-    }
+//    func create(directionObjectWith orderNumber: Int, description: String)->Dictionary<String,AnyObject>{
+//        var direction = [String:AnyObject]()
+//        direction[Recipe.directionOrderNumKey] = orderNumber as AnyObject
+//        direction[Recipe.directionDescriptionKey] = description as AnyObject
+//        return direction
+//    }
     
     static func parseClassName() -> String {
         return "Recipe"
 //        return Recipe.className
     }
     
-    //Build recipe with Food 2 Fork dictionary
+    class func create(recipeWithDictionary dictionary: NSDictionary) -> Recipe {
+        let recipe = Recipe()
+        
+        recipe.name = dictionary["name"] as? String
+        recipe.difficulty = (dictionary["difficulty"] as! NSString).integerValue
+        //        recipe.directions = dictionary["directions"] as! String
+//                recipe.ingredients = dictionary["ingredients"] as Dictionary
+        
+        return recipe
+    }
+    
     class func recipe(fromFoodToForkDict dictionary: Dictionary<String,Any>) -> Recipe{
         let recipe = Recipe()
         recipe.name = dictionary["title"] as? String
@@ -211,7 +210,7 @@ class Recipe : PFObject, PFSubclassing {
             
             for item in recipeArray {
                 let dictionary = item as! NSDictionary
-                let recipe = Recipe.createRecipeFromDictionary(dictionary: dictionary)
+                let recipe = Recipe.create(recipeWithDictionary: dictionary)
                 
                 recipeList.append(recipe)
             }

@@ -10,8 +10,15 @@ import UIKit
 
 class RecipeEditViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let contentWidth = scrollView.bounds.width
+        let contentHeight = scrollView.bounds.height * 3
+        
+        scrollView.contentSize = CGSize(width: contentWidth, height: contentHeight)
 
         // Do any additional setup after loading the view.
     }
