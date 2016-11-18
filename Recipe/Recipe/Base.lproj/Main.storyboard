@@ -214,7 +214,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gOn-3g-nyX" id="AEq-c7-FUX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="342" height="80"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="342" height="79.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ytZ-9L-Wb5">
@@ -379,7 +379,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="327" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pzO-rG-YYR" id="gQM-lw-Sia">
-                                                    <rect key="frame" x="0.0" y="0.0" width="327" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="327" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duu-qh-XWf">
@@ -497,9 +497,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69t-r8-McL">
                                         <rect key="frame" x="319" y="24" width="37" height="30"/>
                                         <state key="normal" title="Done"/>
-                                        <connections>
-                                            <action selector="onDoneClick:" destination="qI3-SP-HaB" eventType="touchUpInside" id="IZj-4U-r26"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDQ-cM-76l">
                                         <rect key="frame" x="18" y="24" width="48" height="30"/>
@@ -552,6 +549,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxn-xp-Eoi">
                                         <rect key="frame" x="146" y="353" width="83" height="30"/>
                                         <state key="normal" title="+ Ingredient"/>
+                                        <connections>
+                                            <action selector="onAddIngredientClick:" destination="qI3-SP-HaB" eventType="touchUpInside" id="R94-3H-u0d"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -590,8 +590,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="recipeDirectionsTextView" destination="Cmo-uI-hHO" id="YQv-J5-2mf"/>
-                        <outlet property="recipeNameTextField" destination="qQI-wy-4DJ" id="UvO-RV-mKq"/>
                         <outlet property="scrollView" destination="PTx-nn-8uc" id="aXV-qI-Zrw"/>
                     </connections>
                 </viewController>
@@ -732,6 +730,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uYp-h6-VvM"/>
+        <segue reference="Hlf-1j-bfu"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -2,7 +2,7 @@
 //  RecipeEditViewController.swift
 //  Recipe
 //
-//  Created by Iria on 11/11/16.
+//  Created by Pallavi on 11/11/16.
 //  Copyright © 2016 Codepath Group 6. All rights reserved.
 //
 
@@ -48,6 +48,12 @@ class RecipeEditViewController: UIViewController {
         //ingredient object
         //recipe.ingredients =
 
+        
+    }
+    @IBAction func onAddIngredientClick(_ sender: Any) {
+        
+        
+        
         
     }
 
