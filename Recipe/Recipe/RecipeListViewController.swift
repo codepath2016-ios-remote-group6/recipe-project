@@ -187,12 +187,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         print("getting my recipes")
         Recipe.getRecipesFromDb(
             success: {(myRecipes: [Recipe]) -> Void in
+                
+                let defaultList = Recipe.getDefaultRecipeList() // DELETE THIS
+                
                 self.data = myRecipes
                 self.filteredData = myRecipes
                 self.tableView.reloadData()
                 
                 if myRecipes.isEmpty {
-                    print("empty success")
                     let defaultList = Recipe.getDefaultRecipeList()
                     self.data = defaultList
                     self.filteredData = defaultList

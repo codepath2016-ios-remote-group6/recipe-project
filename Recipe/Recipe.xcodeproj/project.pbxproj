@@ -77,13 +77,6 @@
 			name = Tests;
 			sourceTree = "<group>";
 		};
-		0A2903911DDC069F006CDE8F /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = API;
-			sourceTree = "<group>";
-		};
 		0A6409CA1DDAA20900D906F9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +128,6 @@
 		0ACC4DAB1DD1410C00701833 /* Recipe */ = {
 			isa = PBXGroup;
 			children = (
-				0A2903911DDC069F006CDE8F /* API */,
 				0AB0A2871DD6AA6E001F53F3 /* View Controllers */,
 				0AB0A2861DD6AA63001F53F3 /* Views */,
 				28515DEF1DD3D926000756BA /* Models */,
