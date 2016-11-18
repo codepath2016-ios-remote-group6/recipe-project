@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -10,7 +10,6 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Recipe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -22,6 +21,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-546" y="36"/>
         </scene>
@@ -68,7 +68,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gdr-L4-cvf">
                                 <state key="normal" title="Forgot Password?"/>
                                 <connections>
-                                    <action selector="didTapForgotPasswordButton:" destination="Cci-t8-q0Q" eventType="touchUpInside" id="j5d-Iv-Hoh"/>
+                                    <action selector="didTapForgotPasswordButton:" destination="Cci-t8-q0Q" eventType="touchUpInside" id="P0D-dS-9OO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgZ-g1-xgD">
@@ -115,10 +115,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8el-dE-7Jt">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="kao-Nd-6gd"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbJ-At-hex">
+                                <state key="normal" title="Reset Password"/>
+                                <connections>
+                                    <action selector="didTapResetPasswordButton:" destination="Cci-t8-q0Q" eventType="touchUpInside" id="glH-BY-Mv6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Gdr-L4-cvf" firstAttribute="centerX" secondItem="EYr-Zz-xXa" secondAttribute="centerX" id="1wR-k1-rn4"/>
+                            <constraint firstItem="AbJ-At-hex" firstAttribute="top" secondItem="8el-dE-7Jt" secondAttribute="bottom" constant="8" id="8Op-dc-iss"/>
+                            <constraint firstItem="AbJ-At-hex" firstAttribute="centerX" secondItem="EYr-Zz-xXa" secondAttribute="centerX" id="Ac5-SK-G6P"/>
+                            <constraint firstItem="8el-dE-7Jt" firstAttribute="top" secondItem="Gdr-L4-cvf" secondAttribute="bottom" constant="8" id="Dcd-sQ-SdM"/>
                             <constraint firstItem="WVb-QU-1OD" firstAttribute="centerX" secondItem="EYr-Zz-xXa" secondAttribute="centerX" id="EAd-PS-kpi"/>
                             <constraint firstItem="1bM-mF-b8o" firstAttribute="centerX" secondItem="EYr-Zz-xXa" secondAttribute="centerX" id="Hkb-xU-NHg"/>
                             <constraint firstItem="UgZ-g1-xgD" firstAttribute="centerX" secondItem="EYr-Zz-xXa" secondAttribute="centerX" id="IYT-ZT-zs1"/>
@@ -126,6 +143,7 @@
                             <constraint firstItem="WVb-QU-1OD" firstAttribute="top" secondItem="3AB-LJ-FvB" secondAttribute="bottom" constant="50" id="N27-Zl-XfX"/>
                             <constraint firstItem="UA0-QF-waN" firstAttribute="centerX" secondItem="EYr-Zz-xXa" secondAttribute="centerX" id="U77-lW-ODh"/>
                             <constraint firstItem="Gdr-L4-cvf" firstAttribute="top" secondItem="UA0-QF-waN" secondAttribute="bottom" constant="16" id="Wk2-q4-txL"/>
+                            <constraint firstItem="8el-dE-7Jt" firstAttribute="centerX" secondItem="EYr-Zz-xXa" secondAttribute="centerX" id="YZg-oP-339"/>
                             <constraint firstItem="UA0-QF-waN" firstAttribute="top" secondItem="P5D-dY-GOG" secondAttribute="bottom" constant="16" id="ZZ3-5i-TYc"/>
                             <constraint firstItem="P5D-dY-GOG" firstAttribute="centerX" secondItem="EYr-Zz-xXa" secondAttribute="centerX" id="a15-HN-2vA"/>
                             <constraint firstItem="4dT-Cw-op3" firstAttribute="centerX" secondItem="EYr-Zz-xXa" secondAttribute="centerX" id="c1m-41-bWR"/>
@@ -150,9 +168,12 @@
                         <outlet property="errorView" destination="TP7-w9-Mxl" id="CsZ-05-lzy"/>
                         <outlet property="errorViewHeightConstraint" destination="IDG-tR-2gc" id="ptA-OO-8K4"/>
                         <outlet property="errorViewTopConstraint" destination="cIn-M1-TaN" id="WiS-ay-3Zw"/>
+                        <outlet property="forgotPasswordButton" destination="Gdr-L4-cvf" id="vAZ-qr-ZWC"/>
+                        <outlet property="forgotPasswordTextField" destination="8el-dE-7Jt" id="NXr-Kd-VA2"/>
                         <outlet property="nicknameTextField" destination="1bM-mF-b8o" id="OvB-6N-8gV"/>
                         <outlet property="parentView" destination="EYr-Zz-xXa" id="BSS-72-vo5"/>
                         <outlet property="passwordTextField" destination="4dT-Cw-op3" id="y1Q-x7-C2l"/>
+                        <outlet property="resetPasswordButton" destination="AbJ-At-hex" id="wSd-Tr-fGS"/>
                         <segue destination="LfT-WL-j2y" kind="show" identifier="LoginSuccessSegue" id="Zf9-22-qGT"/>
                     </connections>
                 </viewController>
@@ -192,10 +213,10 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeListCell" id="gOn-3g-nyX" customClass="RecipeListCell" customModule="Recipe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                                <rect key="frame" x="0.0" y="28" width="1000" height="80"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gOn-3g-nyX" id="AEq-c7-FUX">
-                                                    <frame key="frameInset" width="342" height="79.5"/>
+                                                    <frame key="frameInset" width="818" height="79.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ytZ-9L-Wb5">
@@ -205,7 +226,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2x-lF-oSX">
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -344,10 +365,10 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientListCell" id="pzO-rG-YYR" customClass="IngredientListCell" customModule="Recipe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="1000" height="44"/>
+                                                <rect key="frame" x="0.0" y="28" width="327" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pzO-rG-YYR" id="gQM-lw-Sia">
-                                                    <frame key="frameInset" width="1000" height="44"/>
+                                                    <frame key="frameInset" width="327" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duu-qh-XWf">
