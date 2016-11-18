@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import Parse
+
 
 class RecipeEditViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var recipeNameTextField: UITextField!
+    
+    @IBOutlet weak var recipeDirectionsTextView: UITextView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +35,21 @@ class RecipeEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onDoneClick(_ sender: Any) {
+        
+        let recipe = Recipe()
+        
+        let objectId = recipe.objectId
+        
+        recipe.name = recipeNameTextField.text
+        
+        recipe.directions = (recipeDirectionsTextView.text as AnyObject) as! [String]
+        
+        //ingredient object
+        //recipe.ingredients =
+
+        
+    }
 
     /*
     // MARK: - Navigation
