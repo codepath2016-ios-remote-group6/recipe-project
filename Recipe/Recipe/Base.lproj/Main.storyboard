@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -181,7 +181,7 @@
             </objects>
             <point key="canvasLocation" x="268" y="35.532233883058474"/>
         </scene>
-        <!--Measuring Cup-->
+        <!--Recipe List View Controller-->
         <scene sceneID="wuq-or-sCj">
             <objects>
                 <viewController storyboardIdentifier="RecipeListViewController" id="h7f-Hc-T2r" customClass="RecipeListViewController" customModule="Recipe" customModuleProvider="target" sceneMemberID="viewController">
@@ -209,14 +209,23 @@
                                     <searchBar contentMode="redraw" placeholder="Filter Results or New Search" translatesAutoresizingMaskIntoConstraints="NO" id="UZ4-23-JG4">
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
+                                    <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pAY-YB-ahX">
+                                        <frame key="frameInset" height="49" maxY="277"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <items>
+                                            <tabBarItem systemItem="favorites" id="xvU-xp-3cb"/>
+                                            <tabBarItem systemItem="more" id="Dyy-yp-Rtb"/>
+                                        </items>
+                                    </tabBar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DuK-6y-eky">
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeListCell" id="gOn-3g-nyX" customClass="RecipeListCell" customModule="Recipe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="1000" height="80"/>
+                                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gOn-3g-nyX" id="AEq-c7-FUX">
-                                                    <frame key="frameInset" width="818" height="79.5"/>
+                                                    <frame key="frameInset" width="342" height="79"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ytZ-9L-Wb5">
@@ -281,7 +290,7 @@
                             <constraint firstItem="8bM-U0-vVz" firstAttribute="top" secondItem="DKE-3o-A67" secondAttribute="bottom" id="zRt-dX-tME"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Measuring Cup" id="SEv-sn-4LZ">
+                    <navigationItem key="navigationItem" id="SEv-sn-4LZ">
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="bT2-7R-j6L">
                             <connections>
                                 <action selector="didTapLogoutBarButton:" destination="h7f-Hc-T2r" id="GIP-ca-Cih"/>
@@ -297,7 +306,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9J-B1-1Hn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="zsm-Mv-FCc"/>
             </objects>
-            <point key="canvasLocation" x="1494" y="36"/>
+            <point key="canvasLocation" x="1493.5999999999999" y="35.532233883058474"/>
         </scene>
         <!--Recipe View Controller-->
         <scene sceneID="xYF-fY-7FW">
@@ -358,17 +367,17 @@
                                             <constraint firstAttribute="width" constant="150" id="ulO-ou-lcQ"/>
                                         </constraints>
                                     </imageView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JFG-5I-jk8">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="25" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JFG-5I-jk8">
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="Bsv-4P-ccw"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientListCell" id="pzO-rG-YYR" customClass="IngredientListCell" customModule="Recipe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="327" height="44"/>
+                                                <rect key="frame" x="0.0" y="28" width="327" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pzO-rG-YYR" id="gQM-lw-Sia">
-                                                    <frame key="frameInset" width="327" height="43.5"/>
+                                                    <frame key="frameInset" width="327" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duu-qh-XWf">
@@ -677,6 +686,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uYp-h6-VvM"/>
+        <segue reference="Hlf-1j-bfu"/>
     </inferredMetricsTieBreakers>
 </document>

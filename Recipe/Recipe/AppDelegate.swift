@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initializeParse()
         loadInitialViewController()
         setupNotificationObserver()
-        
+
 //        parseTest()
         
         return true
@@ -113,8 +113,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func showRecipeListViewController(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let recipeListNavCtrl = storyboard.instantiateViewController(withIdentifier: "RecipeListNavController") as! UINavigationController
-        window?.rootViewController = recipeListNavCtrl
+        
+        // Set up Saved Recipe List
+        let dbRecipeListNC = storyboard.instantiateViewController(withIdentifier: "RecipeListNavController") as! UINavigationController
+        let dbRecipeListVC = dbRecipeListNC.topViewController as! RecipeListViewController
+        
+        dbRecipeListVC.controllerDataSource = "database"
+        dbRecipeListNC.tabBarItem.title = "My Recipes"
+        
+        // Set up Browse Recipe List
+        let apiRecipeListNC = storyboard.instantiateViewController(withIdentifier: "RecipeListNavController") as! UINavigationController
+        let apiRecipeListVC = apiRecipeListNC.topViewController as! RecipeListViewController
+        
+        apiRecipeListVC.controllerDataSource = "edamam"
+        apiRecipeListNC.tabBarItem.title = "Browse"
+        
+        // Programatically create tab view
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [dbRecipeListNC, apiRecipeListNC]
+        
+        window?.rootViewController = tabBarController
     }
     
     func showIntroViewController(){
