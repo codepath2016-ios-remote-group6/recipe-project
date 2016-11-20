@@ -52,6 +52,7 @@ class Recipe : PFObject, PFSubclassing {
         super.init()
     }
     
+    // Creates a Recipe with a dictionary
     convenience init(dictionary: NSDictionary) {
         self.init()
         

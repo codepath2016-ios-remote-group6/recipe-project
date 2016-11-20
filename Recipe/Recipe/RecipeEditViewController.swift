@@ -12,6 +12,11 @@ class RecipeEditViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var directionsTextView: UITextView!
+    
+    var recipe: Recipe?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +33,18 @@ class RecipeEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onDoneButton(_ sender: AnyObject) {
+        let recipeToUpdate = recipe ?? Recipe()
+        
+        recipeToUpdate.name = nameTextField.text
+        
+        // Temporary workaround while we figure out what to do with how directions are saved
+        recipeToUpdate.directions = [directionsTextView.text]
+        
+        recipeToUpdate.update()
+        
+//        self.performSegue(withIdentifier: "unwindToRecipeList", sender: nil)
+    }
 
     /*
     // MARK: - Navigation
