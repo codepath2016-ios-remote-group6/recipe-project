@@ -7,7 +7,8 @@
     "difficulty" : "1",
     "ingredients": [{
         "name": "flour",
-        "quantity": "1"
+        "quantity": "1",
+        "units": "g"
     }]
  },
  
@@ -21,7 +22,8 @@
  "difficulty" : "easy",
  "ingredients": [{
                  "name": "flour",
-                 "quantity": "1"
+                 "quantity": "1",
+                 "units" : "g"
                  }]
  
  }

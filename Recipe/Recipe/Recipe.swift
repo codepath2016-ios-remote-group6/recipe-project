@@ -48,6 +48,38 @@ class Recipe : PFObject, PFSubclassing {
     var inspiredByUrl: URL?
     var inspiredByRecipeUrl: URL?
     
+    override init() {
+        super.init()
+    }
+    
+    convenience init(dictionary: NSDictionary) {
+        self.init()
+        
+        name = dictionary["name"] as? String
+        prepTime = (dictionary["prepTime"] as! NSString).doubleValue
+        
+        difficulty = (dictionary["difficulty"] as! NSString).integerValue
+        
+        // Temporary fix. store directions as one element in the array until we can decide on a standard form for the directions
+        if let dictionaryDirections = dictionary["directions"] as? String {
+            directions = [dictionaryDirections]
+        }
+        
+        
+        // TODO see if we can change this to automatically convert to Ingredient class
+        var dictionaryIngredients = [Dictionary<String, AnyObject>]()
+        
+        for ingredient in (dictionary["ingredients"] as? [Dictionary<String, AnyObject>])! {
+            var normalizedIngredient = ingredient
+            
+            normalizedIngredient["quantity"] = (ingredient["quantity"] as! NSString).doubleValue as AnyObject?
+            
+            dictionaryIngredients.append(normalizedIngredient)
+        }
+        
+        ingredients = dictionaryIngredients        
+    }
+    
 //    func create(ingredientObjectWith name: String, quantity: Double, units: String)->Dictionary<String,AnyObject>{
 //        var ingredient = [String:AnyObject]()
 //        ingredient[Recipe.ingredientNameKey] = name as AnyObject
@@ -68,15 +100,18 @@ class Recipe : PFObject, PFSubclassing {
 //        return Recipe.className
     }
     
-    class func create(recipeWithDictionary dictionary: NSDictionary) -> Recipe {
-        let recipe = Recipe()
-        
-        recipe.name = dictionary["name"] as? String
-        recipe.difficulty = (dictionary["difficulty"] as! NSString).integerValue
-        //        recipe.directions = dictionary["directions"] as! String
-//                recipe.ingredients = dictionary["ingredients"] as Dictionary
-        
-        return recipe
+    func update() {
+        self.saveInBackground(block: {(wasSuccessful: Bool, error: Error?)->Void in
+            if let error = error{
+                print("**********")
+                print("save failed")
+                print(error.localizedDescription)
+            }else{
+                print("**********")
+                print("recipe saved successfully.")
+                print("wasSuccessful: \(wasSuccessful) // error: \(error?.localizedDescription)")
+            }
+        })
     }
     
     class func recipe(fromFoodToForkDict dictionary: Dictionary<String,Any>) -> Recipe{
@@ -210,7 +245,7 @@ class Recipe : PFObject, PFSubclassing {
             
             for item in recipeArray {
                 let dictionary = item as! NSDictionary
-                let recipe = Recipe.create(recipeWithDictionary: dictionary)
+                let recipe = Recipe(dictionary: dictionary)
                 
                 recipeList.append(recipe)
             }
@@ -221,8 +256,6 @@ class Recipe : PFObject, PFSubclassing {
     }
     
     class func getMyRecipes(success: @escaping ([Recipe])->(), failure: @escaping (Error?)->()){
-        
-        
 //        var currentUser = PFUser.current()
         if let currentUser = PFUser.current(){
             print("currentUser: \(currentUser)")
@@ -271,6 +304,4 @@ class Recipe : PFObject, PFSubclassing {
             }
         })
     }
-
-    
 }
