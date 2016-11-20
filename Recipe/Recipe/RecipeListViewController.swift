@@ -70,6 +70,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let recipe = data[indexPath.row] as Recipe
+            
+            data.remove(at: indexPath.row) // also filteredData?
+            filteredData.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            recipe.deleteFromDB()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool{
+        return controllerDataSource == "database"
+    }
+    
     // This method updates filteredData based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // When there is no text, filteredData is the same as the original data
@@ -187,11 +203,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func getRecipesFromDb(){
         print("getting my recipes")
-        Recipe.getRecipesFromDb(
+        Recipe.getMyRecipes(
             success: {(myRecipes: [Recipe]) -> Void in
-                
-//                let defaultList = Recipe.getDefaultRecipeList() // DELETE THIS
-                
                 self.data = myRecipes
                 self.filteredData = myRecipes
                 self.tableView.reloadData()
@@ -200,6 +213,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     let defaultList = Recipe.getDefaultRecipeList()
                     self.data = defaultList
                     self.filteredData = defaultList
+                    self.tableView.reloadData()
                 }
                 
                 print("My recipes: \(myRecipes)"

@@ -1,28 +1,77 @@
-[
- {
-    "id": 1,
-    "name": "Chocolate Chip Cookies",
-    "prepTime": "1",
-    "prepTimeUnits": "hr",
-    "difficulty" : "1",
-    "ingredients": [{
-        "name": "flour",
-        "quantity": "1"
-    }]
- },
- 
- {
- 
- "id": 2,
- "name": "Banana Bread",
- "summary": "recipe number one",
- "prepTime": "1",
- "prepTimeUnits": "hr",
- "difficulty" : "easy",
- "ingredients": [{
-                 "name": "flour",
-                 "quantity": "1"
-                 }]
- 
- }
-]
+ [
+  {
+  "id": 1,
+  "name": "Chocolate Chip Cookies",
+  "prepTime": "1",
+  "prepTimeUnits": "hr",
+  "difficulty": "1",
+  "directions": "Preheat oven to 350 degrees F (175 degrees C). \n\nCream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve baking soda in hot water. Add to batter along with salt. Stir in flour, chocolate chips, and nuts. Drop by large spoonfuls onto ungreased pans. \n\nBake for about 10 minutes in the preheated oven, or until edges are nicely browned.",
+  "ingredients": [
+                  {
+                  "name": "All purpose flour",
+                  "quantity": "3",
+                  "units": "cups"
+                  },
+                  {
+                  "name": "Butter, softened",
+                  "quantity": "1",
+                  "units": "cup"
+                  },
+                  {
+                  "name": "White sugar",
+                  "quantity": "1",
+                  "units": "cup"
+                  },
+                  {
+                  "name": "Brown sugar, packed",
+                  "quantity": "1",
+                  "units": "cup"
+                  },
+                  {
+                  "name": "Eggs",
+                  "quantity": "2",
+                  "units": ""
+                  },
+                  {
+                  "name": "Vanilla extract",
+                  "quantity": "2",
+                  "units": "tsp"
+                  },
+                  {
+                  "name": "Baking soda",
+                  "quantity": "1",
+                  "units": "tsp"
+                  },
+                  {
+                  "name": "Hot water",
+                  "quantity": "2",
+                  "units": "tsps"
+                  },
+                  {
+                  "name": "Salt",
+                  "quantity": ".5",
+                  "units": "tsp"
+                  },
+                  {
+                  "name": "Chocolate chips",
+                  "quantity": "2",
+                  "units": "cups"
+                  }
+                  ]
+  },
+  {
+  "id": 2,
+  "name": "Banana Bread",
+  "summary": "recipe number one",
+  "prepTime": "1",
+  "prepTimeUnits": "hr",
+  "difficulty": "easy",
+  "ingredients": [
+                  {
+                  "name": "flour",
+                  "quantity": "1",
+                  "units": "g"
+                  }
+                  ]
+  }
+  ]

@@ -32,15 +32,27 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if let url = URL(string: urlString){
                 recipeImageView.setImageWith(url)
             }
+            
+            recipeImageView.layer.cornerRadius = 10
+            recipeImageView.clipsToBounds = true
         }
-        recipeImageView.layer.cornerRadius = 10
-        recipeImageView.clipsToBounds = true
+        
+//        else {
+//            recipeImageView.removeFromSuperview()
+//            recipeImageView = nil
+//        }
         
         recipeNameLabel.text = recipe.name
         directionsTextView.text = recipe.summary
         
         prepTimeLabel.text = "\(recipe.prepTime)"
         prepTimeUnitLabel.text = recipe.prepTimeUnits
+        
+        if let inspiredByUrl = recipe.inspiredByUrl {
+            directionsTextView.text = "\(inspiredByUrl)"
+        } else {
+            directionsTextView.text = recipe.directions?[0]
+        }
         
 //        ingredientsTableView.size.height = tableViewHeight
         ingredientsTableView.dataSource = self
