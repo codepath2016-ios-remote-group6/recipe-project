@@ -16,18 +16,16 @@ class ingredientListEditCell: UITableViewCell {
     
     @IBOutlet weak var nameTextField: UITextField!
     
-    var ingredient: Ingredient?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        if ingredient != nil {
+    var ingredient: Ingredient? {
+        didSet {
             quantityTextField.text = "\((ingredient?.quantity)!)"
             unitTextField.text = ingredient?.unit
             nameTextField.text = ingredient?.name
         }
-        
-        // Initialization code
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

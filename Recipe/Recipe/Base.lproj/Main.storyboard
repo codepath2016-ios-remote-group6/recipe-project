@@ -374,10 +374,10 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientListCell" id="pzO-rG-YYR" customClass="IngredientListCell" customModule="Recipe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="1000" height="25"/>
+                                                <rect key="frame" x="0.0" y="28" width="327" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pzO-rG-YYR" id="gQM-lw-Sia">
-                                                    <frame key="frameInset" width="1000" height="24"/>
+                                                    <frame key="frameInset" width="327" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duu-qh-XWf">
@@ -606,6 +606,7 @@
                         <outlet property="nameTextField" destination="qQI-wy-4DJ" id="kJw-tF-9VM"/>
                         <outlet property="scrollView" destination="PTx-nn-8uc" id="aXV-qI-Zrw"/>
                         <outlet property="tableView" destination="9dK-ju-zqw" id="WFh-mT-Y6R"/>
+                        <segue destination="LfT-WL-j2y" kind="presentation" identifier="recipeListNavControllerSegue" id="AIc-Tp-yvA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSO-Uu-z4E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -737,6 +738,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="AIc-Tp-yvA"/>
         <segue reference="PUj-WE-3B3"/>
     </inferredMetricsTieBreakers>
 </document>

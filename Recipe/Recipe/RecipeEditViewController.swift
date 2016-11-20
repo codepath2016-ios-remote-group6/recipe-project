@@ -74,11 +74,10 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         // Temporary workaround while we figure out what to do with how directions are saved
         recipe.directions = [directionsTextView.text]
         
-        
-        
         recipe.updateDB()
         
-//        self.performSegue(withIdentifier: "unwindToRecipeList", sender: nil)
+        // TODO: Figure out why tab bar is gone
+        self.performSegue(withIdentifier: "recipeListNavControllerSegue", sender: nil)
     }
 
     @IBAction func onAddIngredientButton(_ sender: AnyObject) {
