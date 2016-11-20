@@ -55,6 +55,8 @@ class Recipe : PFObject, PFSubclassing {
     convenience init(dictionary: NSDictionary) {
         self.init()
         
+        createdByUser = PFUser.current()
+        
         name = dictionary["name"] as? String
         prepTime = (dictionary["prepTime"] as! NSString).doubleValue
         
@@ -100,7 +102,11 @@ class Recipe : PFObject, PFSubclassing {
 //        return Recipe.className
     }
     
-    func update() {
+    func updateDB() {
+        if createdByUser == nil {
+            createdByUser = PFUser.current()
+        }
+        
         self.saveInBackground(block: {(wasSuccessful: Bool, error: Error?)->Void in
             if let error = error{
                 print("**********")
@@ -109,6 +115,20 @@ class Recipe : PFObject, PFSubclassing {
             }else{
                 print("**********")
                 print("recipe saved successfully.")
+                print("wasSuccessful: \(wasSuccessful) // error: \(error?.localizedDescription)")
+            }
+        })
+    }
+    
+    func deleteFromDB() {
+        self.deleteInBackground(block: {(wasSuccessful: Bool, error: Error?)->Void in
+            if let error = error{
+                print("**********")
+                print("delete failed")
+                print(error.localizedDescription)
+            }else{
+                print("**********")
+                print("recipe deleted successfully.")
                 print("wasSuccessful: \(wasSuccessful) // error: \(error?.localizedDescription)")
             }
         })
