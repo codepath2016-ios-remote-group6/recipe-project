@@ -28,21 +28,6 @@ class RecipeEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-<<<<<<< Updated upstream
-=======
-    @IBAction func onDoneButton(_ sender: AnyObject) {
-        let recipeToUpdate = recipe ?? Recipe()
-        
-        recipeToUpdate.name = nameTextField.text
-        
-        // Temporary workaround while we figure out what to do with how directions are saved
-        recipeToUpdate.directions = [directionsTextView.text]
-        
-        recipeToUpdate.updateDB()
-        
-//        self.performSegue(withIdentifier: "unwindToRecipeList", sender: nil)
-    }
->>>>>>> Stashed changes
 
     /*
     // MARK: - Navigation
