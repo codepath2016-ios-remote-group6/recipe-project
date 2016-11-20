@@ -63,6 +63,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         cell.recipe = recipe
         
+        print(recipe)
+        
         return cell
     }
     
@@ -187,11 +189,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func getRecipesFromDb(){
         print("getting my recipes")
-        Recipe.getRecipesFromDb(
+        Recipe.getMyRecipes(
             success: {(myRecipes: [Recipe]) -> Void in
-                
-//                let defaultList = Recipe.getDefaultRecipeList() // DELETE THIS
-                
                 self.data = myRecipes
                 self.filteredData = myRecipes
                 self.tableView.reloadData()
@@ -200,6 +199,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     let defaultList = Recipe.getDefaultRecipeList()
                     self.data = defaultList
                     self.filteredData = defaultList
+                    self.tableView.reloadData()
                 }
                 
                 print("My recipes: \(myRecipes)"

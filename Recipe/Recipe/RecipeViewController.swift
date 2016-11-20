@@ -42,6 +42,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         prepTimeLabel.text = "\(recipe.prepTime)"
         prepTimeUnitLabel.text = recipe.prepTimeUnits
         
+        if let inspiredByUrl = recipe.inspiredByUrl {
+            directionsTextView.text = "\(inspiredByUrl)"
+        }
+        
 //        ingredientsTableView.size.height = tableViewHeight
         ingredientsTableView.dataSource = self
         ingredientsTableView.delegate = self
