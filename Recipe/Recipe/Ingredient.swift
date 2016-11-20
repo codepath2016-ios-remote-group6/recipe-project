@@ -13,6 +13,14 @@ class Ingredient: NSObject {
     var unit: String
     var name: String
     
+    override init() {
+        quantity = 0
+        unit = ""
+        name = ""
+        
+        super.init()
+    }
+    
     init(dictionary: NSDictionary) {
         quantity = dictionary["quantity"] as! Float
         unit = dictionary["units"] as! String

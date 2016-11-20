@@ -330,7 +330,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pj5-8k-E7S">
                                         <state key="normal" title="Copy"/>
                                         <connections>
-                                            <segue destination="qI3-SP-HaB" kind="show" id="PUj-WE-3B3"/>
+                                            <segue destination="qI3-SP-HaB" kind="show" identifier="copySegue" id="PUj-WE-3B3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMh-pQ-heh">
@@ -343,7 +343,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csl-GD-Qvh">
                                         <state key="normal" title="Edit"/>
                                         <connections>
-                                            <segue destination="qI3-SP-HaB" kind="show" id="uYp-h6-VvM"/>
+                                            <segue destination="qI3-SP-HaB" kind="show" identifier="editSegue" id="uYp-h6-VvM"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="hr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ip6-nI-VLK">
@@ -374,10 +374,10 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientListCell" id="pzO-rG-YYR" customClass="IngredientListCell" customModule="Recipe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="327" height="25"/>
+                                                <rect key="frame" x="0.0" y="28" width="1000" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pzO-rG-YYR" id="gQM-lw-Sia">
-                                                    <frame key="frameInset" width="327" height="24"/>
+                                                    <frame key="frameInset" width="1000" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duu-qh-XWf">
@@ -523,6 +523,49 @@
                                         <rect key="frame" x="18" y="169" width="338" height="176"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientListEditCell" id="uUh-dW-Q7s" customClass="ingredientListEditCell" customModule="Recipe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="338" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uUh-dW-Q7s" id="gyJ-GI-TYJ">
+                                                    <frame key="frameInset" width="338" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="utb-dE-B3K">
+                                                            <frame key="frameInset" minX="133" minY="6" width="167" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="#" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wJe-cu-DFv">
+                                                            <frame key="frameInset" minX="8" minY="6" width="44" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                        </textField>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="unit" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BQS-md-jk3">
+                                                            <frame key="frameInset" minX="69" minY="6" width="44" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxl-Ng-vP6">
+                                                            <frame key="frameInset" minX="300" minY="6" width="30" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" title="X"/>
+                                                        </button>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="nameTextField" destination="utb-dE-B3K" id="GC6-fV-sMF"/>
+                                                    <outlet property="quantityTextField" destination="wJe-cu-DFv" id="YHi-9N-ErM"/>
+                                                    <outlet property="unitTextField" destination="BQS-md-jk3" id="GMU-Qd-Nnj"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTs-oi-9fv">
                                         <rect key="frame" x="21" y="140" width="86" height="21"/>
@@ -549,6 +592,9 @@
                                         <rect key="frame" x="146" y="353" width="83" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="+ Ingredient"/>
+                                        <connections>
+                                            <action selector="onAddIngredientButton:" destination="qI3-SP-HaB" eventType="touchUpInside" id="3j7-lO-nmn"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </scrollView>
@@ -559,6 +605,7 @@
                         <outlet property="directionsTextView" destination="Cmo-uI-hHO" id="0jV-ff-C33"/>
                         <outlet property="nameTextField" destination="qQI-wy-4DJ" id="kJw-tF-9VM"/>
                         <outlet property="scrollView" destination="PTx-nn-8uc" id="aXV-qI-Zrw"/>
+                        <outlet property="tableView" destination="9dK-ju-zqw" id="WFh-mT-Y6R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSO-Uu-z4E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -690,6 +737,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Hlf-1j-bfu"/>
+        <segue reference="PUj-WE-3B3"/>
     </inferredMetricsTieBreakers>
 </document>

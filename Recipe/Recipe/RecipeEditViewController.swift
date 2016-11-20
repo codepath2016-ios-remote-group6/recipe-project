@@ -8,17 +8,39 @@
 
 import UIKit
 
-class RecipeEditViewController: UIViewController {
+class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var directionsTextView: UITextView!
     
-    var recipe: Recipe?
+    @IBOutlet weak var tableView: UITableView!
+    
+    var recipe: Recipe!
+    var sourceAction: String?
+    var ingredientsArray = [Ingredient]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if recipe == nil {
+            recipe = Recipe()
+        }
+        
+        nameTextField.text = recipe.name
+        directionsTextView.text = (recipe.directions != nil) ? recipe.directions![0] : ""
+            
+        ingredientsArray = Ingredient.IngredientsWithArray(dictionaries: recipe.ingredients as [NSDictionary])
+        
+        if ingredientsArray.count == 0 {
+            ingredientsArray.append(Ingredient())
+        }
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        tableView.reloadData()
         
         let contentWidth = scrollView.bounds.width
         let contentHeight = scrollView.bounds.height * 3
@@ -33,19 +55,38 @@ class RecipeEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onDoneButton(_ sender: AnyObject) {
-        let recipeToUpdate = recipe ?? Recipe()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ingredientsArray.count
+    }
+
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientListEditCell") as! ingredientListEditCell
         
-        recipeToUpdate.name = nameTextField.text
+        cell.ingredient = ingredientsArray[indexPath.row]
+        
+        return cell
+    }
+    
+    @IBAction func onDoneButton(_ sender: AnyObject) {
+        recipe.name = nameTextField.text
         
         // Temporary workaround while we figure out what to do with how directions are saved
-        recipeToUpdate.directions = [directionsTextView.text]
+        recipe.directions = [directionsTextView.text]
         
-        recipeToUpdate.update()
+        
+        
+        recipe.updateDB()
         
 //        self.performSegue(withIdentifier: "unwindToRecipeList", sender: nil)
     }
 
+    @IBAction func onAddIngredientButton(_ sender: AnyObject) {
+        ingredientsArray.append(Ingredient())
+        tableView.reloadData()
+    }
+    
+    
     /*
     // MARK: - Navigation
 
