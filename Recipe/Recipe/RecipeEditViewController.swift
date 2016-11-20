@@ -10,19 +10,19 @@ import UIKit
 import Parse
 
 
-class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate ,UIPickerViewDataSource {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    
     
     @IBOutlet weak var recipeNameTextField: UITextField!
     
     @IBOutlet weak var recipeDirectionsTextView: UITextView!
     
-    var ingredientCount: Int = 0
     var items = [""]
-
+    var ingredientDetails = [["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],["1/8","1/4","1/3","1/2","2/3","3/4"]]
+    
     @IBOutlet weak var addIngredientTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,7 +52,6 @@ class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableVie
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddIngredientListCell", for: indexPath) as! AddIngredientListCell
         
-        cell.nameLabel.text = items[indexPath.row]
        
         return cell
     }
@@ -82,7 +81,22 @@ class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableVie
 
         
     }
-
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return ingredientDetails.count
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return ingredientDetails[component].count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return ingredientDetails[component][row]
+        
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+         print(component)
+         print(row)
+        
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -10,7 +10,10 @@ import UIKit
 
 class AddIngredientListCell: UITableViewCell {
 
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var IngredientDetailsPickerView: UIPickerView!
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
