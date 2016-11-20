@@ -11,10 +11,18 @@ import Parse
 
 class LoginViewController: UIViewController {
     
+    private static let forgotPasswordText = "Forgot Password?"
+    private static let nevermindText = "I Know My Password Now"
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var nicknameTextField: UITextField!
+    @IBOutlet weak var forgotPasswordTextField: UITextField!
+    @IBOutlet weak var resetPasswordButton: UIButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     
+    //errorView & errorLabel are used for non error messages as well
+    //TODO: rename errorView to messageView
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var errorViewTopConstraint: NSLayoutConstraint!
@@ -28,6 +36,8 @@ class LoginViewController: UIViewController {
         
         hideErrorView()
         setupGestureRecognizers()
+        
+        hidePasswordResetUi(animate: false)
         // Do any additional setup after loading the view.
     }
 
@@ -52,6 +62,37 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func didTapForgotPasswordButton(_ sender: UIButton) {
+        switch self.forgotPasswordButton.currentTitle!{
+        case LoginViewController.forgotPasswordText:
+            showPasswordResetUi(animate: true)
+            break
+        case LoginViewController.nevermindText:
+            hideErrorView()
+            hidePasswordResetUi(animate: true)
+            break
+        default:
+            //Will never execute
+            break
+        }
+    }
+    
+    @IBAction func didTapResetPasswordButton(_ sender: UIButton) {
+        showMessage(message: "Processing Request")
+        if let email = self.forgotPasswordTextField.text{
+            if email != ""{
+                PFUser.requestPasswordResetForEmail(
+                    inBackground: email,
+                    block: {(successful: Bool, error: Error?)->Void in
+                        print("password reset - wasSuccessful: \(successful)")
+                        print("password reset - error: \(error?.localizedDescription)")
+                        if successful{
+                            self.showMessage(message: "Please Check Email")
+                        }else{
+                            self.showErrorView(message: error?.localizedDescription)
+                        }
+                })
+            }
+        }
     }
     
     @IBAction func didTapSkipButton(_ sender: UIButton) {
@@ -97,7 +138,7 @@ class LoginViewController: UIViewController {
                             if let errorString = error.userInfo["error"] as? String{
                                 // Show the errorString somewhere and let the user try again.
                                 print("SignUp error: \(errorString)")
-                                self.displayErrorView(message: errorString)
+                                self.showErrorView(message: errorString)
                             }
                         } else {
                             // Hooray! Let them use the app now.
@@ -106,15 +147,15 @@ class LoginViewController: UIViewController {
                         }})
                 }else{
                     //prompt user to choose nickname
-                    displayErrorView(message: "Please choose a nickname")
+                    showErrorView(message: "Please choose a nickname")
                 }
             }else{
                 //prompt user to enter password
-                displayErrorView(message: "Please choose a password")
+                showErrorView(message: "Please choose a password")
             }
         }else{
             //prompt user to enter email
-            displayErrorView(message: "Please choose an email address")
+            showErrorView(message: "Please choose an email address")
         }
     }
     
@@ -136,7 +177,7 @@ class LoginViewController: UIViewController {
                         let errorString = error.userInfo["error"] as? String
                         // Show the errorString somewhere and let the user try again.
                         print("LogIn error: \(errorString)")
-                        self.displayErrorView(message: errorString)
+                        self.showErrorView(message: errorString)
                     } else {
                         // Hooray! Let them use the app now.
                         print("Login Successful. Current User: \(currentUser)")
@@ -144,15 +185,23 @@ class LoginViewController: UIViewController {
                     }})
             }else{
                 //prompt user to enter password
-                displayErrorView(message: "Please enter your password")
+                showErrorView(message: "Please enter your password")
             }
         }else{
             //prompt user to enter email
-            displayErrorView(message: "Please enter your email address")
+            showErrorView(message: "Please enter your email address")
         }
     }
     
-    func displayErrorView(message: String?){
+    func showMessage(message: String){
+        UIView.animate(withDuration: LoginViewController.animaitonDuration, animations: {
+            self.errorLabel.text = message
+            self.errorViewTopConstraint.constant = 0.0
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    func showErrorView(message: String?){
         var displayMessage: String!
         if let unwrappedMessage = message{
             displayMessage = "Oops: " + unwrappedMessage
@@ -184,5 +233,34 @@ class LoginViewController: UIViewController {
     
     func didTapParentView(){
         parentView.endEditing(true)
+    }
+    
+    func hidePasswordResetUi(animate: Bool){
+        if(animate){
+            UIView.animate(withDuration: 1.0, animations: {
+                self.forgotPasswordButton.setTitle(LoginViewController.forgotPasswordText, for: UIControlState.normal)
+                self.forgotPasswordTextField.alpha = 0.0
+                self.resetPasswordButton.alpha = 0.0
+            })
+        }else{
+            self.forgotPasswordButton.setTitle(LoginViewController.forgotPasswordText, for: UIControlState.normal)
+            self.forgotPasswordTextField.alpha = 0.0
+            self.resetPasswordButton.alpha = 0.0
+        }
+        self.forgotPasswordTextField.text = ""
+    }
+    
+    func showPasswordResetUi(animate: Bool){
+        if(animate){
+            UIView.animate(withDuration: 1.0, animations: {
+                self.forgotPasswordButton.setTitle(LoginViewController.nevermindText, for: UIControlState.normal)
+                self.forgotPasswordTextField.alpha = 1.0
+                self.resetPasswordButton.alpha = 1.0
+            })
+        }else{
+            self.forgotPasswordButton.setTitle(LoginViewController.nevermindText, for: UIControlState.normal)
+            self.forgotPasswordTextField.alpha = 1.0
+            self.resetPasswordButton.alpha = 1.0
+        }
     }
 }

@@ -5,13 +5,15 @@ Schema
 	3. Email: String
 	4. Password: String
 2. Recipe
-	1. Id: String
-	2. Name: String
-	3. CreatedBy: Reference to UserId
-	4. Description: String
-	5. PreparationTime: String
-	6. ListOfIngredients: JSONArray
-		1. IngredientName: String
-		2. IngredientAmount: Number
-		3. IngredientUnit: String
-	7. Difficulty
+	1. objectId: String
+	2. name: String
+	3. createdBy: Relation to UserId
+	4. *** summary: String ***
+	5. *** prepTimeStr: String ***
+	6. *** prepTime: Double ***
+	7. *** prepUnits: Double ***
+	8. Ingredients: Array
+		1. name: String
+		2. quantity: Number
+		3. units: String
+	9. *** Difficulty: Int ***

@@ -41,7 +41,7 @@ class Recipe : PFObject, PFSubclassing {
     @NSManaged var difficulty: Int
     @NSManaged var ingredients: [Dictionary<String,AnyObject>]
     @NSManaged var ingredientList: [String]?
-    @NSManaged var directionsDict: [Dictionary<Int,String>]?
+    @NSManaged var directionsDict: [String]?
     @NSManaged var directions: [String]?
     
     var imageUrl: URL?

@@ -19,6 +19,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loginLogoutBarButton: UIBarButtonItem!
   
+    var controllerDataSource: String? = "database"
+    
     var data = [Recipe]()
     var filteredData = [Recipe]()
     var query: String?
@@ -34,15 +36,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         filteredData = data
 
-        //Bring in recipes from the api
-        query = RecipeListViewController.genericQuery
-        getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
+        if controllerDataSource == "database" {
+            getRecipesFromDb()
+        } else {
+            //Bring in recipes from the api
+            query = RecipeListViewController.genericQuery
+            getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
+        }
 
-        
         setupLoginLogoutButton()
-        
-//        getMyRecipes()
-//        getRecipesFromDb()
     }
 
     override func didReceiveMemoryWarning() {
@@ -188,7 +190,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         Recipe.getRecipesFromDb(
             success: {(myRecipes: [Recipe]) -> Void in
                 
-                let defaultList = Recipe.getDefaultRecipeList() // DELETE THIS
+//                let defaultList = Recipe.getDefaultRecipeList() // DELETE THIS
                 
                 self.data = myRecipes
                 self.filteredData = myRecipes
