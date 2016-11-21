@@ -19,6 +19,7 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var recipeDirectionsTextView: UITextView!
     
     var recipe: Recipe!
+    var lastIngredientSaved = true
     
     var items = [""]
     var ingredientDetails = [["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],["1/8","1/4","1/3","1/2","2/3","3/4"]]
@@ -121,8 +122,10 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     func setRecipe(recipe: Recipe?){
         if let recipe = recipe{
             self.recipe = recipe
+            self.lastIngredientSaved = true
         }else{
             self.recipe = Recipe()
+            self.lastIngredientSaved = false
         }
     }
     
