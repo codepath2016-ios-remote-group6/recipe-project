@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 
-class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate ,UIPickerViewDataSource {
+class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate ,UIPickerViewDataSource {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -18,8 +18,14 @@ class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableVie
     
     @IBOutlet weak var recipeDirectionsTextView: UITextView!
     
+    var recipe: Recipe!
+    
     var items = [""]
     var ingredientDetails = [["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],["1/8","1/4","1/3","1/2","2/3","3/4"]]
+    
+//    var ingredientDetails =
+//        [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
+//         ["1/8","1/4","1/3","1/2","2/3","3/4"]]
     
     @IBOutlet weak var addIngredientTableView: UITableView!
     
@@ -35,6 +41,8 @@ class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableVie
         let contentHeight = scrollView.bounds.height * 3
         
         scrollView.contentSize = CGSize(width: contentWidth, height: contentHeight)
+        
+        populateView()
 
         // Do any additional setup after loading the view.
     }
@@ -43,15 +51,20 @@ class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableVie
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return items.count
+         return recipe.ingredients.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let ingredient: Dictionary<String,AnyObject> = self.recipe.ingredients[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddIngredientListCell", for: indexPath) as! AddIngredientListCell
-        
+        cell.nameTextField.text = ingredient[Recipe.ingredientNameKey] as? String
+        cell.unitTextField.text = ingredient[Recipe.ingredientUnitsKey] as? String
+        cell.IngredientDetailsPickerView.selectRow(
+            (self.recipe.ingredients[indexPath.row][Recipe.ingredientQuantityKey] as! Int) - 1,
+            inComponent: 0, animated: true)
        
         return cell
     }
@@ -74,8 +87,7 @@ class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableVie
         
         recipe.name = recipeNameTextField.text
         
-        recipe.directions = (recipeDirectionsTextView.text as AnyObject) as! [String]
-        
+        recipe.directions = recipeDirectionsTextView.text        
         //ingredient object 
         //recipe.ingredients =
 
@@ -89,7 +101,6 @@ class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableVie
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return ingredientDetails[component][row]
-        
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
          print(component)
@@ -106,5 +117,26 @@ class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableVie
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func setRecipe(recipe: Recipe?){
+        if let recipe = recipe{
+            self.recipe = recipe
+        }else{
+            self.recipe = Recipe()
+        }
+    }
+    
+    func populateView(){
+        //Name
+        self.recipeNameTextField.text = self.recipe.name
+        //Ingredients
+        self.addIngredientTableView.reloadData()
+        //Directions
+        if let directions = self.recipe.directions{
+            self.recipeDirectionsTextView.text = directions
+        }else{
+            self.recipeDirectionsTextView.text = ""
+        }
+    }
 
 }

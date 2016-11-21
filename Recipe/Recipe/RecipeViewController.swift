@@ -51,7 +51,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let inspiredByUrl = recipe.inspiredByUrl {
             directionsTextView.text = "\(inspiredByUrl)"
         } else {
-            directionsTextView.text = recipe.directions?[0]
+            directionsTextView.text = recipe.directions
         }
         
 //        ingredientsTableView.size.height = tableViewHeight
@@ -92,15 +92,19 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let destinationVc = segue.destination
+        if let recipeEditVc = destinationVc as? RecipeEditViewController{
+            recipeEditVc.recipe = self.recipe
+        }
     }
-    */
+    
     
     func refreshRecipe(){
         if let id = self.recipe.sourceId{

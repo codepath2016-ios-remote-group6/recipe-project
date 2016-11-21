@@ -41,8 +41,8 @@ class Recipe : PFObject, PFSubclassing {
     @NSManaged var difficulty: Int
     @NSManaged var ingredients: [Dictionary<String,AnyObject>]
     @NSManaged var ingredientList: [String]?
-    @NSManaged var directionsDict: [String]?
-    @NSManaged var directions: [String]?
+//    @NSManaged var directionsDict: [String]?
+    @NSManaged var directions: String?
     
     var imageUrl: URL?
     var inspiredByUrl: URL?
@@ -64,7 +64,7 @@ class Recipe : PFObject, PFSubclassing {
         
         // Temporary fix. store directions as one element in the array until we can decide on a standard form for the directions
         if let dictionaryDirections = dictionary["directions"] as? String {
-            directions = [dictionaryDirections]
+            directions = dictionaryDirections
         }
         
         

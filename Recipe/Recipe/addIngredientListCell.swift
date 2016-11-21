@@ -12,6 +12,7 @@ class AddIngredientListCell: UITableViewCell {
 
     @IBOutlet weak var IngredientDetailsPickerView: UIPickerView!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var unitTextField: UITextField!
     
     
     override func awakeFromNib() {
