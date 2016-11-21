@@ -70,7 +70,7 @@ class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableVie
         
         let recipe = Recipe()
         
-        let ojbectId = recipe.objectId
+        let objectId = recipe.objectId
         
         recipe.name = recipeNameTextField.text
         
@@ -96,7 +96,9 @@ class RecipeEditViewController: UIViewController,UITableViewDelegate, UITableVie
          print(row)
         
     }
-    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return 50
+    }
     /*
     // MARK: - Navigation
 
