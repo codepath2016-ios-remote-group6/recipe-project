@@ -42,6 +42,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             //Bring in recipes from the api
             query = RecipeListViewController.genericQuery
             getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
+            searchBar.placeholder = "\((searchBar.placeholder)!) or new search"
         }
 
         setupLoginLogoutButton()
@@ -164,6 +165,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getRecipeListResults(pageNum: Int){
+        if controllerDataSource == "database" {
+            return
+        }
+        
         let startIndex = pageNum * RecipeListViewController.numResultsPerRequest
         Recipe.searchEdamam(
             forRecipesWithQuery: self.query,
