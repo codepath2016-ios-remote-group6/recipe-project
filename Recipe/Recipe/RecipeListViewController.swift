@@ -131,6 +131,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let recipe = data[(indexPath?.row)!]
                 
                 destinationViewController.recipe = recipe
+                destinationViewController.sourceType = self.controllerDataSource
             
             default:
                 break
