@@ -16,6 +16,7 @@ class Recipe : PFObject, PFSubclassing {
     static let ingredientQuantityKey = "quantity"
     static let ingredientUnitsKey = "units"
     static let ingredientAuxTextKey = "auxText"
+    static let ingredientAltTextKey = "auxText"
     
     static let directionOrderNumKey = "orderNumber"
     static let directionDescriptionKey = "directionDescription"
