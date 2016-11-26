@@ -117,21 +117,4 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             recipeEditVc.recipe = self.recipe
         }
     }
-    
-    
-    func refreshRecipe(){
-        if let id = self.recipe.sourceId{
-        Recipe.recipe(
-            fromFoodToForkApiRequestWith: id,
-            success: {(recipeDict: Dictionary<String,Any>)->Void in
-                self.recipe = Recipe.recipe(fromFoodToForkDict: recipeDict)
-                print("***********")
-                print("refreshed Recipe: \(self.recipe)")},
-            failure: {(error: Error?)->Void in
-                print(error?.localizedDescription)})
-        }else{
-            print("Error getting recipeId")
-        }
-    }
-
 }

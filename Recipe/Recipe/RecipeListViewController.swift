@@ -147,24 +147,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     //*
     //*
     
-    func buildGenericRecipeList(){
-        Recipe.searchFoodToFork(
-            query: nil,
-            page: nil,
-            sort: nil,
-            success: {(recipeDictList: [Dictionary<String,Any>])->Void in
-                self.data = Recipe.recipes(withF2fRecipeDictList: recipeDictList)
-                self.filteredData = self.data
-                self.tableView.reloadData()
-            },
-            failure: {(error: Error?)->Void in
-                
-                //failure code
-                print("Error in RecipeList: \(error?.localizedDescription)")
-                print(error)
-        })
-    }
-    
     func getRecipeListResults(pageNum: Int){
         if controllerDataSource == "database" {
             return
@@ -184,21 +166,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             failure: {(error: Error?)->Void in
                 //failure code
         })
-        
-        
-//        Recipe.searchFoodToFork(
-//            query: self.query,
-//            page: "\(pageNum)",
-//            sort: nil,
-//            success: {(recipeDictList: [Dictionary<String,Any>])->Void in
-//                self.data = Recipe.recipes(recipeDictList: recipeDictList)
-//                self.filteredData = self.data
-//                self.searchBar.text = ""
-////                self.tableView.reloadData()
-//            },
-//            failure: {(error: Error?)->Void in
-//                //failure code
-//        })
     }
     
     func setupLoginLogoutButton(){

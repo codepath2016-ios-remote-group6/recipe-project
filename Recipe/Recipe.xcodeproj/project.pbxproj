@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0A29038E1DDC0449006CDE8F /* ParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A29038D1DDC0449006CDE8F /* ParseTests.swift */; };
-		0A2903901DDC0503006CDE8F /* FoodToForkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A29038F1DDC0503006CDE8F /* FoodToForkTests.swift */; };
 		0A6409CC1DDAD26700D906F9 /* default_recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A6409CB1DDAD26700D906F9 /* default_recipes.json */; };
 		0A8480791DD8FE61009A3F5A /* IngredientListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8480781DD8FE61009A3F5A /* IngredientListCell.swift */; };
 		0A84807B1DD90526009A3F5A /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84807A1DD90526009A3F5A /* Ingredient.swift */; };
@@ -34,7 +33,6 @@
 
 /* Begin PBXFileReference section */
 		0A29038D1DDC0449006CDE8F /* ParseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseTests.swift; sourceTree = "<group>"; };
-		0A29038F1DDC0503006CDE8F /* FoodToForkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodToForkTests.swift; sourceTree = "<group>"; };
 		0A6409CB1DDAD26700D906F9 /* default_recipes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = default_recipes.json; sourceTree = "<group>"; };
 		0A8480781DD8FE61009A3F5A /* IngredientListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientListCell.swift; sourceTree = "<group>"; };
 		0A84807A1DD90526009A3F5A /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				0A29038D1DDC0449006CDE8F /* ParseTests.swift */,
-				0A29038F1DDC0503006CDE8F /* FoodToForkTests.swift */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -330,7 +327,6 @@
 				0AB0A2911DD6ADCD001F53F3 /* RecipeViewController.swift in Sources */,
 				0AB0A2951DD7ADF5001F53F3 /* RecipeListCell.swift in Sources */,
 				0A29038E1DDC0449006CDE8F /* ParseTests.swift in Sources */,
-				0A2903901DDC0503006CDE8F /* FoodToForkTests.swift in Sources */,
 				0A8480791DD8FE61009A3F5A /* IngredientListCell.swift in Sources */,
 				0AB0A28F1DD6ADBC001F53F3 /* RecipeListViewController.swift in Sources */,
 				284F0AE51DDA377300434B8B /* User.swift in Sources */,
