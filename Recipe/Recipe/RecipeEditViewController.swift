@@ -61,13 +61,13 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return recipe.ingredients.count
+         return recipe.ingredientObjList.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("TV Function: cell for row at")
-        let ingredient: Dictionary<String,AnyObject> = self.recipe.ingredients[indexPath.row]
+//        let ingredient: Dictionary<String,AnyObject> = self.recipe.ingredients[indexPath.row]
         //use ingredient object instead
         let ingredientObject: Ingredient = self.recipe.ingredientObjList[indexPath.row]
         
@@ -140,7 +140,10 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     @IBAction func onAddIngredientClick(_ sender: Any) {
-        recipe.ingredients.append(Dictionary<String,AnyObject>())
+//        recipe.ingredients.append(Dictionary<String,AnyObject>())
+        let ingredient = Ingredient()
+        ingredient.name = Ingredient.newIngredientName
+        recipe.ingredientObjList.append(ingredient)
         addIngredientTableView.reloadData()
     }
     
@@ -224,10 +227,10 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func updateIngredient(index: Int, cell: IngredientFlexTVCell){
-        recipe.ingredients[index][Recipe.ingredientNameKey] = cell.name as AnyObject
-        recipe.ingredients[index][Recipe.ingredientQuantityKey] = cell.quantity as AnyObject
-        recipe.ingredients[index][Recipe.ingredientUnitsKey] = cell.units as AnyObject
-        recipe.ingredients[index][Recipe.ingredientAuxTextKey] = cell.displayText as AnyObject
+//        recipe.ingredients[index][Recipe.ingredientNameKey] = cell.name as AnyObject
+//        recipe.ingredients[index][Recipe.ingredientQuantityKey] = cell.quantity as AnyObject
+//        recipe.ingredients[index][Recipe.ingredientUnitsKey] = cell.units as AnyObject
+//        recipe.ingredients[index][Recipe.ingredientAuxTextKey] = cell.displayText as AnyObject
         
         if let name = cell.name{
             if name != ""{

@@ -298,6 +298,7 @@ class Recipe : PFObject, PFSubclassing {
                     if let results = results{
                         for result in results{
                             if let recipe = result as? Recipe{
+                                recipe.buildIngredientObjectsList()
                                 recipes.append(recipe)
                             }
                         }
@@ -323,6 +324,7 @@ class Recipe : PFObject, PFSubclassing {
                 if let results = results{
                     for result in results{
                         if let recipe = result as? Recipe{
+                            recipe.buildIngredientObjectsList()
                             recipes.append(recipe)
                         }
                     }
@@ -332,6 +334,10 @@ class Recipe : PFObject, PFSubclassing {
                 failure(error)
             }
         })
+    }
+    
+    func buildIngredientObjectsList(){
+        ingredientObjList = Ingredient.IngredientsWithArray(dictionaries: ingredients as [NSDictionary])
     }
     
     func prepareIngredientsForDbStorage(){

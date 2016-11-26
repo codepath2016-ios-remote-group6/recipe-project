@@ -178,7 +178,11 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
     
     var displayText: String?{
         get{
-            //Set Alternative text value
+            //Display new ingredient prompt
+            if name == Ingredient.newIngredientName{
+                return Ingredient.newIngredientName
+            }
+            //Set display to Alternative text field if user want to override value
             if let altTextFieldValue = alternativeTextField.text{
                 if altTextFieldValue != "" {
                     return altTextFieldValue
@@ -316,6 +320,9 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         self.editView.alpha = 1.0
         self.mainSizeConstraint.constant = visibleViewConstraint
         self.contentView.layoutIfNeeded()
+        if self.name == Ingredient.newIngredientName{
+            self.name = ""
+        }
         print("End show: state = \(editViewState), height = \(cellHeight), state = \(editViewState)")
     }
     
@@ -381,6 +388,11 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         units = ingredient.unit
         //Set name view
         name = ingredient.name
+//        if ingredient.name == Ingredient.newIngredient{
+//            name = ""
+//        }else{
+//            name = ingredient.name
+//        }
         //Set Alternative text value
         if ingredient.alternativeTextIsUnique(){
             alternativeTextField.text = ingredient.alternativeText
