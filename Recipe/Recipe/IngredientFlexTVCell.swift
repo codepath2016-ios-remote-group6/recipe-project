@@ -68,7 +68,16 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
             
         }
         didSet{
-            setView(with: ingredient)
+            setView(setView(withDictionary: ingredient))
+        }
+    }
+    
+    var ingredientObject = Ingredient(){
+        willSet{
+            
+        }
+        didSet{
+            setView(setView(withIngredientObject: ingredientObject))
         }
     }
     
@@ -175,7 +184,7 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
                     return altTextFieldValue
                 }
             }
-            return makeDisplayText()
+            return Ingredient.makeAlternativeText(quantity: quantity, units: units, name: name)
         }
     }
 
@@ -337,7 +346,7 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         }
     }
     
-    func setView(with ingredient: Dictionary<String,AnyObject>){
+    func setView(withDictionary ingredient: Dictionary<String,AnyObject>){
         //Set Quantity view
         if let quantityValue = ingredient[Recipe.ingredientQuantityKey] as? Double{
             quantity = quantityValue
@@ -357,7 +366,7 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         //Set Alternative text value
         alternativeTextField.text = ""
         if let altTextValue = ingredient[Recipe.ingredientAltTextKey] as? String{
-            if altTextValue != makeDisplayText(){
+            if altTextValue != Ingredient.makeAlternativeText(quantity: quantity, units: units, name: name){
                 alternativeTextField.text = altTextValue
             }
         }
@@ -365,8 +374,26 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         ingredientLabel.text = displayText
     }
     
-    private func makeDisplayText() -> String{
-        return String(self.quantity) + " " + (self.units ?? "") + " of " + (self.name ?? "")
+    func setView(withIngredientObject ingredient: Ingredient){
+        //Set Quantity view
+        quantity = ingredient.quantity
+        //Set units view
+        units = ingredient.unit
+        //Set name view
+        name = ingredient.name
+        //Set Alternative text value
+        if ingredient.alternativeTextIsUnique(){
+            alternativeTextField.text = ingredient.alternativeText
+        }else{
+            alternativeTextField.text = ""
+        }
+        
+        ingredientLabel.text = displayText
     }
+
+    
+//    private func makeDisplayText() -> String{
+//        return String(self.quantity) + " " + (self.units ?? "") + " of " + (self.name ?? "")
+//    }
     
 }

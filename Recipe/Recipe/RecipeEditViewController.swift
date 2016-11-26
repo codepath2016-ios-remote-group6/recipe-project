@@ -68,9 +68,12 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("TV Function: cell for row at")
         let ingredient: Dictionary<String,AnyObject> = self.recipe.ingredients[indexPath.row]
+        //use ingredient object instead
+        let ingredientObject: Ingredient = self.recipe.ingredientObjList[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: IngredientFlexTVCell.name, for: indexPath) as! IngredientFlexTVCell
-        cell.ingredient = ingredient
+//        cell.ingredient = ingredient
+        cell.ingredientObject = ingredientObject
         if let selectedIndexPath = selectedIndexPath{
             if selectedIndexPath == indexPath{
                 print("TV Function: cell for row at -> found selection")
@@ -97,14 +100,14 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
                 selectedIndexPath = nil
                 cell.hideEditView()
                 tableView.deselectRow(at: unwrappedSelectedIndexPath, animated: true)
-                saveIngredient(index: indexPath.row, cell: cell)
+                updateIngredient(index: indexPath.row, cell: cell)
             }else{
                 //selecting a new cell
                 let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as! IngredientFlexTVCell
                 oldCell.hideEditView()
                 selectedIndexPath = indexPath
                 cell.showEditView()
-                saveIngredient(index: indexPath.row, cell: oldCell)
+                updateIngredient(index: indexPath.row, cell: oldCell)
             }
         }else{
             print("new selection")
@@ -142,20 +145,31 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func onDoneClick(_ sender: Any) {
-        recipe.directions = recipeDirectionsTextView.text
-        recipe.saveInBackground(
-            block: {(successful: Bool, error: Error?)->Void in
-                if successful{
-                    print("Recipe save: succesful")
-                }else{
-                    print("Recipe save: Error saving")
-                }})
+        for ingredient in recipe.ingredients{
+            print(ingredient)
+        }
+        
+        recipe.directionsString = recipeDirectionsTextView.text
+        recipe.prepareIngredientsForDbStorage()
+        recipe.saveToDb()
+        dismiss(animated: true, completion: nil)
+//        recipe.saveInBackground(
+//            block: {(successful: Bool, error: Error?)->Void in
+//                if successful{
+//                    print("Recipe save: succesful")
+//                }else{
+//                    print("Recipe save: Error saving")
+//                }
+//                self.dismiss(animated: true, completion: nil)})
     }
     
     @IBAction func didExitTextField(_ sender: UITextField) {
         recipe.name = recipeNameTextField.text
     }
     
+    @IBAction func textFieldEditingDidChange(_ sender: UITextField) {
+        recipe.name = recipeNameTextField.text
+    }
     
     
     
@@ -202,18 +216,35 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         //Ingredients
         self.addIngredientTableView.reloadData()
         //Directions
-        if let directions = self.recipe.directions{
-            self.recipeDirectionsTextView.text = directions
+        if let directionsString = self.recipe.directionsString{
+            self.recipeDirectionsTextView.text = directionsString
         }else{
             self.recipeDirectionsTextView.text = ""
         }
     }
     
-    func saveIngredient(index: Int, cell: IngredientFlexTVCell){
+    func updateIngredient(index: Int, cell: IngredientFlexTVCell){
         recipe.ingredients[index][Recipe.ingredientNameKey] = cell.name as AnyObject
         recipe.ingredients[index][Recipe.ingredientQuantityKey] = cell.quantity as AnyObject
         recipe.ingredients[index][Recipe.ingredientUnitsKey] = cell.units as AnyObject
         recipe.ingredients[index][Recipe.ingredientAuxTextKey] = cell.displayText as AnyObject
+        
+        if let name = cell.name{
+            if name != ""{
+                recipe.ingredientObjList[index].name = name
+            }
+        }
+        if let units = cell.units{
+            if units != ""{
+                recipe.ingredientObjList[index].unit = units
+            }
+        }
+        if let alternativeText = cell.displayText{
+            if alternativeText != ""{
+                recipe.ingredientObjList[index].alternativeText = alternativeText
+            }
+        }
+        recipe.ingredientObjList[index].quantity = cell.quantity
     }
 
 

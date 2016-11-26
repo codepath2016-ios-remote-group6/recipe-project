@@ -54,7 +54,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let inspiredByUrl = recipe.inspiredByUrl {
             directionsTextView.text = "\(inspiredByUrl)"
         } else {
-            directionsTextView.text = recipe.directions
+            directionsTextView.text = recipe.directionsString
         }
         
 //        ingredientsTableView.size.height = tableViewHeight
@@ -71,6 +71,9 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
            editButton.isHidden = true
         }
         
+        for ingredient in recipe.ingredientObjList{
+            print("Ingredient Object List: \(ingredient.quantity) \(ingredient.unit) \(ingredient.name) \(ingredient.alternativeText))")
+        }
         //Refresh Recipe
 //        refreshRecipe()
     }
@@ -96,6 +99,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.quantityLabel.text = "\((ingredient?.quantity)!)"
         cell.unitLabel.text = ingredient?.unit
         cell.nameLabel.text = ingredient?.name
+        
+        cell.alternativeTextLabel.text = ingredient?.alternativeText
         
         return cell
     }

@@ -374,38 +374,48 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientListCell" id="pzO-rG-YYR" customClass="IngredientListCell" customModule="Recipe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="1000" height="25"/>
+                                                <rect key="frame" x="0.0" y="28" width="327" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pzO-rG-YYR" id="gQM-lw-Sia">
-                                                    <frame key="frameInset" width="1000" height="24.5"/>
+                                                    <frame key="frameInset" width="327" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duu-qh-XWf">
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duu-qh-XWf">
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="oz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4V-JP-9lu">
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="oz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4V-JP-9lu">
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xvh-sR-ycE">
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xvh-sR-ycE">
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ce1-yb-t1K">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ce1-yb-t1K" secondAttribute="trailing" constant="8" id="2oy-VB-76N"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ce1-yb-t1K" secondAttribute="bottom" constant="2" id="EKn-Rh-oIE"/>
                                                         <constraint firstItem="x4V-JP-9lu" firstAttribute="centerY" secondItem="gQM-lw-Sia" secondAttribute="centerY" id="F8u-zu-ceJ"/>
                                                         <constraint firstItem="Xvh-sR-ycE" firstAttribute="leading" secondItem="x4V-JP-9lu" secondAttribute="trailing" constant="12" id="Npu-xW-Vao"/>
                                                         <constraint firstItem="Xvh-sR-ycE" firstAttribute="centerY" secondItem="gQM-lw-Sia" secondAttribute="centerY" id="OFg-yZ-ip0"/>
                                                         <constraint firstItem="duu-qh-XWf" firstAttribute="leading" secondItem="gQM-lw-Sia" secondAttribute="leadingMargin" id="RUE-PS-V01"/>
                                                         <constraint firstItem="duu-qh-XWf" firstAttribute="centerY" secondItem="gQM-lw-Sia" secondAttribute="centerY" id="VEQ-x5-xl4"/>
+                                                        <constraint firstItem="Ce1-yb-t1K" firstAttribute="centerY" secondItem="gQM-lw-Sia" secondAttribute="centerY" id="ZC8-Qo-sUn"/>
+                                                        <constraint firstItem="Ce1-yb-t1K" firstAttribute="leading" secondItem="gQM-lw-Sia" secondAttribute="leading" constant="8" id="vaU-lS-Soq"/>
                                                         <constraint firstItem="x4V-JP-9lu" firstAttribute="leading" secondItem="duu-qh-XWf" secondAttribute="trailing" constant="4" id="z0Z-dB-9a0"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="alternativeTextLabel" destination="Ce1-yb-t1K" id="8Fn-S3-H2J"/>
                                                     <outlet property="nameLabel" destination="Xvh-sR-ycE" id="KgX-fz-fDh"/>
                                                     <outlet property="quantityLabel" destination="duu-qh-XWf" id="ISU-oa-UCd"/>
                                                     <outlet property="unitLabel" destination="x4V-JP-9lu" id="MLL-4V-BI7"/>
@@ -506,6 +516,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="didExitTextField:" destination="qI3-SP-HaB" eventType="editingDidEnd" id="nmK-Bh-tCD"/>
+                                            <action selector="textFieldEditingDidChange:" destination="qI3-SP-HaB" eventType="editingChanged" id="OGS-5g-BsL"/>
                                         </connections>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Cmo-uI-hHO">
@@ -754,6 +765,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Hlf-1j-bfu"/>
+        <segue reference="uYp-h6-VvM"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,6 +13,7 @@ class IngredientListCell: UITableViewCell {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var unitLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var alternativeTextLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -79,7 +79,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             filteredData.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             
-            recipe.deleteFromDB()
+            recipe.deleteFromDb()
         }
     }
     

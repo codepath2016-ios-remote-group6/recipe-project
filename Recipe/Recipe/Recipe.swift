@@ -41,13 +41,16 @@ class Recipe : PFObject, PFSubclassing {
     @NSManaged var prepTimeUnits: String?
     @NSManaged var difficulty: Int
     @NSManaged var ingredients: [Dictionary<String,AnyObject>]
-    @NSManaged var ingredientList: [String]?
+//    @NSManaged var ingredientList: [String]?
 //    @NSManaged var directionsDict: [String]?
-    @NSManaged var directions: String?
+    @NSManaged var directions: [String]?
+    @NSManaged var directionsString: String?
     
+    //Properties that do not get saved to the database
     var imageUrl: URL?
     var inspiredByUrl: URL?
     var inspiredByRecipeUrl: URL?
+    var ingredientObjList: [Ingredient] = [Ingredient]()
     
     override init() {
         super.init()
@@ -65,7 +68,7 @@ class Recipe : PFObject, PFSubclassing {
         
         // Temporary fix. store directions as one element in the array until we can decide on a standard form for the directions
         if let dictionaryDirections = dictionary["directions"] as? String {
-            directions = dictionaryDirections
+            directionsString = dictionaryDirections
         }
         
         
@@ -78,6 +81,9 @@ class Recipe : PFObject, PFSubclassing {
             normalizedIngredient["quantity"] = (ingredient["quantity"] as! NSString).doubleValue as AnyObject?
             
             dictionaryIngredients.append(normalizedIngredient)
+            
+            let ingredientObject = Ingredient(dictionary: normalizedIngredient as NSDictionary)
+            ingredientObjList.append(ingredientObject)
         }
         
         ingredients = dictionaryIngredients        
@@ -103,7 +109,7 @@ class Recipe : PFObject, PFSubclassing {
 //        return Recipe.className
     }
     
-    func updateDB() {
+    func saveToDb() {
         if createdByUser == nil {
             createdByUser = PFUser.current()
         }
@@ -121,7 +127,7 @@ class Recipe : PFObject, PFSubclassing {
         })
     }
     
-    func deleteFromDB() {
+    func deleteFromDb() {
         self.deleteInBackground(block: {(wasSuccessful: Bool, error: Error?)->Void in
             if let error = error{
                 print("**********")
@@ -143,7 +149,7 @@ class Recipe : PFObject, PFSubclassing {
         recipe.inspiredByRecipeUrlString = dictionary["source_url"] as? String
         recipe.sourceId = dictionary["recipe_id"] as? String
         recipe.imageUrlString = dictionary["image_url"] as? String
-        recipe.ingredientList = dictionary["ingredients"] as? [String]
+//        recipe.ingredientList = dictionary["ingredients"] as? [String]
         recipe.ingredients = [Dictionary<String,AnyObject>]()
         
         //populateUrls
@@ -175,6 +181,9 @@ class Recipe : PFObject, PFSubclassing {
                     ingredient[self.ingredientUnitsKey] = ingredientDict["measure"] as AnyObject
                     ingredient[self.ingredientAuxTextKey] = ingredientDict["text"] as AnyObject
                     recipe.ingredients.append(ingredient)
+                    
+                    let ingredientObject = Ingredient(dictionary: ingredient as NSDictionary)
+                    recipe.ingredientObjList.append(ingredientObject)
                 }
             }
             
@@ -277,7 +286,6 @@ class Recipe : PFObject, PFSubclassing {
     }
     
     class func getMyRecipes(success: @escaping ([Recipe])->(), failure: @escaping (Error?)->()){
-//        var currentUser = PFUser.current()
         if let currentUser = PFUser.current(){
             print("currentUser: \(currentUser)")
             let query = PFQuery(className: Recipe.className)
@@ -324,5 +332,9 @@ class Recipe : PFObject, PFSubclassing {
                 failure(error)
             }
         })
+    }
+    
+    func prepareIngredientsForDbStorage(){
+        ingredients = Ingredient.IngredientDictionariesWithArray(ingredients: ingredientObjList)
     }
 }
