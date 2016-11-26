@@ -2,12 +2,11 @@
 //  RecipeEditViewController.swift
 //  Recipe
 //
-//  Created by Pallavi Kurhade on 11/11/16.
+//  Created by Iria on 11/11/16.
 //  Copyright © 2016 Codepath Group 6. All rights reserved.
 //
 
 import UIKit
-import Parse
 
 class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -54,18 +53,6 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return items.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AddIngredientListCell", for: indexPath) as! AddIngredientListCell
-        
-       
-        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
