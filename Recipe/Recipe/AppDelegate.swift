@@ -120,6 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         dbRecipeListVC.controllerDataSource = "database"
         dbRecipeListNC.tabBarItem.title = "My Recipes"
+        dbRecipeListNC.tabBarItem.image = UIImage(named: "saved-recipes-icon")
         
         // Set up Browse Recipe List
         let apiRecipeListNC = storyboard.instantiateViewController(withIdentifier: "RecipeListNavController") as! UINavigationController
@@ -127,6 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         apiRecipeListVC.controllerDataSource = "edamam"
         apiRecipeListNC.tabBarItem.title = "Browse"
+        apiRecipeListNC.tabBarItem.image = UIImage(named: "browse-recipes-icon")
         
         // Programatically create tab view
         let tabBarController = UITabBarController()
