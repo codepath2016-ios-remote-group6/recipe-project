@@ -20,6 +20,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var editButton: UIButton!
     
+    @IBOutlet weak var ingredientTableViewHeightConstraint: NSLayoutConstraint!
+    
     var recipe: Recipe!
     var ingredientsArray: [Ingredient]?
     var sourceType: String?
@@ -28,9 +30,6 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         ingredientsArray = Ingredient.IngredientsWithArray(dictionaries: recipe.ingredients as [NSDictionary])
         
-        // This assumes there is always at least one ingredient
-//        let tableViewHeight = ingredientsTableView.rowHeight as Int * (ingredientsArray?.count)!
-        
         if let urlString = recipe.imageUrlString{
             if let url = URL(string: urlString){
                 recipeImageView.setImageWith(url)
@@ -38,12 +37,9 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             recipeImageView.layer.cornerRadius = 10
             recipeImageView.clipsToBounds = true
+        } else {
+            recipeImageView.image = UIImage(named: "recipe-icon")
         }
-        
-//        else {
-//            recipeImageView.removeFromSuperview()
-//            recipeImageView = nil
-//        }
         
         recipeNameLabel.text = recipe.name
         
@@ -56,7 +52,13 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             directionsTextView.text = recipe.directionsString
         }
         
-//        ingredientsTableView.size.height = tableViewHeight
+        // This assumes there is always at least one ingredient
+        let tableViewHeight = CGFloat(ingredientsTableView.rowHeight) * CGFloat((ingredientsArray?.count)!)
+        
+        ingredientTableViewHeightConstraint.constant = tableViewHeight
+        
+//        ingredientsTableView.frame = CGRect(x: ingredientsTableView.frame.origin.x, y: ingredientsTableView.frame.origin.y, width: ingredientsTableView.frame.size.width, height: tableViewHeight)
+        
         ingredientsTableView.dataSource = self
         ingredientsTableView.delegate = self
         ingredientsTableView.alwaysBounceVertical = false
@@ -70,9 +72,9 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
            editButton.isHidden = true
         }
         
-        for ingredient in recipe.ingredientObjList{
-            print("Ingredient Object List: \(ingredient.quantity) \(ingredient.unit) \(ingredient.name) \(ingredient.alternativeText))")
-        }
+//        for ingredient in recipe.ingredientObjList{
+//            print("Ingredient Object List: \(ingredient.quantity) \(ingredient.unit) \(ingredient.name) \(ingredient.alternativeText))")
+//        }
         //Refresh Recipe
 //        refreshRecipe()
     }
