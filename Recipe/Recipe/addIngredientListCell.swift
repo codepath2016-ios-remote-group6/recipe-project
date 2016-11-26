@@ -1,22 +1,21 @@
 //
-//  IngredientListCell.swift
+//  AddIngredientListCell.swift
 //  Recipe
 //
-//  Created by Iria on 11/13/16.
+//  Created by Pallavi Kurhade Methe on 11/19/16.
 //  Copyright © 2016 Codepath Group 6. All rights reserved.
 //
 
 import UIKit
 
-class IngredientListCell: UITableViewCell {
+class AddIngredientListCell: UITableViewCell {
 
-    @IBOutlet weak var quantityLabel: UILabel!
-    @IBOutlet weak var unitLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var IngredientDetailsPickerView: UIPickerView!
+    @IBOutlet weak var nameTextField: UITextField!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         // Initialization code
     }
 

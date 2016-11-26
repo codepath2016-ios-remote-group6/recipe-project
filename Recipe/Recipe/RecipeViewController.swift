@@ -18,8 +18,11 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var prepTimeLabel: UILabel!
     @IBOutlet weak var prepTimeUnitLabel: UILabel!
     
+    @IBOutlet weak var editButton: UIButton!
+    
     var recipe: Recipe!
     var ingredientsArray: [Ingredient]?
+    var sourceType: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +64,12 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ingredientsTableView.allowsSelection = false
         ingredientsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         ingredientsTableView.reloadData()
+        
+        
+        // Don't allow editing of a recipe from an external source
+        if sourceType == "edamam" {
+           editButton.isHidden = true
+        }
         
         //Refresh Recipe
 //        refreshRecipe()
