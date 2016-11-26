@@ -46,7 +46,6 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        }
         
         recipeNameLabel.text = recipe.name
-        directionsTextView.text = recipe.summary
         
         prepTimeLabel.text = "\(recipe.prepTime)"
         prepTimeUnitLabel.text = recipe.prepTimeUnits

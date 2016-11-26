@@ -20,10 +20,13 @@ class RecipeListCell: UITableViewCell {
             self.recipeSourceLabel.text = newValue?.inspiredBy
             if let url = newValue?.imageUrl{
                 self.recipeImageView.setImageWith(url)
-            }else if let urlString = newValue?.imageUrlString{
+            } else if let urlString = newValue?.imageUrlString{
                 if let url = URL(string: urlString){
                     self.recipeImageView.setImageWith(url)
                 }
+            } else {
+                // Use a default icon if there is no image.
+                recipeImageView.image = UIImage(named: "recipe-icon")
             }
         }
     }
