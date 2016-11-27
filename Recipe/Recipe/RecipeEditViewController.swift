@@ -211,6 +211,7 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
             self.recipe = Recipe()
             self.lastIngredientSaved = false
         }
+        print("Recipe ObjectId: \(recipe?.objectId)")
     }
     
     func populateView(){
@@ -227,27 +228,24 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func updateIngredient(index: Int, cell: IngredientFlexTVCell){
-//        recipe.ingredients[index][Recipe.ingredientNameKey] = cell.name as AnyObject
-//        recipe.ingredients[index][Recipe.ingredientQuantityKey] = cell.quantity as AnyObject
-//        recipe.ingredients[index][Recipe.ingredientUnitsKey] = cell.units as AnyObject
-//        recipe.ingredients[index][Recipe.ingredientAuxTextKey] = cell.displayText as AnyObject
+        recipe.ingredientObjList[index] = cell.getIngredientFromUi()
         
-        if let name = cell.name{
-            if name != ""{
-                recipe.ingredientObjList[index].name = name
-            }
-        }
-        if let units = cell.units{
-            if units != ""{
-                recipe.ingredientObjList[index].unit = units
-            }
-        }
-        if let alternativeText = cell.displayText{
-            if alternativeText != ""{
-                recipe.ingredientObjList[index].alternativeText = alternativeText
-            }
-        }
-        recipe.ingredientObjList[index].quantity = cell.quantity
+//        if let name = cell.name{
+//            if name != ""{
+//                recipe.ingredientObjList[index].name = name
+//            }
+//        }
+//        if let units = cell.units{
+//            if units != ""{
+//                recipe.ingredientObjList[index].unit = units
+//            }
+//        }
+//        if let alternativeText = cell.displayText{
+//            if alternativeText != ""{
+//                recipe.ingredientObjList[index].alternativeText = alternativeText
+//            }
+//        }
+//        recipe.ingredientObjList[index].quantity = cell.quantity
     }
 
 

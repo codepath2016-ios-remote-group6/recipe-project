@@ -85,7 +85,13 @@ class Ingredient: NSObject {
     }
     
     class func makeAlternativeText(quantity: Double, units: String?, name: String?) -> String{
-        return String(quantity) + " " + (units ?? "") + " of " + (name ?? "")
+        var preposition: String!
+        if(units == ""){
+            preposition = ""
+        }else{
+            preposition = " of "
+        }
+        return String(quantity) + " " + (units ?? "") + preposition + (name ?? "")
     }
     
     func makeAlternativeText() -> String{

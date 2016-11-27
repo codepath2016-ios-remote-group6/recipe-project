@@ -133,6 +133,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 destinationViewController.recipe = recipe
                 destinationViewController.sourceType = self.controllerDataSource
             
+            break
+            case "newRecipeSegue":
+                let destinationVc = segue.destination as! RecipeEditViewController
+                destinationVc.setRecipe(recipe: nil)
+            break
             default:
                 break
         }

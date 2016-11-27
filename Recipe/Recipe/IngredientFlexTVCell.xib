@@ -13,10 +13,10 @@
             <rect key="frame" x="0.0" y="0.0" width="366" height="320"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="366" height="319.5"/>
+                <frame key="frameInset" width="366" height="319"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfw-ex-JSm">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfw-ex-JSm">
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -50,44 +50,31 @@
                                     <action selector="textFieldDidChange:" destination="KGk-i7-Jjw" eventType="editingChanged" id="wys-bf-vy9"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Override display?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfR-Ia-D2L">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="IJv-ek-IZm"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="textFieldDidChange:" destination="KGk-i7-Jjw" eventType="editingChanged" id="3b0-5c-EQb"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5yu-Ld-DSJ" firstAttribute="leading" secondItem="X09-BY-ffX" secondAttribute="leading" id="5Ge-L2-kmW"/>
-                            <constraint firstItem="jfR-Ia-D2L" firstAttribute="centerX" secondItem="X09-BY-ffX" secondAttribute="centerX" id="DPi-tw-3Aa"/>
+                            <constraint firstAttribute="bottom" secondItem="e1R-wt-kcd" secondAttribute="bottom" constant="8" id="FGK-TG-dJ5"/>
                             <constraint firstItem="e1R-wt-kcd" firstAttribute="centerX" secondItem="X09-BY-ffX" secondAttribute="centerX" id="Ldl-Kr-gei"/>
-                            <constraint firstAttribute="bottom" secondItem="jfR-Ia-D2L" secondAttribute="bottom" constant="8" id="e4F-Cc-ht4"/>
                             <constraint firstItem="0ps-8h-6nd" firstAttribute="centerX" secondItem="X09-BY-ffX" secondAttribute="centerX" id="gus-SH-nN7"/>
                             <constraint firstItem="5yu-Ld-DSJ" firstAttribute="top" secondItem="X09-BY-ffX" secondAttribute="top" id="l7w-A5-le9"/>
                             <constraint firstAttribute="trailing" secondItem="5yu-Ld-DSJ" secondAttribute="trailing" id="lu2-aW-6wP"/>
                             <constraint firstItem="0ps-8h-6nd" firstAttribute="top" secondItem="5yu-Ld-DSJ" secondAttribute="bottom" id="m8e-j8-dBz"/>
-                            <constraint firstItem="jfR-Ia-D2L" firstAttribute="top" secondItem="e1R-wt-kcd" secondAttribute="bottom" constant="32" id="nGK-n4-6CG"/>
                             <constraint firstItem="e1R-wt-kcd" firstAttribute="top" secondItem="0ps-8h-6nd" secondAttribute="bottom" constant="8" id="yhS-2a-TXe"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="mfw-ex-JSm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0fu-q3-GL6"/>
-                    <constraint firstAttribute="trailing" secondItem="mfw-ex-JSm" secondAttribute="trailing" constant="8" id="BLo-82-juJ"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mfw-ex-JSm" secondAttribute="trailing" constant="8" id="BLo-82-juJ"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="mfw-ex-JSm" secondAttribute="bottom" constant="8" id="Fwq-PI-UzO"/>
                     <constraint firstItem="X09-BY-ffX" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Svd-FC-nXA"/>
                     <constraint firstItem="X09-BY-ffX" firstAttribute="top" secondItem="mfw-ex-JSm" secondAttribute="bottom" constant="8" id="c7I-Kp-Sld"/>
-                    <constraint firstItem="mfw-ex-JSm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="tVH-Qf-yUC"/>
+                    <constraint firstItem="mfw-ex-JSm" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="jfO-Zo-k6R"/>
+                    <constraint firstItem="mfw-ex-JSm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="tVH-Qf-yUC"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="alternativeTextField" destination="jfR-Ia-D2L" id="z2r-pR-OMP"/>
                 <outlet property="customUnitsTextField" destination="0ps-8h-6nd" id="tZz-Zm-O8Q"/>
                 <outlet property="editView" destination="X09-BY-ffX" id="S7h-FD-FOV"/>
                 <outlet property="ingredientLabel" destination="mfw-ex-JSm" id="G6H-Fb-Lwl"/>

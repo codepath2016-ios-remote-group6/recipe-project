@@ -16,7 +16,6 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
     @IBOutlet weak var ingredientPicker: UIPickerView!
     @IBOutlet weak var customUnitsTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var alternativeTextField: UITextField!
     @IBOutlet weak var editView: UIView!
     
     @IBOutlet weak var mainSizeConstraint: NSLayoutConstraint!
@@ -60,15 +59,6 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
             }else{
                 return .visible
             }
-        }
-    }
-    
-    var ingredient = Dictionary<String,AnyObject>(){
-        willSet{
-            
-        }
-        didSet{
-            setView(setView(withDictionary: ingredient))
         }
     }
     
@@ -137,7 +127,11 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         get{
             let unitsPickerIndex = ingredientPicker.selectedRow(inComponent: 3)
             if unitsPickerIndex == 0{
-                return customUnitsTextField.text
+                if let units = customUnitsTextField.text{
+                    return units
+                }else{
+                    return ""
+                }
             }else{
                 return unitStrings[unitsPickerIndex]
             }
@@ -159,22 +153,16 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
     
     var name: String?{
         get{
-            return nameTextField.text
+            if let name = nameTextField.text{
+                return name
+            }else{
+                return ""
+            }
         }
         set{
             nameTextField.text = newValue
         }
     }
-    
-//    var alternativeText: String?{
-//        get{
-//            return alternativeTextField.text
-//        }
-//        set{
-//            alternativeTextField.text = newValue
-//            ingredientLabel.text = newValue
-//        }
-//    }
     
     var displayText: String?{
         get{
@@ -182,13 +170,11 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
             if name == Ingredient.newIngredientName{
                 return Ingredient.newIngredientName
             }
-            //Set display to Alternative text field if user want to override value
-            if let altTextFieldValue = alternativeTextField.text{
-                if altTextFieldValue != "" {
-                    return altTextFieldValue
-                }
+            if(quantity == 0 && units == ""){
+                return name
+            }else{
+                return Ingredient.makeAlternativeText(quantity: quantity, units: units, name: name)
             }
-            return Ingredient.makeAlternativeText(quantity: quantity, units: units, name: name)
         }
     }
 
@@ -319,10 +305,11 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         self.editView.isHidden = false
         self.editView.alpha = 1.0
         self.mainSizeConstraint.constant = visibleViewConstraint
-        self.contentView.layoutIfNeeded()
         if self.name == Ingredient.newIngredientName{
             self.name = ""
+            ingredientLabel.text = displayText
         }
+        self.contentView.layoutIfNeeded()
         print("End show: state = \(editViewState), height = \(cellHeight), state = \(editViewState)")
     }
     
@@ -353,34 +340,6 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         }
     }
     
-    func setView(withDictionary ingredient: Dictionary<String,AnyObject>){
-        //Set Quantity view
-        if let quantityValue = ingredient[Recipe.ingredientQuantityKey] as? Double{
-            quantity = quantityValue
-        }else{
-            quantity = 0.0
-        }
-        //Set units view
-        if let unitsValue = ingredient[Recipe.ingredientUnitsKey] as? String{
-            self.units = unitsValue
-        }else{
-            self.units = ""
-        }
-        //Set name view
-        if let nameValue = ingredient[Recipe.ingredientNameKey] as? String{
-            self.name = nameValue
-        }
-        //Set Alternative text value
-        alternativeTextField.text = ""
-        if let altTextValue = ingredient[Recipe.ingredientAltTextKey] as? String{
-            if altTextValue != Ingredient.makeAlternativeText(quantity: quantity, units: units, name: name){
-                alternativeTextField.text = altTextValue
-            }
-        }
-        
-        ingredientLabel.text = displayText
-    }
-    
     func setView(withIngredientObject ingredient: Ingredient){
         //Set Quantity view
         quantity = ingredient.quantity
@@ -388,24 +347,39 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         units = ingredient.unit
         //Set name view
         name = ingredient.name
-//        if ingredient.name == Ingredient.newIngredient{
-//            name = ""
-//        }else{
-//            name = ingredient.name
-//        }
-        //Set Alternative text value
-        if ingredient.alternativeTextIsUnique(){
-            alternativeTextField.text = ingredient.alternativeText
-        }else{
-            alternativeTextField.text = ""
+        //If no data fields are set then see if alternative text has a value to put in the name field
+        if( ingredient.quantity == 0 && ingredient.unit == "" && ingredient.name == ""){
+            name = ingredient.alternativeText
         }
         
         ingredientLabel.text = displayText
     }
-
     
-//    private func makeDisplayText() -> String{
-//        return String(self.quantity) + " " + (self.units ?? "") + " of " + (self.name ?? "")
-//    }
+    func getIngredientFromUi() -> Ingredient{
+        if(quantity == 0 && units == ""){
+            ingredientObject.quantity = 0
+            ingredientObject.unit = ""
+            ingredientObject.name = ""
+            ingredientObject.alternativeText = name!
+        }else{
+            if let name = name{
+                if name != ""{
+                    ingredientObject.name = name
+                }
+            }
+            if let units = units{
+                if units != ""{
+                    ingredientObject.unit = units
+                }
+            }
+            if let alternativeText = displayText{
+                if alternativeText != ""{
+                    ingredientObject.alternativeText = alternativeText
+                }
+            }
+            ingredientObject.quantity = quantity
+        }
+        return ingredientObject
+    }
     
 }

@@ -203,7 +203,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="+"/>
                                         <connections>
-                                            <segue destination="qI3-SP-HaB" kind="presentation" identifier="recipeEditSegue" id="Hlf-1j-bfu"/>
+                                            <segue destination="qI3-SP-HaB" kind="presentation" identifier="newRecipeSegue" id="Hlf-1j-bfu"/>
                                         </connections>
                                     </button>
                                     <searchBar contentMode="redraw" placeholder="Filter Results" translatesAutoresizingMaskIntoConstraints="NO" id="UZ4-23-JG4">
@@ -222,10 +222,10 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeListCell" id="gOn-3g-nyX" customClass="RecipeListCell" customModule="Recipe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="1000" height="80"/>
+                                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gOn-3g-nyX" id="AEq-c7-FUX">
-                                                    <frame key="frameInset" width="818" height="79.5"/>
+                                                    <frame key="frameInset" width="342" height="79"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ytZ-9L-Wb5">
@@ -330,7 +330,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pj5-8k-E7S">
                                         <state key="normal" title="Copy"/>
                                         <connections>
-                                            <segue destination="qI3-SP-HaB" kind="show" id="PUj-WE-3B3"/>
+                                            <segue destination="qI3-SP-HaB" kind="show" identifier="copySegue" id="PUj-WE-3B3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMh-pQ-heh">
@@ -343,7 +343,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csl-GD-Qvh">
                                         <state key="normal" title="Edit"/>
                                         <connections>
-                                            <segue destination="qI3-SP-HaB" kind="show" id="uYp-h6-VvM"/>
+                                            <segue destination="qI3-SP-HaB" kind="show" identifier="editSegue" id="uYp-h6-VvM"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="hr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ip6-nI-VLK">
@@ -403,13 +403,12 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ce1-yb-t1K" secondAttribute="trailing" constant="8" id="2oy-VB-76N"/>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ce1-yb-t1K" secondAttribute="bottom" constant="2" id="EKn-Rh-oIE"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Ce1-yb-t1K" secondAttribute="bottom" id="EKn-Rh-oIE"/>
                                                         <constraint firstItem="x4V-JP-9lu" firstAttribute="centerY" secondItem="gQM-lw-Sia" secondAttribute="centerY" id="F8u-zu-ceJ"/>
                                                         <constraint firstItem="Xvh-sR-ycE" firstAttribute="leading" secondItem="x4V-JP-9lu" secondAttribute="trailing" constant="12" id="Npu-xW-Vao"/>
                                                         <constraint firstItem="Xvh-sR-ycE" firstAttribute="centerY" secondItem="gQM-lw-Sia" secondAttribute="centerY" id="OFg-yZ-ip0"/>
                                                         <constraint firstItem="duu-qh-XWf" firstAttribute="leading" secondItem="gQM-lw-Sia" secondAttribute="leadingMargin" id="RUE-PS-V01"/>
                                                         <constraint firstItem="duu-qh-XWf" firstAttribute="centerY" secondItem="gQM-lw-Sia" secondAttribute="centerY" id="VEQ-x5-xl4"/>
-                                                        <constraint firstItem="Ce1-yb-t1K" firstAttribute="centerY" secondItem="gQM-lw-Sia" secondAttribute="centerY" id="ZC8-Qo-sUn"/>
                                                         <constraint firstItem="Ce1-yb-t1K" firstAttribute="leading" secondItem="gQM-lw-Sia" secondAttribute="leading" constant="8" id="vaU-lS-Soq"/>
                                                         <constraint firstItem="x4V-JP-9lu" firstAttribute="leading" secondItem="duu-qh-XWf" secondAttribute="trailing" constant="4" id="z0Z-dB-9a0"/>
                                                     </constraints>
@@ -538,7 +537,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="339" height="54"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aht-nJ-KaP" id="eCY-29-0v4">
-                                                    <frame key="frameInset" width="339" height="53.5"/>
+                                                    <frame key="frameInset" width="339" height="53"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <pickerView contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Osy-hQ-LLA">
@@ -765,6 +764,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uYp-h6-VvM"/>
+        <segue reference="Hlf-1j-bfu"/>
     </inferredMetricsTieBreakers>
 </document>

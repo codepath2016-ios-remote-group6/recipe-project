@@ -113,6 +113,9 @@ class Recipe : PFObject, PFSubclassing {
         if createdByUser == nil {
             createdByUser = PFUser.current()
         }
+        if inspiredBy == nil{
+            inspiredBy = name
+        }
         
         self.saveInBackground(block: {(wasSuccessful: Bool, error: Error?)->Void in
             if let error = error{
@@ -343,4 +346,78 @@ class Recipe : PFObject, PFSubclassing {
     func prepareIngredientsForDbStorage(){
         ingredients = Ingredient.IngredientDictionariesWithArray(ingredients: ingredientObjList)
     }
+    
+    func getCopy() -> Recipe{
+        let copy = Recipe()
+        
+        if let name = name{
+            copy.name = name
+        }
+        if let imageUrlString = imageUrlString{
+            copy.imageUrlString = imageUrlString
+        }
+        if let imageFile = imageFile{
+            copy.imageFile = imageFile
+        }
+        if let inspiredBy = inspiredBy{
+            copy.inspiredBy = inspiredBy
+        }
+        if let inspiredByUrlString = inspiredByUrlString{
+            copy.inspiredByUrlString = inspiredByUrlString
+        }
+        if let inspiredByRecipeUrlString = inspiredByRecipeUrlString{
+            copy.inspiredByRecipeUrlString = inspiredByRecipeUrlString
+        }
+        if let sourceId = sourceId{
+            copy.sourceId = sourceId
+        }
+        if let summary = summary{
+            copy.summary = summary
+        }
+        if let prepTimeStr = prepTimeStr{
+            copy.prepTimeStr = prepTimeStr
+        }
+        copy.prepTime = prepTime
+        if let prepTimeUnits = prepTimeUnits{
+            copy.prepTimeUnits = prepTimeUnits
+        }
+        copy.difficulty = difficulty
+        copy.ingredients = ingredients
+        if let directions = directions{
+            copy.directions = directions
+        }
+        if let directionsString = directionsString{
+            copy.directionsString = directionsString
+        }
+        copy.ingredientObjList = Ingredient.IngredientsWithArray(dictionaries: ingredients as [NSDictionary])
+        
+        return copy
+    }
+    
+//    //properties
+//    @NSManaged var name: String?
+//    @NSManaged var imageUrlString: String?
+//    @NSManaged var imageFile: PFFile?
+//    //    @NSManaged var createdByUser: PFRelation<PFUser>?
+//    @NSManaged var createdByUser: PFUser?
+//    @NSManaged var inspiredBy: String?
+//    @NSManaged var inspiredByUrlString: String?
+//    @NSManaged var inspiredByRecipeUrlString: String?
+//    @NSManaged var sourceId: String?
+//    @NSManaged var summary: String?
+//    @NSManaged var prepTimeStr: String?
+//    @NSManaged var prepTime: Double
+//    @NSManaged var prepTimeUnits: String?
+//    @NSManaged var difficulty: Int
+//    @NSManaged var ingredients: [Dictionary<String,AnyObject>]
+//    //    @NSManaged var ingredientList: [String]?
+//    //    @NSManaged var directionsDict: [String]?
+//    @NSManaged var directions: [String]?
+//    @NSManaged var directionsString: String?
+//    
+//    //Properties that do not get saved to the database
+//    var imageUrl: URL?
+//    var inspiredByUrl: URL?
+//    var inspiredByRecipeUrl: URL?
+//    var ingredientObjList: [Ingredient] = [Ingredient]()
 }

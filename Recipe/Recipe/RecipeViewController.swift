@@ -62,6 +62,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ingredientsTableView.alwaysBounceVertical = false
         ingredientsTableView.allowsSelection = false
         ingredientsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        ingredientsTableView.rowHeight = UITableViewAutomaticDimension
+        ingredientsTableView.estimatedRowHeight = 25.0
         ingredientsTableView.reloadData()
         
         
@@ -112,9 +114,19 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        print("segue identifier \(segue.identifier)")
         let destinationVc = segue.destination
+        var recipeForNextVc: Recipe!
+        if let identifier = segue.identifier{
+            if identifier == "editSegue"{
+                recipeForNextVc = self.recipe
+            }else{
+                recipeForNextVc = self.recipe.getCopy()
+            }
+        }
         if let recipeEditVc = destinationVc as? RecipeEditViewController{
-            recipeEditVc.recipe = self.recipe
+//            recipeEditVc.recipe = recipeForNextVc
+            recipeEditVc.setRecipe(recipe: recipeForNextVc)
         }
     }
     
