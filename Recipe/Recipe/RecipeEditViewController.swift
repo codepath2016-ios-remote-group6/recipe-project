@@ -38,6 +38,10 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if recipe == nil {
+            recipe = Recipe()
+        }
+        
         addIngredientTableView.rowHeight = UITableViewAutomaticDimension
         addIngredientTableView.estimatedRowHeight = 50
         addIngredientTableView.dataSource = self
@@ -220,11 +224,8 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         //Ingredients
         self.addIngredientTableView.reloadData()
         //Directions
-        if let directionsString = self.recipe.directionsString{
-            self.recipeDirectionsTextView.text = directionsString
-        }else{
-            self.recipeDirectionsTextView.text = ""
-        }
+        self.recipeDirectionsTextView.text = self.recipe.directionsString ?? ""
+
     }
     
     func updateIngredient(index: Int, cell: IngredientFlexTVCell){

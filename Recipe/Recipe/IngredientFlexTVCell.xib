@@ -16,7 +16,7 @@
                 <frame key="frameInset" width="366" height="319"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfw-ex-JSm">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfw-ex-JSm">
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                     <constraint firstItem="X09-BY-ffX" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Svd-FC-nXA"/>
                     <constraint firstItem="X09-BY-ffX" firstAttribute="top" secondItem="mfw-ex-JSm" secondAttribute="bottom" constant="8" id="c7I-Kp-Sld"/>
                     <constraint firstItem="mfw-ex-JSm" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="jfO-Zo-k6R"/>
-                    <constraint firstItem="mfw-ex-JSm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="tVH-Qf-yUC"/>
+                    <constraint firstItem="mfw-ex-JSm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="tVH-Qf-yUC"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

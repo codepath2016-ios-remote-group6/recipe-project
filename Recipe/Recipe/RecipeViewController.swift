@@ -15,10 +15,13 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var directionsTextView: UITextView!
     @IBOutlet weak var recipeImageView: UIImageView!
     
+    @IBOutlet weak var difficultyLabel: UILabel!
     @IBOutlet weak var prepTimeLabel: UILabel!
     @IBOutlet weak var prepTimeUnitLabel: UILabel!
     
     @IBOutlet weak var editButton: UIButton!
+    
+    @IBOutlet weak var ingredientTableViewHeightConstraint: NSLayoutConstraint!
     
     var recipe: Recipe!
     var ingredientsArray: [Ingredient]?
@@ -28,9 +31,6 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         ingredientsArray = Ingredient.IngredientsWithArray(dictionaries: recipe.ingredients as [NSDictionary])
         
-        // This assumes there is always at least one ingredient
-//        let tableViewHeight = ingredientsTableView.rowHeight as Int * (ingredientsArray?.count)!
-        
         if let urlString = recipe.imageUrlString{
             if let url = URL(string: urlString){
                 recipeImageView.setImageWith(url)
@@ -38,25 +38,34 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             recipeImageView.layer.cornerRadius = 10
             recipeImageView.clipsToBounds = true
+        } else {
+            recipeImageView.image = UIImage(named: "recipe-icon")
         }
-        
-//        else {
-//            recipeImageView.removeFromSuperview()
-//            recipeImageView = nil
-//        }
         
         recipeNameLabel.text = recipe.name
         
-        prepTimeLabel.text = "\(recipe.prepTime)"
-        prepTimeUnitLabel.text = recipe.prepTimeUnits
+        difficultyLabel.text = recipe.getDifficulty()
         
+        // Only display prep time if one is set.
+        if recipe.prepTime > 0 {
+            prepTimeLabel.text = "\(Int(recipe.prepTime))"
+            prepTimeUnitLabel.text = recipe.prepTimeUnits
+        } else {
+            prepTimeLabel.text = ""
+            prepTimeUnitLabel.text = ""
+        }
+        
+        // Show a link if we are looking at a recipe copied from the API, otherwise show the directions
         if let inspiredByUrl = recipe.inspiredByUrl {
             directionsTextView.text = "\(inspiredByUrl)"
         } else {
             directionsTextView.text = recipe.directionsString
         }
         
-//        ingredientsTableView.size.height = tableViewHeight
+        // This assumes there is always at least one ingredient
+        let tableViewHeight = CGFloat(ingredientsTableView.rowHeight) * CGFloat((ingredientsArray?.count)!)
+        
+        ingredientTableViewHeightConstraint.constant = tableViewHeight
         ingredientsTableView.dataSource = self
         ingredientsTableView.delegate = self
         ingredientsTableView.alwaysBounceVertical = false
@@ -66,17 +75,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ingredientsTableView.estimatedRowHeight = 25.0
         ingredientsTableView.reloadData()
         
-        
         // Don't allow editing of a recipe from an external source
         if sourceType == "edamam" {
            editButton.isHidden = true
         }
-        
-        for ingredient in recipe.ingredientObjList{
-            print("Ingredient Object List: \(ingredient.quantity) \(ingredient.unit) \(ingredient.name) \(ingredient.alternativeText))")
-        }
-        //Refresh Recipe
-//        refreshRecipe()
     }
 
     override func didReceiveMemoryWarning() {
@@ -129,21 +131,4 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             recipeEditVc.setRecipe(recipe: recipeForNextVc)
         }
     }
-    
-    
-    func refreshRecipe(){
-        if let id = self.recipe.sourceId{
-        Recipe.recipe(
-            fromFoodToForkApiRequestWith: id,
-            success: {(recipeDict: Dictionary<String,Any>)->Void in
-                self.recipe = Recipe.recipe(fromFoodToForkDict: recipeDict)
-                print("***********")
-                print("refreshed Recipe: \(self.recipe)")},
-            failure: {(error: Error?)->Void in
-                print(error?.localizedDescription)})
-        }else{
-            print("Error getting recipeId")
-        }
-    }
-
 }

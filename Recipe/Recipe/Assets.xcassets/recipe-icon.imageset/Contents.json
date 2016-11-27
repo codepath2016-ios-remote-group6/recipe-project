@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "recipe-icon.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "recipe-icon.png",
+      "filename" : "iconmonstr-file-22-120.png",
       "scale" : "3x"
     }
   ],

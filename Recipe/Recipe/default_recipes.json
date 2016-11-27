@@ -5,7 +5,7 @@
   "prepTime": "1",
   "prepTimeUnits": "hr",
   "difficulty": "1",
-  "directions": "Preheat oven to 350 degrees F (175 degrees C). \n\nCream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve baking soda in hot water. Add to batter along with salt. Stir in flour, chocolate chips, and nuts. Drop by large spoonfuls onto ungreased pans. \n\nBake for about 10 minutes in the preheated oven, or until edges are nicely browned.",
+  "directions": "Preheat oven to 350 degrees F (175 degrees C).\n\nCream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve baking soda in hot water. Add to batter along with salt. Stir in flour, chocolate chips, and nuts. Drop by large spoonfuls onto ungreased pans.\n\nBake for about 10 minutes in the preheated oven, or until edges are nicely browned.",
   "ingredients": [
                   {
                   "name": "All purpose flour",
@@ -61,17 +61,102 @@
   },
   {
   "id": 2,
-  "name": "Banana Bread",
-  "summary": "recipe number one",
-  "prepTime": "1",
+  "name": "Tiramisu",
+  "prepTime": "5",
   "prepTimeUnits": "hr",
-  "difficulty": "easy",
+  "difficulty": "3",
+  "directions": "In a medium saucepan, whisk together egg yolks and sugar until well blended. Whisk in milk and cook over medium heat, stirring constantly, until mixture boils. Boil gently for 1 minute, remove from heat and allow to cool slightly. Cover tightly and chill in refrigerator 1 hour.\n\nIn a medium bowl, beat cream with vanilla until stiff peaks form. Whisk mascarpone into yolk mixture until smooth.\n\nIn a small bowl, combine coffee and rum. Split ladyfingers in half lengthwise and drizzle with coffee mixture.\n\nArrange half of soaked ladyfingers in bottom of a 7x11 inch dish. Spread half of mascarpone mixture over ladyfingers, then half of whipped cream over that. Repeat layers and sprinkle with cocoa. Cover and refrigerate 4 to 6 hours, until set.",
   "ingredients": [
                   {
-                  "name": "flour",
+                  "name": "Egg yolks",
+                  "quantity": "6",
+                  "units": ""
+                  },
+                  {
+                  "name": "White sugar",
+                  "quantity": ".75",
+                  "units": "cup"
+                  },
+                  {
+                  "name": "Milk",
+                  "quantity": "0.67",
+                  "units": "cup"
+                  },
+                  {
+                  "name": "Heavy cream",
+                  "quantity": "1.25",
+                  "units": "tsp"
+                  },
+                  {
+                  "name": "Vanilla extract",
+                  "quantity": ".5",
+                  "units": "tsp"
+                  },
+                  {
+                  "name": "Marscapone Cheese",
                   "quantity": "1",
-                  "units": "g"
+                  "units": "lb"
+                  },
+                  {
+                  "name": "Strong brewed coffee",
+                  "quantity": ".25",
+                  "units": "cup"
+                  },
+                  {
+                  "name": "Rum",
+                  "quantity": "2",
+                  "units": "tbsp"
+                  },
+                  {
+                  "name": "Ladyfingers",
+                  "quantity": "2",
+                  "units": "3 oz. packages"
+                  },
+                  {
+                  "name": "Cocoa powder",
+                  "quantity": "1",
+                  "units": "tbsp"
                   }
                   ]
-  }
+  },
+  {
+  "id": 3,
+  "name": "Mashed Potatoes",
+  "prepTime": "40",
+  "prepTimeUnits": "min",
+  "difficulty": "2",
+  "directions": "Bring a pot of salted water to a boil. Add potatoes and cook until tender but still firm, about 15 minutes; drain.\n\nIn a small saucepan heat butter and milk over low heat until butter is melted. Using a potato masher or electric beater, slowly blend milk mixture into potatoes until smooth and creamy. Season with salt and pepper to taste.",
+  "ingredients": [
+                  {
+                  "name": "Baking potatoes, peeled and quartered",
+                  "quantity": "2",
+                  "units": "lb"
+                  },
+                  {
+                  "name": "Butter",
+                  "quantity": "2",
+                  "units": "tbsp"
+                  },
+                  {
+                  "name": "Milk",
+                  "quantity": "1",
+                  "units": "cup"
+                  }
+                 ]
+  },
+  {
+  "id": 4,
+  "name": "Hardboiled Eggs",
+  "prepTime": "25",
+  "prepTimeUnits": "min",
+  "difficulty": "1",
+  "directions": "Place the eggs in a saucepan and fill with enough cold water to cover the eggs (they should sit in a single layer). Bring to a boil over medium-high heat. As soon as the water comes to a boil, turn off the heat and cover the pan; let sit for 13 minutes (15 minutes if you’re cooking a dozen).\n\nDrain the eggs, then transfer to a bowl of ice water. Let cool completely.\n\nTo peel, gently crack the eggs on the countertop all over, then roll them between your hands. Peel the eggs.",
+  "ingredients": [
+                  {
+                  "name": "Eggs",
+                  "quantity": "6",
+                  "units": ""
+                  }
+                  ]
+  },
   ]
