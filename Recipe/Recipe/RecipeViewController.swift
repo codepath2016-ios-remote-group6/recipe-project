@@ -49,7 +49,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Only display prep time if one is set.
         if recipe.prepTime > 0 {
             prepTimeLabel.text = "\(Int(recipe.prepTime))"
-            prepTimeUnitLabel.text = (recipe.prepTime > 1) ? "\(recipe.prepTimeUnits)s" : recipe.prepTimeUnits
+            prepTimeUnitLabel.text = recipe.prepTimeUnits
         } else {
             prepTimeLabel.text = ""
             prepTimeUnitLabel.text = ""
