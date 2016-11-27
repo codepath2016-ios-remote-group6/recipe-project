@@ -470,6 +470,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ovr-G2-RHu"/>
                     <connections>
+                        <outlet property="difficultyLabel" destination="0mv-wl-CZg" id="sd3-qb-8XR"/>
                         <outlet property="directionsTextView" destination="GqQ-Uk-PdQ" id="uE2-cQ-5FH"/>
                         <outlet property="editButton" destination="csl-GD-Qvh" id="ySM-pS-MYb"/>
                         <outlet property="ingredientTableViewHeightConstraint" destination="Bsv-4P-ccw" id="fyx-33-3TS"/>

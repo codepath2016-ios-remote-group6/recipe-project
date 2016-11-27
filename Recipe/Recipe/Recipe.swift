@@ -25,6 +25,8 @@ class Recipe : PFObject, PFSubclassing {
     
     static let createdByUserKey = "createdByUser"
     
+    static let difficultyMap = ["Very easy", "Easy", "Medium", "Hard", "Very hard"]
+    
     //properties
     @NSManaged var name: String?
     @NSManaged var imageUrlString: String?
@@ -63,6 +65,7 @@ class Recipe : PFObject, PFSubclassing {
         
         name = dictionary["name"] as? String
         prepTime = (dictionary["prepTime"] as! NSString).doubleValue
+        prepTimeUnits = dictionary["prepTimeUnits"] as? String
         
         difficulty = (dictionary["difficulty"] as! NSString).integerValue
         
@@ -89,24 +92,8 @@ class Recipe : PFObject, PFSubclassing {
         ingredients = dictionaryIngredients        
     }
     
-//    func create(ingredientObjectWith name: String, quantity: Double, units: String)->Dictionary<String,AnyObject>{
-//        var ingredient = [String:AnyObject]()
-//        ingredient[Recipe.ingredientNameKey] = name as AnyObject
-//        ingredient[Recipe.ingredientQuantityKey] = quantity as AnyObject
-//        ingredient[Recipe.ingredientUnitsKey] = units as AnyObject
-//        return ingredient
-//    }
-    
-//    func create(directionObjectWith orderNumber: Int, description: String)->Dictionary<String,AnyObject>{
-//        var direction = [String:AnyObject]()
-//        direction[Recipe.directionOrderNumKey] = orderNumber as AnyObject
-//        direction[Recipe.directionDescriptionKey] = description as AnyObject
-//        return direction
-//    }
-    
     static func parseClassName() -> String {
         return "Recipe"
-//        return Recipe.className
     }
     
     func saveToDb() {
@@ -216,6 +203,11 @@ class Recipe : PFObject, PFSubclassing {
         }else{
             return nil
         }
+    }
+    
+    // Returns the difficulty mapped to a readable string
+    func getDifficulty() -> String {
+        return 1...5 ~= self.difficulty ? Recipe.difficultyMap[self.difficulty - 1] : ""
     }
     
     class func getDefaultRecipeList() -> [Recipe] {

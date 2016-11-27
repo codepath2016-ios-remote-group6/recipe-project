@@ -15,6 +15,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var directionsTextView: UITextView!
     @IBOutlet weak var recipeImageView: UIImageView!
     
+    @IBOutlet weak var difficultyLabel: UILabel!
     @IBOutlet weak var prepTimeLabel: UILabel!
     @IBOutlet weak var prepTimeUnitLabel: UILabel!
     
@@ -43,9 +44,18 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         recipeNameLabel.text = recipe.name
         
-        prepTimeLabel.text = "\(recipe.prepTime)"
-        prepTimeUnitLabel.text = recipe.prepTimeUnits
+        difficultyLabel.text = recipe.getDifficulty()
         
+        // Only display prep time if one is set.
+        if recipe.prepTime > 0 {
+            prepTimeLabel.text = "\(Int(recipe.prepTime))"
+            prepTimeUnitLabel.text = (recipe.prepTime > 1) ? "\(recipe.prepTimeUnits)s" : recipe.prepTimeUnits
+        } else {
+            prepTimeLabel.text = ""
+            prepTimeUnitLabel.text = ""
+        }
+        
+        // Show a link if we are looking at a recipe copied from the API, otherwise show the directions
         if let inspiredByUrl = recipe.inspiredByUrl {
             directionsTextView.text = "\(inspiredByUrl)"
         } else {
@@ -56,9 +66,6 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let tableViewHeight = CGFloat(ingredientsTableView.rowHeight) * CGFloat((ingredientsArray?.count)!)
         
         ingredientTableViewHeightConstraint.constant = tableViewHeight
-        
-//        ingredientsTableView.frame = CGRect(x: ingredientsTableView.frame.origin.x, y: ingredientsTableView.frame.origin.y, width: ingredientsTableView.frame.size.width, height: tableViewHeight)
-        
         ingredientsTableView.dataSource = self
         ingredientsTableView.delegate = self
         ingredientsTableView.alwaysBounceVertical = false
@@ -66,17 +73,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ingredientsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         ingredientsTableView.reloadData()
         
-        
         // Don't allow editing of a recipe from an external source
         if sourceType == "edamam" {
            editButton.isHidden = true
         }
-        
-//        for ingredient in recipe.ingredientObjList{
-//            print("Ingredient Object List: \(ingredient.quantity) \(ingredient.unit) \(ingredient.name) \(ingredient.alternativeText))")
-//        }
-        //Refresh Recipe
-//        refreshRecipe()
     }
 
     override func didReceiveMemoryWarning() {
