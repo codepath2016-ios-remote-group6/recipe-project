@@ -36,6 +36,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         filteredData = data
 
+//        if controllerDataSource == "database" {
+//            getRecipesFromDb()
+//        } else {
+//            //Bring in recipes from the api
+//            query = RecipeListViewController.genericQuery
+//            getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
+//            searchBar.placeholder = "\((searchBar.placeholder)!) or new search"
+//        }
+
+        setupLoginLogoutButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWilAppear called: Recipe List")
+        super.viewWillAppear(animated)
+        
         if controllerDataSource == "database" {
             getRecipesFromDb()
         } else {
@@ -44,8 +60,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
             searchBar.placeholder = "\((searchBar.placeholder)!) or new search"
         }
-
-        setupLoginLogoutButton()
     }
 
     override func didReceiveMemoryWarning() {
@@ -176,6 +190,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func setupLoginLogoutButton(){
         if PFUser.current() == nil {
             self.loginLogoutBarButton.title = "Log In"
+        }else{
+            self.loginLogoutBarButton.title = "Log Out"
         }
     }
     

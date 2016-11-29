@@ -167,22 +167,22 @@ class LoginViewController: UIViewController {
         //Check if user has entered all required fields
         if email != nil && email! != ""{
             if password != nil && password! != ""{
-                
                 //Log user in
                 PFUser.logInWithUsername(
                     inBackground: email!,
                     password: password!,
                     block: {(currentUser: PFUser?, error: Error?)-> Void in
-                    if let error = error as? NSError {
-                        let errorString = error.userInfo["error"] as? String
-                        // Show the errorString somewhere and let the user try again.
-                        print("LogIn error: \(errorString)")
-                        self.showErrorView(message: errorString)
-                    } else {
-                        // Hooray! Let them use the app now.
-                        print("Login Successful. Current User: \(currentUser)")
-                        self.performSegue(withIdentifier: "LoginSuccessSegue", sender: nil)
-                    }})
+                        if let error = error as? NSError {
+                            let errorString = error.userInfo["error"] as? String
+                            // Show the errorString somewhere and let the user try again.
+                            print("LogIn error: \(errorString)")
+                            self.showErrorView(message: errorString)
+                        }else {
+                            // Hooray! Let them use the app now.
+                            print("Login Successful. Current User: \(currentUser)")
+                            //                        self.performSegue(withIdentifier: "LoginSuccessSegue", sender: nil)
+                            NotificationCenter.default.post(name: User.loggedInNotification, object: nil)
+                        }})
             }else{
                 //prompt user to enter password
                 showErrorView(message: "Please enter your password")

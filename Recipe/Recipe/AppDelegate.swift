@@ -95,6 +95,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             queue: OperationQueue.main,
             using: {(notification: Notification)->Void in
                 self.showFirstViewController()})
+        
+        NotificationCenter.default.addObserver(
+            forName: User.loggedInNotification,
+            object: nil,
+            queue: OperationQueue.main,
+            using: {(notification: Notification)->Void in
+                self.showRecipeListViewController()})
     }
     
     func showFirstViewController(){

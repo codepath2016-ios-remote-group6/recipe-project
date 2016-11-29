@@ -12,6 +12,7 @@ import Parse
 class User: NSObject {
     
     public static let logoutNotification = Notification.Name("userLogout")
+    public static let loggedInNotification = Notification.Name("userIsLoggedIn")
     
     public static let notFirstAppLaunchKey = "notFirstAppLaunch"
     
