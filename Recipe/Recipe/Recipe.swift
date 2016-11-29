@@ -337,33 +337,12 @@ class Recipe : PFObject, PFSubclassing {
         }
         copy.ingredientObjList = Ingredient.IngredientsWithArray(dictionaries: ingredients as [NSDictionary])
         
+        //populateUrls
+        copy.inspiredByUrl = copy.getUrl(fromOptionalString: copy.inspiredByUrlString)
+        copy.inspiredByRecipeUrl = copy.getUrl(fromOptionalString: copy.inspiredByRecipeUrlString)
+        copy.imageUrl = copy.getUrl(fromOptionalString: copy.imageUrlString)
+        
         return copy
     }
-    
-//    //properties
-//    @NSManaged var name: String?
-//    @NSManaged var imageUrlString: String?
-//    @NSManaged var imageFile: PFFile?
-//    //    @NSManaged var createdByUser: PFRelation<PFUser>?
-//    @NSManaged var createdByUser: PFUser?
-//    @NSManaged var inspiredBy: String?
-//    @NSManaged var inspiredByUrlString: String?
-//    @NSManaged var inspiredByRecipeUrlString: String?
-//    @NSManaged var sourceId: String?
-//    @NSManaged var summary: String?
-//    @NSManaged var prepTimeStr: String?
-//    @NSManaged var prepTime: Double
-//    @NSManaged var prepTimeUnits: String?
-//    @NSManaged var difficulty: Int
-//    @NSManaged var ingredients: [Dictionary<String,AnyObject>]
-//    //    @NSManaged var ingredientList: [String]?
-//    //    @NSManaged var directionsDict: [String]?
-//    @NSManaged var directions: [String]?
-//    @NSManaged var directionsString: String?
-//    
-//    //Properties that do not get saved to the database
-//    var imageUrl: URL?
-//    var inspiredByUrl: URL?
-//    var inspiredByRecipeUrl: URL?
-//    var ingredientObjList: [Ingredient] = [Ingredient]()
+
 }

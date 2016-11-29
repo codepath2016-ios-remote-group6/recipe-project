@@ -108,8 +108,8 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
             }else{
                 //selecting a new cell
                 let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as! IngredientFlexTVCell
-                oldCell.hideEditView()
                 selectedIndexPath = indexPath
+                oldCell.hideEditView()
                 cell.showEditView()
                 updateIngredient(index: indexPath.row, cell: oldCell)
             }
@@ -140,7 +140,22 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         return UITableViewAutomaticDimension
     }
     
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        <#code#>
+//    }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete{
+            print("Swipe action: delete")
+            deleteCell(at: indexPath)
+        }else if editingStyle == UITableViewCellEditingStyle.none{
+            print("Swipe action: none")
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool{
+        return true
+    }
     
     
     @IBAction func onAddIngredientClick(_ sender: Any) {
@@ -247,6 +262,13 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
 //            }
 //        }
 //        recipe.ingredientObjList[index].quantity = cell.quantity
+    }
+    
+    func deleteCell(at indexPath: IndexPath){
+        addIngredientTableView.beginUpdates()
+        recipe.ingredientObjList.remove(at: indexPath.row)
+        addIngredientTableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
+        addIngredientTableView.endUpdates()
     }
 
 
