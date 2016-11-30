@@ -201,12 +201,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.filteredData = myRecipes
                 self.tableView.reloadData()
                 
-                if myRecipes.isEmpty {
-                    let defaultList = Recipe.getDefaultRecipeList()
-                    self.data = defaultList
-                    self.filteredData = defaultList
-                    self.tableView.reloadData()
-                }
+                // commenting this out for now because we already have pre-population on sign up. Keeping this around for testing purposes.
+//                if myRecipes.isEmpty {
+//                    let defaultList = Recipe.getDefaultRecipeList()
+//                    self.data = defaultList
+//                    self.filteredData = defaultList
+//                    self.tableView.reloadData()
+//                }
                 
                 print("My recipes: \(myRecipes)"
                 )},

@@ -143,6 +143,14 @@ class LoginViewController: UIViewController {
                         } else {
                             // Hooray! Let them use the app now.
                             print("SignUp Successful")
+                            
+                            // Prepopulate the user's db entries with the default recipes.
+                            let defaultRecipeList = Recipe.getDefaultRecipeList()
+                            
+                            for recipe in defaultRecipeList {
+                                recipe.saveToDb()
+                            }
+                            
                         self.performSegue(withIdentifier: "LoginSuccessSegue", sender: nil)
                         }})
                 }else{
@@ -180,7 +188,7 @@ class LoginViewController: UIViewController {
                         }else {
                             // Hooray! Let them use the app now.
                             print("Login Successful. Current User: \(currentUser)")
-                            //                        self.performSegue(withIdentifier: "LoginSuccessSegue", sender: nil)
+
                             NotificationCenter.default.post(name: User.loggedInNotification, object: nil)
                         }})
             }else{

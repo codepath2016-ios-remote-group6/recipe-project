@@ -258,7 +258,6 @@ class Recipe : PFObject, PFSubclassing {
                 }
             })
         }else{
-//            print("user is not logged in")
             User.login()
         }
     }
