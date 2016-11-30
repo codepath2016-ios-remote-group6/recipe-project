@@ -24,56 +24,24 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var ingredientTableViewHeightConstraint: NSLayoutConstraint!
     
     var recipe: Recipe!
-    var ingredientsArray: [Ingredient]?
+    var ingredientsArray: [Ingredient]!
     var sourceType: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ingredientsArray = Ingredient.IngredientsWithArray(dictionaries: recipe.ingredients as [NSDictionary])
+        ingredientsArray = recipe.ingredientObjList
         
-//        if let urlString = recipe.imageUrlString{
-//            if let url = URL(string: urlString){
-//                recipeImageView.setImageWith(url)
-//            }
-//            
-//            recipeImageView.layer.cornerRadius = 10
-//            recipeImageView.clipsToBounds = true
-//        } else {
-//            recipeImageView.image = UIImage(named: "recipe-icon")
-//        }
-//        
-//        recipeNameLabel.text = recipe.name
-//        
-//        difficultyLabel.text = recipe.getDifficulty()
-//        
-//        // Only display prep time if one is set.
-//        if recipe.prepTime > 0 {
-//            prepTimeLabel.text = "\(Int(recipe.prepTime))"
-//            prepTimeUnitLabel.text = recipe.prepTimeUnits
-//        } else {
-//            prepTimeLabel.text = ""
-//            prepTimeUnitLabel.text = ""
-//        }
-//        
-//        // Show a link if we are looking at a recipe copied from the API, otherwise show the directions
-//        if let inspiredByUrl = recipe.inspiredByUrl {
-//            directionsTextView.text = "\(inspiredByUrl)"
-//        } else {
-//            directionsTextView.text = recipe.directionsString
-//        }
-        
-        // This assumes there is always at least one ingredient
-        let tableViewHeight = CGFloat(ingredientsTableView.rowHeight) * CGFloat((ingredientsArray?.count)!)
-        
-        ingredientTableViewHeightConstraint.constant = tableViewHeight
+
         ingredientsTableView.dataSource = self
         ingredientsTableView.delegate = self
         ingredientsTableView.alwaysBounceVertical = false
         ingredientsTableView.allowsSelection = false
         ingredientsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        ingredientsTableView.rowHeight = UITableViewAutomaticDimension
-        ingredientsTableView.estimatedRowHeight = 25.0
-//        ingredientsTableView.reloadData()
+        
+        // This assumes there is always at least one ingredient
+        let tableViewHeight = CGFloat(ingredientsTableView.rowHeight) * CGFloat((ingredientsArray.count))
+        
+        ingredientTableViewHeightConstraint.constant = tableViewHeight
         
         // Don't allow editing of a recipe from an external source
         if sourceType == "edamam" {
@@ -134,8 +102,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: "IngredientListCell", for: indexPath) as! IngredientListCell
         
-//        let ingredient = ingredientsArray?[indexPath.row]
-        let ingredient = recipe.ingredientObjList[indexPath.row]
+        let ingredient = ingredientsArray[indexPath.row]
         
         cell.quantityLabel.text = "\((ingredient.quantity))"
         cell.unitLabel.text = ingredient.unit
