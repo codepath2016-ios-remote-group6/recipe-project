@@ -195,13 +195,12 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bM-U0-vVz">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2W8-hf-Qsb">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2W8-hf-Qsb">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="OPX-v8-INZ"/>
                                             <constraint firstAttribute="height" constant="50" id="PjZ-g8-VuH"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="+"/>
+                                        <state key="normal" title="+" image="add-recipe-button"/>
                                         <connections>
                                             <segue destination="qI3-SP-HaB" kind="presentation" identifier="newRecipeSegue" id="Hlf-1j-bfu"/>
                                         </connections>
@@ -298,6 +297,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addRecipeButton" destination="2W8-hf-Qsb" id="Z6o-9a-wp9"/>
                         <outlet property="loginLogoutBarButton" destination="bT2-7R-j6L" id="Ygs-5W-8TS"/>
                         <outlet property="searchBar" destination="UZ4-23-JG4" id="sFw-FK-E9f"/>
                         <outlet property="tableView" destination="DuK-6y-eky" id="ZH2-PV-2gd"/>
@@ -333,9 +333,8 @@
                                             <segue destination="qI3-SP-HaB" kind="show" identifier="copySegue" id="PUj-WE-3B3"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMh-pQ-heh">
-                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                        <state key="normal" title="X"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMh-pQ-heh">
+                                        <state key="normal" title="X" image="close-recipe-icon"/>
                                         <connections>
                                             <action selector="onCancelButton:" destination="nmM-9m-AfT" eventType="touchUpInside" id="hbf-Iq-f25"/>
                                         </connections>
@@ -440,9 +439,9 @@
                                     <constraint firstItem="NMh-pQ-heh" firstAttribute="top" secondItem="GqQ-Uk-PdQ" secondAttribute="bottom" constant="12" id="GBV-9Q-C4J"/>
                                     <constraint firstAttribute="trailing" secondItem="JFG-5I-jk8" secondAttribute="trailing" constant="8" id="GhQ-5q-fg4"/>
                                     <constraint firstItem="JFG-5I-jk8" firstAttribute="top" secondItem="FSr-Ow-ueR" secondAttribute="bottom" constant="8" id="Jos-CE-zHM"/>
-                                    <constraint firstAttribute="bottom" secondItem="NMh-pQ-heh" secondAttribute="bottom" id="KNZ-HU-tyn"/>
                                     <constraint firstItem="MSY-6B-c2S" firstAttribute="top" secondItem="0mv-wl-CZg" secondAttribute="bottom" constant="8" id="KyE-5B-YWY"/>
                                     <constraint firstItem="pj5-8k-E7S" firstAttribute="leading" secondItem="1aw-dv-I99" secondAttribute="leading" constant="8" id="RXo-H2-a0R"/>
+                                    <constraint firstAttribute="bottom" secondItem="NMh-pQ-heh" secondAttribute="bottom" constant="8" id="Rvf-cJ-5Pq"/>
                                     <constraint firstAttribute="trailing" secondItem="FSr-Ow-ueR" secondAttribute="trailing" constant="8" id="SET-Pd-ti7"/>
                                     <constraint firstItem="ip6-nI-VLK" firstAttribute="leading" secondItem="MSY-6B-c2S" secondAttribute="trailing" constant="4" id="ZKn-An-3Xi"/>
                                     <constraint firstItem="csl-GD-Qvh" firstAttribute="top" secondItem="1aw-dv-I99" secondAttribute="top" constant="8" id="Zwq-m0-sWx"/>
@@ -766,6 +765,10 @@
             <point key="canvasLocation" x="1494" y="-702"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add-recipe-button" width="16" height="16"/>
+        <image name="close-recipe-icon" width="16" height="16"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uYp-h6-VvM"/>
     </inferredMetricsTieBreakers>

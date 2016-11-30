@@ -18,7 +18,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loginLogoutBarButton: UIBarButtonItem!
-  
+    @IBOutlet weak var addRecipeButton: UIButton!
+    
     var controllerDataSource: String? = "database"
     
     var data = [Recipe]()
@@ -35,21 +36,18 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchBar.delegate = self
         
         filteredData = data
+        
+        // This needs to be here instead of viewWillAppear because having this code there causes a bug where text keeps getting added to the placeholder.
+        if controllerDataSource != "database" {
+            addRecipeButton.isHidden = true
 
-//        if controllerDataSource == "database" {
-//            getRecipesFromDb()
-//        } else {
-//            //Bring in recipes from the api
-//            query = RecipeListViewController.genericQuery
-//            getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
-//            searchBar.placeholder = "\((searchBar.placeholder)!) or new search"
-//        }
+            searchBar.placeholder = "\((searchBar.placeholder)!) or new search"
+        }
 
         setupLoginLogoutButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWilAppear called: Recipe List")
         super.viewWillAppear(animated)
         
         if controllerDataSource == "database" {
@@ -58,7 +56,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             //Bring in recipes from the api
             query = RecipeListViewController.genericQuery
             getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
-            searchBar.placeholder = "\((searchBar.placeholder)!) or new search"
+
         }
     }
 

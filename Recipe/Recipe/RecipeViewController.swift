@@ -45,7 +45,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // Don't allow editing of a recipe from an external source
         if sourceType == "edamam" {
-           editButton.isHidden = true
+            editButton.isHidden = true
         }
     }
     

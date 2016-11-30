@@ -101,7 +101,7 @@ class Recipe : PFObject, PFSubclassing {
             createdByUser = PFUser.current()
         }
         if inspiredBy == nil{
-            inspiredBy = name
+            inspiredBy = ""
         }
         
         self.saveInBackground(block: {(wasSuccessful: Bool, error: Error?)->Void in
