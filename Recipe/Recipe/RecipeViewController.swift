@@ -57,12 +57,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 recipeImageView.setImageWith(url)
             }
             
-            recipeImageView.layer.cornerRadius = 10
-            recipeImageView.clipsToBounds = true
         } else {
-            recipeImageView.image = UIImage(named: "recipe-icon")
+            recipeImageView.image = UIImage(named: "placeholder")
         }
-        
+        recipeImageView.clipsToBounds = true
         recipeNameLabel.text = recipe.name
         
         difficultyLabel.text = recipe.getDifficulty()
@@ -83,7 +81,17 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             directionsTextView.text = recipe.directionsString
         }
         
+        // Show the user that there is some scrollable content here
+        directionsTextView.flashScrollIndicators()
+        
         ingredientsTableView.reloadData()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Make sure the text area starts displaying from the top
+        directionsTextView.setContentOffset(CGPoint.zero, animated: false)
     }
 
     override func didReceiveMemoryWarning() {

@@ -29,10 +29,6 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var selectedIndexPath: IndexPath?
     
-//    var ingredientDetails =
-//        [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
-//         ["1/8","1/4","1/3","1/2","2/3","3/4"]]
-    
     @IBOutlet weak var addIngredientTableView: UITableView!
     
     override func viewDidLoad() {
@@ -55,8 +51,6 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         scrollView.contentSize = CGSize(width: contentWidth, height: contentHeight)
         
         populateView()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -140,10 +134,6 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         return UITableViewAutomaticDimension
     }
     
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        <#code#>
-//    }
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete{
             print("Swipe action: delete")
@@ -175,14 +165,6 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         recipe.prepareIngredientsForDbStorage()
         recipe.saveToDb()
         dismiss(animated: true, completion: nil)
-//        recipe.saveInBackground(
-//            block: {(successful: Bool, error: Error?)->Void in
-//                if successful{
-//                    print("Recipe save: succesful")
-//                }else{
-//                    print("Recipe save: Error saving")
-//                }
-//                self.dismiss(animated: true, completion: nil)})
     }
     
     @IBAction func didExitTextField(_ sender: UITextField) {
@@ -245,23 +227,6 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func updateIngredient(index: Int, cell: IngredientFlexTVCell){
         recipe.ingredientObjList[index] = cell.getIngredientFromUi()
-        
-//        if let name = cell.name{
-//            if name != ""{
-//                recipe.ingredientObjList[index].name = name
-//            }
-//        }
-//        if let units = cell.units{
-//            if units != ""{
-//                recipe.ingredientObjList[index].unit = units
-//            }
-//        }
-//        if let alternativeText = cell.displayText{
-//            if alternativeText != ""{
-//                recipe.ingredientObjList[index].alternativeText = alternativeText
-//            }
-//        }
-//        recipe.ingredientObjList[index].quantity = cell.quantity
     }
     
     func deleteCell(at indexPath: IndexPath){
