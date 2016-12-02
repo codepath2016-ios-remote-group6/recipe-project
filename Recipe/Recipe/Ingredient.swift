@@ -10,7 +10,7 @@ import UIKit
 
 class Ingredient: NSObject {
     
-    static let newIngredientName = "Click to modify your new ingredient"
+    static let newIngredientName = "Modify your new ingredient"
     
     var quantity: Double
     var unit: String

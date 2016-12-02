@@ -38,7 +38,7 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
             recipe = Recipe()
         }
         
-        addIngredientTableView.rowHeight = UITableViewAutomaticDimension
+//        addIngredientTableView.rowHeight = UITableViewAutomaticDimension
         addIngredientTableView.estimatedRowHeight = 50
         addIngredientTableView.dataSource = self
         addIngredientTableView.delegate = self
@@ -85,8 +85,8 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("TV Function: did select row at")
-        let cell = tableView.cellForRow(at: indexPath) as! IngredientFlexTVCell
-        print("TV Function: did select row at -> height = \(cell.cellHeight)")
+        let selectedCell = tableView.cellForRow(at: indexPath) as! IngredientFlexTVCell
+        print("TV Function: did select row at -> height = \(selectedCell.cellHeight)")
         print("TV Function: did select row at -> contentOffset = \(tableView.contentOffset)")
         print("TV Function: did select row at -> TV rowHeight = \(tableView.rowHeight)")
 
@@ -96,22 +96,24 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
             if unwrappedSelectedIndexPath == indexPath{
                 //unselecting the selected cell
                 selectedIndexPath = nil
-                cell.hideEditView()
+                selectedCell.hideEditView()
                 tableView.deselectRow(at: unwrappedSelectedIndexPath, animated: true)
-                updateIngredient(index: indexPath.row, cell: cell)
+                updateIngredient(index: indexPath.row, cell: selectedCell)
             }else{
                 //selecting a new cell
                 let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as! IngredientFlexTVCell
                 selectedIndexPath = indexPath
                 oldCell.hideEditView()
-                cell.showEditView()
-                updateIngredient(index: indexPath.row, cell: oldCell)
+                selectedCell.showEditView()
+                updateIngredient(index: unwrappedSelectedIndexPath.row, cell: oldCell)
             }
         }else{
             print("new selection")
             //selecting a cell
             selectedIndexPath = indexPath
-            cell.showEditView()
+            tableView.beginUpdates()
+            selectedCell.showEditView()
+            tableView.endUpdates()
         }
         
         tableView.beginUpdates()
@@ -121,17 +123,20 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("TV Function: height for row at")
-
         if let selectedIndexPath = selectedIndexPath{
-            if selectedIndexPath == indexPath{
-                let cell = tableView.cellForRow(at: selectedIndexPath) as! IngredientFlexTVCell
-                print("TV Function: height for row at -> found selection")
-                print("TV Function: height for row at -> height = \(cell.cellHeight)")
-                return cell.cellHeight
+            if let cell = tableView.cellForRow(at: indexPath) as? IngredientFlexTVCell{
+                if selectedIndexPath == indexPath{
+                    print("TV Function: height for row at -> found selection")
+                    print("TV Function: height for row at -> height = \(cell.visibleHeight)")
+                    return cell.visibleHeight
+                }else{
+                    print("TV Function: height for row at -> height = \(cell.hiddenHeight)")
+                    return cell.hiddenHeight
+                }
             }
         }
-        return UITableViewAutomaticDimension
+        print("TV Function: height for row at -> height = 50 (default)")
+        return CGFloat(50)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -150,20 +155,55 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func onAddIngredientClick(_ sender: Any) {
 //        recipe.ingredients.append(Dictionary<String,AnyObject>())
+        saveLastIngredient()
         let ingredient = Ingredient()
         ingredient.name = Ingredient.newIngredientName
         recipe.ingredientObjList.append(ingredient)
-        addIngredientTableView.reloadData()
+        let row = recipe.ingredientObjList.count - 1
+        let section = 0
+        selectedIndexPath = IndexPath(row: row, section: section)
+        if let selectedIndexPath = selectedIndexPath{
+            addIngredientTableView.reloadData()
+            if let cell = addIngredientTableView.cellForRow(at: selectedIndexPath) as? IngredientFlexTVCell{
+//                addIngredientTableView.beginUpdates()
+                cell.showEditView()
+//                addIngredientTableView.endUpdates()
+                addIngredientTableView.scrollToRow(at: selectedIndexPath, at: UITableViewScrollPosition.middle, animated: true)
+            }
+        }
     }
     
     @IBAction func onDoneClick(_ sender: Any) {
+        print("Ingredients Dict:")
         for ingredient in recipe.ingredients{
             print(ingredient)
         }
+        print("Ingredients Object List")
+        for ingredient in recipe.ingredientObjList{
+            let ingredientString = ingredient.name + ", " + ingredient.unit + ", " + String(ingredient.quantity) + ", " + ingredient.alternativeText
+            print(ingredientString)
+        }
+        
+        saveLastIngredient()
         
         recipe.directionsString = recipeDirectionsTextView.text
         recipe.prepareIngredientsForDbStorage()
+        if recipe.inspiredBy == nil || recipe.inspiredBy == ""{
+            if let user = PFUser.current(){
+                if let nickname = user[User.nicknameKey] as? String{
+                    recipe.inspiredBy = nickname
+                }
+            }
+        }
         recipe.saveToDb()
+        let navCtrl = self.navigationController
+        if let vcList = navCtrl?.viewControllers{
+            for vc in vcList{
+                if let vc = vc as? RecipeListViewController{
+                    _ = navCtrl?.popToViewController(vc, animated: true)
+                }
+            }
+        }
         dismiss(animated: true, completion: nil)
     }
     
@@ -235,6 +275,14 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         addIngredientTableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
         addIngredientTableView.endUpdates()
     }
-
+    
+    func saveLastIngredient(){
+        if let selectedIndexPath = selectedIndexPath{
+            let cell = addIngredientTableView.cellForRow(at: selectedIndexPath) as! IngredientFlexTVCell
+            updateIngredient(index: selectedIndexPath.row, cell: cell)
+            cell.hideEditView()
+            self.selectedIndexPath = nil
+        }
+    }
 
 }

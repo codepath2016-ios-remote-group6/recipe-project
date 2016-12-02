@@ -289,7 +289,18 @@ class Recipe : PFObject, PFSubclassing {
     }
     
     func prepareIngredientsForDbStorage(){
+        var tempIngredientObjList = Array<Ingredient>()
+        for ingredient in ingredientObjList{
+            if shouldSave(ingredient: ingredient){
+                tempIngredientObjList.append(ingredient)
+            }
+        }
+        ingredientObjList = tempIngredientObjList
         ingredients = Ingredient.IngredientDictionariesWithArray(ingredients: ingredientObjList)
+    }
+    
+    func shouldSave(ingredient: Ingredient)->Bool{
+        return ingredient.name != Ingredient.newIngredientName && (ingredient.name != "" || ingredient.alternativeText != "")
     }
     
     func getCopy() -> Recipe{

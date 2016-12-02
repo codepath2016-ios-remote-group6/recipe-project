@@ -154,9 +154,13 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
     var name: String?{
         get{
             if let name = nameTextField.text{
-                return name
+                if name == ""{
+                    return Ingredient.newIngredientName
+                }else{
+                    return name
+                }
             }else{
-                return ""
+                return Ingredient.newIngredientName
             }
         }
         set{
@@ -167,13 +171,17 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
     var displayText: String?{
         get{
             //Display new ingredient prompt
-            if name == Ingredient.newIngredientName{
-                return Ingredient.newIngredientName
-            }
+//            if name == Ingredient.newIngredientName{
+//                return Ingredient.newIngredientName
+//            }
             if(quantity == 0 && units == ""){
                 return name
             }else{
-                return Ingredient.makeAlternativeText(quantity: quantity, units: units, name: name)
+                if name == Ingredient.newIngredientName{
+                    return Ingredient.makeAlternativeText(quantity: quantity, units: units, name: "(Ingredient name?)")
+                }else{
+                    return Ingredient.makeAlternativeText(quantity: quantity, units: units, name: name)
+                }
             }
         }
     }
@@ -288,10 +296,10 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         print("setConstraints: hide constraint: \(hiddenViewConstraint)")
         print("setConstraints: show constraint: \(visibleViewConstraint)")
         print("setConstraints: label: \(ingredientLabel.frame.maxY)")
-        self.visibleHeight = ingredientLabel.frame.maxY + visibleViewConstraint + 8.0
-        self.hiddenHeight = ingredientLabel.frame.maxY + hiddenViewConstraint + 8.0
-        print("setConstraints: show constraint: \(visibleHeight)")
-        print("setConstraints: hide constraint: \(hiddenHeight)")
+        self.visibleHeight = ingredientLabel.frame.maxY + visibleViewConstraint + 8.0 + 0.0
+        self.hiddenHeight = ingredientLabel.frame.maxY + hiddenViewConstraint + 8.0 + 0.0
+        print("setConstraints: visible height: \(visibleHeight)")
+        print("setConstraints: hidden height: \(hiddenHeight)")
     }
     
     private func setPickerValues(){
@@ -310,7 +318,7 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
             ingredientLabel.text = displayText
         }
         self.contentView.layoutIfNeeded()
-        print("End show: state = \(editViewState), height = \(cellHeight), state = \(editViewState)")
+        print("End show: state = \(editViewState), height = \(cellHeight), state = \(editViewState), name = \(name)")
     }
     
     func hideEditView(){
@@ -319,7 +327,7 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         self.editView.isHidden = true
         self.mainSizeConstraint.constant = hiddenViewConstraint
         self.contentView.layoutIfNeeded()
-        print("End hide: state = \(editViewState), height = \(cellHeight), state = \(editViewState)")
+        print("End show: state = \(editViewState), height = \(cellHeight), state = \(editViewState), name = \(name)")
     }
     
     func toggleView(){
@@ -356,29 +364,53 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
     }
     
     func getIngredientFromUi() -> Ingredient{
-        if(quantity == 0 && units == ""){
-            ingredientObject.quantity = 0
-            ingredientObject.unit = ""
-            ingredientObject.name = ""
-            ingredientObject.alternativeText = name!
+//        if(quantity == 0 && units == ""){
+//            ingredientObject.quantity = 0
+//            ingredientObject.unit = ""
+//            ingredientObject.name = name!
+//            ingredientObject.alternativeText = name!
+//        }else{
+//            if let name = name{
+//                if name != ""{
+//                    ingredientObject.name = name
+//                }else{
+//                    ingredientObject.name = Ingredient.newIngredientName
+//                }
+//            }
+//            if let units = units{
+//                if units != ""{
+//                    ingredientObject.unit = units
+//                }
+//            }
+//            if let alternativeText = displayText{
+//                if alternativeText != ""{
+//                    ingredientObject.alternativeText = alternativeText
+//                }
+//            }
+//            ingredientObject.quantity = quantity
+//        }
+        
+        if let name = name{
+            if name != ""{
+                ingredientObject.name = name
+            }else{
+                ingredientObject.name = Ingredient.newIngredientName
+            }
         }else{
-            if let name = name{
-                if name != ""{
-                    ingredientObject.name = name
-                }
-            }
-            if let units = units{
-                if units != ""{
-                    ingredientObject.unit = units
-                }
-            }
-            if let alternativeText = displayText{
-                if alternativeText != ""{
-                    ingredientObject.alternativeText = alternativeText
-                }
-            }
-            ingredientObject.quantity = quantity
+            ingredientObject.name = Ingredient.newIngredientName
         }
+        if let units = units{
+            ingredientObject.unit = units
+        }else{
+            ingredientObject.unit = ""
+        }
+        if let alternativeText = displayText{
+                ingredientObject.alternativeText = alternativeText
+        }else{
+            ingredientObject.alternativeText = ""
+        }
+        ingredientObject.quantity = quantity
+        
         return ingredientObject
     }
     

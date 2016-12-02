@@ -14,6 +14,8 @@ class User: NSObject {
     public static let logoutNotification = Notification.Name("userLogout")
     public static let loggedInNotification = Notification.Name("userIsLoggedIn")
     
+    public static let nicknameKey = "nickname"
+    
     public static let notFirstAppLaunchKey = "notFirstAppLaunch"
     
     class func logout(){

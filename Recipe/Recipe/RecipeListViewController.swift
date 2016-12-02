@@ -178,7 +178,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.data = Recipe.recipes(withEdamamRecipeDictList: recipeDictList)
                 self.filteredData = self.data
                 self.searchBar.text = ""
+                if !self.filteredData.isEmpty{
                 print("lets see the data: \(self.filteredData[0].imageUrlString)")
+                }
                 self.tableView.reloadData()},
             failure: {(error: Error?)->Void in
                 //failure code
