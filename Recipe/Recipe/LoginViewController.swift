@@ -21,6 +21,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var resetPasswordButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
+    
+    @IBOutlet weak var skipButton: UIButton!
+    
     //errorView & errorLabel are used for non error messages as well
     //TODO: rename errorView to messageView
     @IBOutlet weak var errorView: UIView!
@@ -36,6 +41,15 @@ class LoginViewController: UIViewController {
         
         hideErrorView()
         setupGestureRecognizers()
+        
+        // Disable skip button for now because saving to phone is not implemented.
+        skipButton.isHidden = true
+        
+        signUpButton.layer.borderWidth = 3;
+        signUpButton.layer.borderColor = UIColor.white.cgColor
+        
+        loginButton.layer.borderWidth = 3;
+        loginButton.layer.borderColor = UIColor.white.cgColor
         
         hidePasswordResetUi(animate: false)
         // Do any additional setup after loading the view.
