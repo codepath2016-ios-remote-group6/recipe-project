@@ -354,5 +354,22 @@ class Recipe : PFObject, PFSubclassing {
         
         return copy
     }
+    
+    //For debugging purposes
+    func printIngredientDictList(){
+        print("Ingredients Dict:")
+        for ingredient in ingredients{
+            print(ingredient)
+        }
+    }
+    
+    //For debugging purposes
+    func printIngredientObjecList(){
+        print("Ingredients Object List:")
+        for ingredient in ingredientObjList{
+            let ingredientString = ingredient.name + ", " + ingredient.unit + ", " + String(ingredient.quantity) + ", " + ingredient.alternativeText
+            print(ingredientString)
+        }
+    }
 
 }

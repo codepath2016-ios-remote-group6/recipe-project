@@ -11,6 +11,8 @@ import Parse
 
 
 class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate ,UIPickerViewDataSource {
+    
+    private static let noRecipeNameMessage = "your recipe needs a name."
 
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -30,6 +32,14 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     var selectedIndexPath: IndexPath?
     
     @IBOutlet weak var addIngredientTableView: UITableView!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var errorView: UIView!
+    
+    @IBOutlet weak var errorViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var errorViewTopConstraint: NSLayoutConstraint!
+    
+    let visibleConstant = CGFloat(0)
+    var hiddenConstant = CGFloat(50)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +59,9 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         let contentHeight = scrollView.bounds.height * 3
         
         scrollView.contentSize = CGSize(width: contentWidth, height: contentHeight)
+        
+        hiddenConstant = visibleConstant - errorViewHeightConstraint.constant
+        hideErrorView(animated: false)
         
         populateView()
     }
@@ -171,23 +184,14 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
                 addIngredientTableView.scrollToRow(at: selectedIndexPath, at: UITableViewScrollPosition.middle, animated: true)
             }
         }
+        
     }
     
     @IBAction func onDoneClick(_ sender: Any) {
-        print("Ingredients Dict:")
-        for ingredient in recipe.ingredients{
-            print(ingredient)
-        }
-        print("Ingredients Object List")
-        for ingredient in recipe.ingredientObjList{
-            let ingredientString = ingredient.name + ", " + ingredient.unit + ", " + String(ingredient.quantity) + ", " + ingredient.alternativeText
-            print(ingredientString)
-        }
-        
         saveLastIngredient()
+        recipe.prepareIngredientsForDbStorage()
         
         recipe.directionsString = recipeDirectionsTextView.text
-        recipe.prepareIngredientsForDbStorage()
         if recipe.inspiredBy == nil || recipe.inspiredBy == ""{
             if let user = PFUser.current(){
                 if let nickname = user[User.nicknameKey] as? String{
@@ -195,16 +199,23 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
-        recipe.saveToDb()
-        let navCtrl = self.navigationController
-        if let vcList = navCtrl?.viewControllers{
-            for vc in vcList{
-                if let vc = vc as? RecipeListViewController{
-                    _ = navCtrl?.popToViewController(vc, animated: true)
+        if let name = recipeNameTextField.text{
+            if name == ""{
+                showErrorView(message: RecipeEditViewController.noRecipeNameMessage)
+            }else{
+                recipe.saveToDb()
+                let navCtrl = self.navigationController
+                if let vcList = navCtrl?.viewControllers{
+                    for vc in vcList{
+                        if let vc = vc as? RecipeListViewController{
+                            _ = navCtrl?.popToViewController(vc, animated: true)
+                        }
+                    }
                 }
+                dismiss(animated: true, completion: nil)
             }
         }
-        dismiss(animated: true, completion: nil)
+
     }
     
     @IBAction func didExitTextField(_ sender: UITextField) {
@@ -282,6 +293,35 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
             updateIngredient(index: selectedIndexPath.row, cell: cell)
             cell.hideEditView()
             self.selectedIndexPath = nil
+        }
+    }
+    
+    func showErrorView(message: String){
+        errorLabel.text = "Oops, " + message
+        self.errorView.isHidden = false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.errorViewTopConstraint.constant = self.visibleConstant
+            self.errorView.alpha = 1.0
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    func hideErrorView(animated: Bool){
+        if animated{
+            UIView.animate(
+                withDuration: 0.5,
+                animations: {
+                    self.errorView.alpha = 0.0
+                    self.errorViewTopConstraint.constant = self.hiddenConstant
+                    self.view.layoutIfNeeded()
+                },
+                completion: {(isDone: Bool)->Void in
+                    self.errorView.isHidden = true})
+        }else{
+            self.errorView.alpha = 0.0
+            self.errorViewTopConstraint.constant = self.hiddenConstant
+            self.view.layoutIfNeeded()
+            self.errorView.isHidden = true
         }
     }
 
