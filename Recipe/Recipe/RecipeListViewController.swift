@@ -43,6 +43,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
             searchBar.placeholder = "\((searchBar.placeholder)!) or new search"
         }
+        
+        searchBar.barTintColor = UIColor(hue: 354.0, saturation: 0.86, brightness: 0.64, alpha: 1.0)
 
         setupLoginLogoutButton()
     }

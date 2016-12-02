@@ -220,6 +220,7 @@
                                             <constraint firstAttribute="width" constant="50" id="OPX-v8-INZ"/>
                                             <constraint firstAttribute="height" constant="50" id="PjZ-g8-VuH"/>
                                         </constraints>
+                                        <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="+" image="add-recipe-button"/>
                                         <connections>
                                             <segue destination="qI3-SP-HaB" kind="presentation" identifier="newRecipeSegue" id="Hlf-1j-bfu"/>
@@ -311,6 +312,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="SEv-sn-4LZ">
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="bT2-7R-j6L">
+                            <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="didTapLogoutBarButton:" destination="h7f-Hc-T2r" id="GIP-ca-Cih"/>
                             </connections>
@@ -342,7 +344,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1aw-dv-I99">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FSr-Ow-ueR">
+                                    <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FSr-Ow-ueR">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="h7H-2d-uDr"/>
                                         </constraints>
@@ -393,10 +395,10 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientListCell" id="pzO-rG-YYR" customClass="IngredientListCell" customModule="Recipe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="327" height="32"/>
+                                                <rect key="frame" x="0.0" y="28" width="1000" height="32"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pzO-rG-YYR" id="gQM-lw-Sia">
-                                                    <frame key="frameInset" width="327" height="31"/>
+                                                    <frame key="frameInset" width="1000" height="31"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duu-qh-XWf">
@@ -803,6 +805,6 @@
         <image name="login-background" width="2592" height="1728"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uYp-h6-VvM"/>
+        <segue reference="Hlf-1j-bfu"/>
     </inferredMetricsTieBreakers>
 </document>
