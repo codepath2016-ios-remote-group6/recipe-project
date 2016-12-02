@@ -632,21 +632,6 @@
                                             <action selector="onAddIngredientClick:" destination="qI3-SP-HaB" eventType="touchUpInside" id="CNe-NC-ily"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4P-df-bFd" userLabel="errorView">
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFc-WM-Wei">
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="LcE-j9-GTa"/>
-                                            <constraint firstItem="wFc-WM-Wei" firstAttribute="centerY" secondItem="D4P-df-bFd" secondAttribute="centerY" id="kBF-m8-Rqa"/>
-                                            <constraint firstItem="wFc-WM-Wei" firstAttribute="centerX" secondItem="D4P-df-bFd" secondAttribute="centerX" id="yev-09-NdG"/>
-                                        </constraints>
-                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34g-MT-qpF">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -655,16 +640,13 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Cmo-uI-hHO" firstAttribute="top" secondItem="uxn-xp-Eoi" secondAttribute="bottom" constant="37" id="0kb-9Y-6sw"/>
-                                    <constraint firstItem="D4P-df-bFd" firstAttribute="top" secondItem="PTx-nn-8uc" secondAttribute="top" id="6Xy-8a-u3Q"/>
                                     <constraint firstItem="qQI-wy-4DJ" firstAttribute="centerX" secondItem="PTx-nn-8uc" secondAttribute="centerX" id="8zX-Oa-eCJ"/>
-                                    <constraint firstItem="34g-MT-qpF" firstAttribute="top" secondItem="D4P-df-bFd" secondAttribute="bottom" constant="8" id="E6V-p7-yd0"/>
                                     <constraint firstItem="lTs-oi-9fv" firstAttribute="leading" secondItem="PTx-nn-8uc" secondAttribute="leading" constant="14" id="FWc-dd-p96"/>
                                     <constraint firstAttribute="bottom" secondItem="Cmo-uI-hHO" secondAttribute="bottom" constant="24" id="KG1-Ju-3XP"/>
                                     <constraint firstItem="uxn-xp-Eoi" firstAttribute="top" secondItem="9dK-ju-zqw" secondAttribute="bottom" constant="8" symbolic="YES" id="KMe-f0-eSa"/>
                                     <constraint firstItem="9dK-ju-zqw" firstAttribute="leading" secondItem="ZSj-T0-dHJ" secondAttribute="leading" id="M4c-eM-fRE"/>
-                                    <constraint firstAttribute="trailing" secondItem="D4P-df-bFd" secondAttribute="trailing" id="M8D-pX-uBd"/>
+                                    <constraint firstItem="34g-MT-qpF" firstAttribute="top" secondItem="PTx-nn-8uc" secondAttribute="top" constant="8" id="MkF-6S-amC"/>
                                     <constraint firstItem="34g-MT-qpF" firstAttribute="leading" secondItem="PTx-nn-8uc" secondAttribute="leading" constant="14" id="NAC-eK-bfo"/>
-                                    <constraint firstItem="D4P-df-bFd" firstAttribute="leading" secondItem="PTx-nn-8uc" secondAttribute="leading" id="PGN-B4-Wfw"/>
                                     <constraint firstItem="9dK-ju-zqw" firstAttribute="centerX" secondItem="uxn-xp-Eoi" secondAttribute="centerX" id="PyN-mN-k3V"/>
                                     <constraint firstItem="lTs-oi-9fv" firstAttribute="top" secondItem="qQI-wy-4DJ" secondAttribute="bottom" constant="20" id="QtL-Td-2oj"/>
                                     <constraint firstAttribute="trailing" secondItem="qQI-wy-4DJ" secondAttribute="trailing" constant="16" id="VX5-cF-YuP"/>
@@ -678,14 +660,32 @@
                                     <constraint firstItem="qQI-wy-4DJ" firstAttribute="top" secondItem="34g-MT-qpF" secondAttribute="bottom" constant="8" id="vBN-28-Oph"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4P-df-bFd" userLabel="errorView">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFc-WM-Wei">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="LcE-j9-GTa"/>
+                                    <constraint firstItem="wFc-WM-Wei" firstAttribute="centerY" secondItem="D4P-df-bFd" secondAttribute="centerY" id="kBF-m8-Rqa"/>
+                                    <constraint firstItem="wFc-WM-Wei" firstAttribute="centerX" secondItem="D4P-df-bFd" secondAttribute="centerX" id="yev-09-NdG"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="D4P-df-bFd" firstAttribute="top" secondItem="UDQ-cM-76l" secondAttribute="bottom" id="3GS-NT-Fiq"/>
+                            <constraint firstItem="PTx-nn-8uc" firstAttribute="top" secondItem="D4P-df-bFd" secondAttribute="bottom" id="5dw-9H-KGL"/>
                             <constraint firstItem="UDQ-cM-76l" firstAttribute="leading" secondItem="A6c-1h-NC9" secondAttribute="leadingMargin" id="Qdl-P1-mYJ"/>
                             <constraint firstItem="PTx-nn-8uc" firstAttribute="leading" secondItem="A6c-1h-NC9" secondAttribute="leading" id="RQw-YV-4EZ"/>
                             <constraint firstAttribute="trailing" secondItem="PTx-nn-8uc" secondAttribute="trailing" id="Ws1-xn-de5"/>
+                            <constraint firstItem="D4P-df-bFd" firstAttribute="leading" secondItem="A6c-1h-NC9" secondAttribute="leading" id="ZSN-Wx-rOR"/>
                             <constraint firstItem="69t-r8-McL" firstAttribute="top" secondItem="RGm-pw-dNm" secondAttribute="bottom" id="ej8-Dd-fNy"/>
-                            <constraint firstItem="PTx-nn-8uc" firstAttribute="top" secondItem="UDQ-cM-76l" secondAttribute="bottom" id="gQh-oC-wjG"/>
+                            <constraint firstAttribute="trailing" secondItem="D4P-df-bFd" secondAttribute="trailing" id="gRY-yZ-9au"/>
                             <constraint firstAttribute="trailingMargin" secondItem="69t-r8-McL" secondAttribute="trailing" id="iAw-w1-3ba"/>
                             <constraint firstItem="PTx-nn-8uc" firstAttribute="bottom" secondItem="vTP-ug-8ao" secondAttribute="top" id="okq-6z-9Rc"/>
                             <constraint firstItem="UDQ-cM-76l" firstAttribute="top" secondItem="RGm-pw-dNm" secondAttribute="bottom" id="zBO-As-YFe"/>
@@ -696,7 +696,7 @@
                         <outlet property="errorLabel" destination="wFc-WM-Wei" id="eKH-O4-dGw"/>
                         <outlet property="errorView" destination="D4P-df-bFd" id="0nt-BC-pTL"/>
                         <outlet property="errorViewHeightConstraint" destination="LcE-j9-GTa" id="Ucg-lj-muf"/>
-                        <outlet property="errorViewTopConstraint" destination="6Xy-8a-u3Q" id="pOX-te-CmR"/>
+                        <outlet property="errorViewTopConstraint" destination="3GS-NT-Fiq" id="IK4-gi-ohE"/>
                         <outlet property="recipeDirectionsTextView" destination="Cmo-uI-hHO" id="tpV-0o-bvU"/>
                         <outlet property="recipeNameTextField" destination="qQI-wy-4DJ" id="feU-r4-moX"/>
                         <outlet property="scrollView" destination="PTx-nn-8uc" id="aXV-qI-Zrw"/>

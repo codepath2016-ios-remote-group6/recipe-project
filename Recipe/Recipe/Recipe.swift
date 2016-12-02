@@ -45,7 +45,7 @@ class Recipe : PFObject, PFSubclassing {
     @NSManaged var ingredients: [Dictionary<String,AnyObject>]
 //    @NSManaged var ingredientList: [String]?
 //    @NSManaged var directionsDict: [String]?
-    @NSManaged var directions: [String]?
+//    @NSManaged var directions: [String]?
     @NSManaged var directionsString: String?
     
     //Properties that do not get saved to the database
@@ -339,9 +339,9 @@ class Recipe : PFObject, PFSubclassing {
         }
         copy.difficulty = difficulty
         copy.ingredients = ingredients
-        if let directions = directions{
-            copy.directions = directions
-        }
+//        if let directions = directions{
+//            copy.directions = directions
+//        }
         if let directionsString = directionsString{
             copy.directionsString = directionsString
         }

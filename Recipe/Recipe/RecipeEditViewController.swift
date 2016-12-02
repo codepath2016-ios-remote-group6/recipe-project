@@ -12,7 +12,7 @@ import Parse
 
 class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate ,UIPickerViewDataSource {
     
-    private static let noRecipeNameMessage = "your recipe needs a name."
+    private static let noRecipeNameMessage = "Oops... Your recipe needs a name."
 
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -297,7 +297,7 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func showErrorView(message: String){
-        errorLabel.text = "Oops, " + message
+        errorLabel.text = message
         self.errorView.isHidden = false
         UIView.animate(withDuration: 0.5, animations: {
             self.errorViewTopConstraint.constant = self.visibleConstant

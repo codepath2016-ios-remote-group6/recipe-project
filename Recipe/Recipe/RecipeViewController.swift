@@ -75,8 +75,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         // Show a link if we are looking at a recipe copied from the API, otherwise show the directions
-        if let inspiredByUrl = recipe.inspiredByUrl {
-            directionsTextView.text = "\(inspiredByUrl)"
+        if let inspiredByRecipeUrl = recipe.inspiredByRecipeUrl {
+            directionsTextView.text = "\(inspiredByRecipeUrl)"
         } else {
             directionsTextView.text = recipe.directionsString
         }
