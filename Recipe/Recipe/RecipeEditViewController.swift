@@ -46,7 +46,7 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     let directionsTextViewHeight = CGFloat(200)
-    let addIngredientTvHeight = CGFloat(350)
+    let addIngredientTvHeight = CGFloat(325)
     let visibleConstant = CGFloat(0)
     var hiddenConstant = CGFloat(50)
     
@@ -391,6 +391,10 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
             recipe.imageFile = PFFile(name: "recipe.jpg", data: pic)
         }
         
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
 
