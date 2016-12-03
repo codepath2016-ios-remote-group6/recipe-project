@@ -560,13 +560,35 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="didExitTextField:" destination="qI3-SP-HaB" eventType="editingDidEnd" id="nmK-Bh-tCD"/>
+                                            <action selector="textFieldEditingDidBegin:" destination="qI3-SP-HaB" eventType="editingDidBegin" id="e4G-09-fwS"/>
                                             <action selector="textFieldEditingDidChange:" destination="qI3-SP-HaB" eventType="editingChanged" id="OGS-5g-BsL"/>
                                         </connections>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34g-MT-qpF">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svA-C5-pYB">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SJH-zJ-Kny">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="ELu-bH-YMu"/>
+                                            <constraint firstAttribute="height" constant="100" id="kC8-AY-udJ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I1f-xS-pjK">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" id="bH3-CD-D7c"/>
+                                        </constraints>
+                                    </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cmo-uI-hHO">
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="203" id="FsN-VV-g7M"/>
+                                            <constraint firstAttribute="height" constant="100" id="FsN-VV-g7M"/>
                                         </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -575,7 +597,7 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9dK-ju-zqw">
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="350" id="TXS-IT-khD"/>
+                                            <constraint firstAttribute="height" constant="100" id="TXS-IT-khD"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddIngredientListCell" rowHeight="54" id="Aht-nJ-KaP" customClass="AddIngredientListCell" customModule="Recipe" customModuleProvider="target">
@@ -632,15 +654,14 @@
                                             <action selector="onAddIngredientClick:" destination="qI3-SP-HaB" eventType="touchUpInside" id="CNe-NC-ily"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34g-MT-qpF">
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Cmo-uI-hHO" firstAttribute="top" secondItem="uxn-xp-Eoi" secondAttribute="bottom" constant="37" id="0kb-9Y-6sw"/>
+                                    <constraint firstItem="lTs-oi-9fv" firstAttribute="top" secondItem="SJH-zJ-Kny" secondAttribute="bottom" constant="8" id="1pY-gx-jaq"/>
+                                    <constraint firstAttribute="trailing" secondItem="I1f-xS-pjK" secondAttribute="trailing" constant="15" id="4u7-1S-Vhn"/>
+                                    <constraint firstItem="I1f-xS-pjK" firstAttribute="centerY" secondItem="SJH-zJ-Kny" secondAttribute="centerY" id="7c7-wB-s40"/>
                                     <constraint firstItem="qQI-wy-4DJ" firstAttribute="centerX" secondItem="PTx-nn-8uc" secondAttribute="centerX" id="8zX-Oa-eCJ"/>
+                                    <constraint firstItem="I1f-xS-pjK" firstAttribute="leading" secondItem="SJH-zJ-Kny" secondAttribute="trailing" constant="8" id="A2d-3W-t8A"/>
                                     <constraint firstItem="lTs-oi-9fv" firstAttribute="leading" secondItem="PTx-nn-8uc" secondAttribute="leading" constant="14" id="FWc-dd-p96"/>
                                     <constraint firstAttribute="bottom" secondItem="Cmo-uI-hHO" secondAttribute="bottom" constant="24" id="KG1-Ju-3XP"/>
                                     <constraint firstItem="uxn-xp-Eoi" firstAttribute="top" secondItem="9dK-ju-zqw" secondAttribute="bottom" constant="8" symbolic="YES" id="KMe-f0-eSa"/>
@@ -648,15 +669,18 @@
                                     <constraint firstItem="34g-MT-qpF" firstAttribute="top" secondItem="PTx-nn-8uc" secondAttribute="top" constant="8" id="MkF-6S-amC"/>
                                     <constraint firstItem="34g-MT-qpF" firstAttribute="leading" secondItem="PTx-nn-8uc" secondAttribute="leading" constant="14" id="NAC-eK-bfo"/>
                                     <constraint firstItem="9dK-ju-zqw" firstAttribute="centerX" secondItem="uxn-xp-Eoi" secondAttribute="centerX" id="PyN-mN-k3V"/>
-                                    <constraint firstItem="lTs-oi-9fv" firstAttribute="top" secondItem="qQI-wy-4DJ" secondAttribute="bottom" constant="20" id="QtL-Td-2oj"/>
+                                    <constraint firstItem="SJH-zJ-Kny" firstAttribute="top" secondItem="svA-C5-pYB" secondAttribute="bottom" constant="8" id="Qyp-Tc-G16"/>
                                     <constraint firstAttribute="trailing" secondItem="qQI-wy-4DJ" secondAttribute="trailing" constant="16" id="VX5-cF-YuP"/>
+                                    <constraint firstItem="svA-C5-pYB" firstAttribute="leading" secondItem="PTx-nn-8uc" secondAttribute="leading" constant="14" id="WZZ-QY-mk7"/>
                                     <constraint firstAttribute="trailing" secondItem="9dK-ju-zqw" secondAttribute="trailing" constant="16" id="a9l-zu-4W9"/>
                                     <constraint firstItem="9dK-ju-zqw" firstAttribute="trailing" secondItem="Cmo-uI-hHO" secondAttribute="trailing" id="cgU-ZQ-Zv7"/>
                                     <constraint firstItem="ZSj-T0-dHJ" firstAttribute="leading" secondItem="Cmo-uI-hHO" secondAttribute="leading" id="d5K-Em-PvS"/>
+                                    <constraint firstItem="svA-C5-pYB" firstAttribute="top" secondItem="qQI-wy-4DJ" secondAttribute="bottom" constant="8" id="eEz-aj-4BF"/>
                                     <constraint firstItem="9dK-ju-zqw" firstAttribute="top" secondItem="lTs-oi-9fv" secondAttribute="bottom" constant="8" symbolic="YES" id="g0K-ZS-v4N"/>
                                     <constraint firstItem="Cmo-uI-hHO" firstAttribute="top" secondItem="ZSj-T0-dHJ" secondAttribute="bottom" constant="8" symbolic="YES" id="gSI-tY-Iga"/>
                                     <constraint firstItem="qQI-wy-4DJ" firstAttribute="leading" secondItem="PTx-nn-8uc" secondAttribute="leading" constant="16" id="hp9-Mj-tqt"/>
                                     <constraint firstItem="9dK-ju-zqw" firstAttribute="leading" secondItem="PTx-nn-8uc" secondAttribute="leading" constant="16" id="n55-o2-mM6"/>
+                                    <constraint firstItem="SJH-zJ-Kny" firstAttribute="leading" secondItem="PTx-nn-8uc" secondAttribute="leading" constant="16" id="se6-ir-Mjj"/>
                                     <constraint firstItem="qQI-wy-4DJ" firstAttribute="top" secondItem="34g-MT-qpF" secondAttribute="bottom" constant="8" id="vBN-28-Oph"/>
                                 </constraints>
                             </scrollView>
@@ -693,13 +717,17 @@
                     </view>
                     <connections>
                         <outlet property="addIngredientTableView" destination="9dK-ju-zqw" id="Q0S-7F-oAj"/>
+                        <outlet property="addIngredientTvHeightConstraint" destination="TXS-IT-khD" id="JIo-wE-JYw"/>
+                        <outlet property="directionsTextViewHeightConstraint" destination="FsN-VV-g7M" id="b7M-Bv-Ru6"/>
                         <outlet property="errorLabel" destination="wFc-WM-Wei" id="eKH-O4-dGw"/>
                         <outlet property="errorView" destination="D4P-df-bFd" id="0nt-BC-pTL"/>
                         <outlet property="errorViewHeightConstraint" destination="LcE-j9-GTa" id="Ucg-lj-muf"/>
                         <outlet property="errorViewTopConstraint" destination="3GS-NT-Fiq" id="IK4-gi-ohE"/>
+                        <outlet property="panoramicImageView" destination="I1f-xS-pjK" id="GVd-cW-vTC"/>
                         <outlet property="recipeDirectionsTextView" destination="Cmo-uI-hHO" id="tpV-0o-bvU"/>
                         <outlet property="recipeNameTextField" destination="qQI-wy-4DJ" id="feU-r4-moX"/>
                         <outlet property="scrollView" destination="PTx-nn-8uc" id="aXV-qI-Zrw"/>
+                        <outlet property="squareImageView" destination="SJH-zJ-Kny" id="Hs0-Hp-Hrw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSO-Uu-z4E" userLabel="First Responder" sceneMemberID="firstResponder"/>

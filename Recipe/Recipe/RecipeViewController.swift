@@ -52,14 +52,16 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let urlString = recipe.imageUrlString{
-            if let url = URL(string: urlString){
-                recipeImageView.setImageWith(url)
-            }
-            
-        } else {
-            recipeImageView.image = UIImage(named: "placeholder")
-        }
+        recipe.setImageIn(imageView: recipeImageView, placeholder: #imageLiteral(resourceName: "placeholder"))
+        //CV: @Iria I commented out the lines below to instead use the helper function above that accomodates imageFiles
+//        if let urlString = recipe.imageUrlString{
+//            if let url = URL(string: urlString){
+//                recipeImageView.setImageWith(url)
+//            }
+//            
+//        } else {
+//            recipeImageView.image = UIImage(named: "placeholder")
+//        }
         recipeImageView.clipsToBounds = true
         recipeNameLabel.text = recipe.name
         

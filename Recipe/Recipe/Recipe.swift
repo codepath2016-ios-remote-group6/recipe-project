@@ -49,9 +49,17 @@ class Recipe : PFObject, PFSubclassing {
     @NSManaged var directionsString: String?
     
     //Properties that do not get saved to the database
-    var imageUrl: URL?
-    var inspiredByUrl: URL?
-    var inspiredByRecipeUrl: URL?
+    var imageUrl: URL?{
+        get{
+            return Recipe.getUrl(fromOptionalString: imageUrlString)
+        }
+    }
+//    var inspiredByUrl: URL?
+    var inspiredByRecipeUrl: URL?{
+        get{
+            return Recipe.getUrl(fromOptionalString: inspiredByRecipeUrlString)
+        }
+    }
     var ingredientObjList: [Ingredient] = [Ingredient]()
     
     override init() {
@@ -157,11 +165,6 @@ class Recipe : PFObject, PFSubclassing {
                     recipe.ingredientObjList.append(ingredientObject)
                 }
             }
-            
-            //populateUrls
-            recipe.inspiredByUrl = recipe.getUrl(fromOptionalString: recipe.inspiredByUrlString)
-            recipe.inspiredByRecipeUrl = recipe.getUrl(fromOptionalString: recipe.inspiredByRecipeUrlString)
-            recipe.imageUrl = recipe.getUrl(fromOptionalString: recipe.imageUrlString)
         }
         return recipe
     }
@@ -200,7 +203,7 @@ class Recipe : PFObject, PFSubclassing {
         return recipes
     }
     
-    func getUrl(fromOptionalString optUrlString: String?)->URL?{
+    class func getUrl(fromOptionalString optUrlString: String?)->URL?{
         if let urlString = optUrlString{
             return URL(string: urlString)
         }else{
@@ -347,11 +350,6 @@ class Recipe : PFObject, PFSubclassing {
         }
         copy.ingredientObjList = Ingredient.IngredientsWithArray(dictionaries: ingredients as [NSDictionary])
         
-        //populateUrls
-        copy.inspiredByUrl = copy.getUrl(fromOptionalString: copy.inspiredByUrlString)
-        copy.inspiredByRecipeUrl = copy.getUrl(fromOptionalString: copy.inspiredByRecipeUrlString)
-        copy.imageUrl = copy.getUrl(fromOptionalString: copy.imageUrlString)
-        
         return copy
     }
     
@@ -369,6 +367,23 @@ class Recipe : PFObject, PFSubclassing {
         for ingredient in ingredientObjList{
             let ingredientString = ingredient.name + ", " + ingredient.unit + ", " + String(ingredient.quantity) + ", " + ingredient.alternativeText
             print(ingredientString)
+        }
+    }
+    
+    func setImageIn(imageView: UIImageView, placeholder: UIImage){
+        if let imageFile = imageFile{
+            imageFile.getDataInBackground(block: {(imageData: Data?, error: Error?)->Void in
+                if error == nil{
+                    if let imageData = imageData{
+                        imageView.image = UIImage(data: imageData)
+                    }
+                }else{
+                    print("Error getting data from image file: \(error!.localizedDescription)")
+                }})
+        }else if let imageUrl = imageUrl{
+            imageView.setImageWith(imageUrl, placeholderImage: placeholder)
+        }else{
+            imageView.image = #imageLiteral(resourceName: "placeholder")
         }
     }
 

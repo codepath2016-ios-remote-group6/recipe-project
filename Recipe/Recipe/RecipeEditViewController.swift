@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 
-class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate ,UIPickerViewDataSource {
+class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate ,UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private static let noRecipeNameMessage = "Oops... Your recipe needs a name."
 
@@ -34,10 +34,19 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var addIngredientTableView: UITableView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var squareImageView: UIImageView!
+    @IBOutlet weak var panoramicImageView: UIImageView!
+    
+    
     
     @IBOutlet weak var errorViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var errorViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var addIngredientTvHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var directionsTextViewHeightConstraint: NSLayoutConstraint!
     
+    
+    let directionsTextViewHeight = CGFloat(200)
+    let addIngredientTvHeight = CGFloat(350)
     let visibleConstant = CGFloat(0)
     var hiddenConstant = CGFloat(50)
     
@@ -49,11 +58,14 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
 //        addIngredientTableView.rowHeight = UITableViewAutomaticDimension
+        addIngredientTvHeightConstraint.constant = addIngredientTvHeight
         addIngredientTableView.estimatedRowHeight = 50
         addIngredientTableView.dataSource = self
         addIngredientTableView.delegate = self
         
         addIngredientTableView.register(flexCellNib, forCellReuseIdentifier: IngredientFlexTVCell.name)
+        
+        directionsTextViewHeightConstraint.constant = directionsTextViewHeight
         
         let contentWidth = scrollView.bounds.width
         let contentHeight = scrollView.bounds.height * 3
@@ -62,6 +74,8 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         
         hiddenConstant = visibleConstant - errorViewHeightConstraint.constant
         hideErrorView(animated: false)
+        
+        attachGestureListeners()
         
         populateView()
     }
@@ -220,12 +234,20 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func didExitTextField(_ sender: UITextField) {
         recipe.name = recipeNameTextField.text
+        if !errorView.isHidden{
+            hideErrorView(animated: true)
+        }
     }
     
     @IBAction func textFieldEditingDidChange(_ sender: UITextField) {
         recipe.name = recipeNameTextField.text
     }
     
+    @IBAction func textFieldEditingDidBegin(_ sender: UITextField) {
+        if !errorView.isHidden{
+            hideErrorView(animated: true)
+        }
+    }
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -273,7 +295,24 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         self.addIngredientTableView.reloadData()
         //Directions
         self.recipeDirectionsTextView.text = self.recipe.directionsString ?? ""
-
+        //Photo
+        if let picFile = recipe.imageFile{
+            picFile.getDataInBackground(block: {(imageData: Data?, error: Error?)->Void in
+                if error == nil{
+                    if let imageData = imageData{
+                        self.squareImageView.image = UIImage(data: imageData)
+                        self.panoramicImageView.image = UIImage(data: imageData)
+                    }
+                }else{
+                    print("Error getting data from image file: \(error!.localizedDescription)")
+                }})
+        }else if let url = recipe.imageUrl{
+            self.squareImageView.setImageWith(url)
+            self.panoramicImageView.setImageWith(url)
+        }else{
+            self.squareImageView.image = #imageLiteral(resourceName: "placeholder")
+            self.panoramicImageView.image = #imageLiteral(resourceName: "placeholder")
+        }
     }
     
     func updateIngredient(index: Int, cell: IngredientFlexTVCell){
@@ -323,6 +362,36 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
             self.view.layoutIfNeeded()
             self.errorView.isHidden = true
         }
+    }
+    
+    func attachGestureListeners(){
+        let squareImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(changeRecipePhoto))
+        let panoramicImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(changeRecipePhoto))
+        self.squareImageView.addGestureRecognizer(squareImageTapGesture)
+        self.panoramicImageView.addGestureRecognizer(panoramicImageTapGesture)
+        self.squareImageView.isUserInteractionEnabled = true
+        self.panoramicImageView.isUserInteractionEnabled = true
+    }
+    
+    func changeRecipePhoto(sender: UITapGestureRecognizer){
+        let imagePickerCtrl = UIImagePickerController()
+        imagePickerCtrl.delegate = self
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+            imagePickerCtrl.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            self.present(imagePickerCtrl, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        squareImageView.image = image
+        panoramicImageView.image = image
+        
+        if let pic = UIImageJPEGRepresentation(image, CGFloat(0.8)){
+            recipe.imageFile = PFFile(name: "recipe.jpg", data: pic)
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
 
 }
