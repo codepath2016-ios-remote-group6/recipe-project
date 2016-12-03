@@ -178,10 +178,32 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
                 return name
             }else{
                 if name == Ingredient.newIngredientName{
-                    return Ingredient.makeAlternativeText(quantity: quantity, units: units, name: "(Ingredient name?)")
+//                    return Ingredient.makeAlternativeText(quantity: quantity, units: units, name: "(Ingredient name?)")
+                    return Ingredient.makeAlternativeText(quantityString: quantityFormatted, units: units, name: "(Ingredient name?)")
                 }else{
-                    return Ingredient.makeAlternativeText(quantity: quantity, units: units, name: name)
+//                    return Ingredient.makeAlternativeText(quantity: quantity, units: units, name: name)
+                    return Ingredient.makeAlternativeText(quantityString: quantityFormatted, units: units, name: name)
                 }
+            }
+        }
+    }
+    
+    var quantityFormatted: String!{
+        
+        get{
+            if quantity == 0{
+                return ""
+            }
+            let tens = ingredientPicker.selectedRow(inComponent: 0)
+            let ones = ingredientPicker.selectedRow(inComponent: 1)
+            let fractionPickerIndex = ingredientPicker.selectedRow(inComponent: 2)
+            let fractionString = fractionStrings[fractionPickerIndex]
+            
+            var wholeNumber = tens*10 + ones*1
+            if wholeNumber == 0{
+                return fractionString
+            }else{
+                return String(wholeNumber) + " " + fractionString
             }
         }
     }
