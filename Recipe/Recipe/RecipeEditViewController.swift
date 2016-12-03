@@ -225,8 +225,9 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
                             _ = navCtrl?.popToViewController(vc, animated: true)
                         }
                     }
+                }else{
+                    dismiss(animated: true, completion: nil)
                 }
-                dismiss(animated: true, completion: nil)
             }
         }
 

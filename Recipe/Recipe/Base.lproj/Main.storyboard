@@ -223,7 +223,7 @@
                                         <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="+" image="add-recipe-button"/>
                                         <connections>
-                                            <segue destination="qI3-SP-HaB" kind="presentation" identifier="newRecipeSegue" id="Hlf-1j-bfu"/>
+                                            <segue destination="qI3-SP-HaB" kind="show" identifier="newRecipeSegue" id="Hlf-1j-bfu"/>
                                         </connections>
                                     </button>
                                     <searchBar contentMode="redraw" placeholder="Filter Results" translatesAutoresizingMaskIntoConstraints="NO" id="UZ4-23-JG4">
@@ -282,7 +282,7 @@
                                                     <outlet property="recipeImageView" destination="ytZ-9L-Wb5" id="Pgu-Dy-KIT"/>
                                                     <outlet property="recipeNameLabel" destination="V2x-lF-oSX" id="cpO-5X-5g9"/>
                                                     <outlet property="recipeSourceLabel" destination="sgw-V9-s9a" id="a18-Aq-pbY"/>
-                                                    <segue destination="nmM-9m-AfT" kind="presentation" identifier="recipeViewSegue" id="u1i-fq-JDx"/>
+                                                    <segue destination="nmM-9m-AfT" kind="show" identifier="recipeViewSegue" id="u1i-fq-JDx"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -864,6 +864,6 @@
         <image name="login-background" width="2592" height="1728"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uYp-h6-VvM"/>
+        <segue reference="Hlf-1j-bfu"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -20,7 +20,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var loginLogoutBarButton: UIBarButtonItem!
     @IBOutlet weak var addRecipeButton: UIButton!
     
+    
     var controllerDataSource: String? = "database"
+    var isFirstTimeViewAppears = true
     
     var data = [Recipe]()
     var filteredData = [Recipe]()
@@ -53,13 +55,20 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewWillAppear(animated)
         
         if controllerDataSource == "database" {
-            getRecipesFromDb()
+            if isFirstTimeViewAppears{
+                getRecipesFromDb()
+            }else{
+                delay(forSeconds: 2.5){
+                    self.getRecipesFromDb()
+                }
+            }
         } else {
             //Bring in recipes from the api
             query = RecipeListViewController.genericQuery
             getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
 
         }
+        isFirstTimeViewAppears = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -217,6 +226,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 )},
             failure: {(error: Error?) -> Void in
                 print("Error retrieving my recipes: \(error?.localizedDescription)")})
+    }
+    
+    func delay(forSeconds delay:Double, closure:@escaping ()->()) {
+        let when = DispatchTime.now() + delay
+        DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
     }
 
 }

@@ -31,14 +31,13 @@ class Recipe : PFObject, PFSubclassing {
     @NSManaged var name: String?
     @NSManaged var imageUrlString: String?
     @NSManaged var imageFile: PFFile?
-//    @NSManaged var createdByUser: PFRelation<PFUser>?
     @NSManaged var createdByUser: PFUser?
     @NSManaged var inspiredBy: String?
-    @NSManaged var inspiredByUrlString: String?
+//    @NSManaged var inspiredByUrlString: String?
     @NSManaged var inspiredByRecipeUrlString: String?
     @NSManaged var sourceId: String?
     @NSManaged var summary: String?
-    @NSManaged var prepTimeStr: String?
+//    @NSManaged var prepTimeStr: String?
     @NSManaged var prepTime: Double
     @NSManaged var prepTimeUnits: String?
     @NSManaged var difficulty: Int
@@ -54,13 +53,14 @@ class Recipe : PFObject, PFSubclassing {
             return Recipe.getUrl(fromOptionalString: imageUrlString)
         }
     }
-//    var inspiredByUrl: URL?
     var inspiredByRecipeUrl: URL?{
         get{
             return Recipe.getUrl(fromOptionalString: inspiredByRecipeUrlString)
         }
     }
     var ingredientObjList: [Ingredient] = [Ingredient]()
+    
+    
     
     override init() {
         super.init()
@@ -145,7 +145,6 @@ class Recipe : PFObject, PFSubclassing {
         if let recipeDict = dictionary["recipe"] as? Dictionary<String,Any>{
             recipe.name = recipeDict["label"] as? String
             recipe.inspiredBy = recipeDict["source"] as? String
-            recipe.inspiredByUrlString = recipeDict["url"] as? String
             recipe.inspiredByRecipeUrlString = recipeDict["shareAs"] as? String
             recipe.sourceId = recipeDict["uri"] as? String
             recipe.imageUrlString = recipeDict["image"] as? String
@@ -321,9 +320,6 @@ class Recipe : PFObject, PFSubclassing {
         if let inspiredBy = inspiredBy{
             copy.inspiredBy = inspiredBy
         }
-        if let inspiredByUrlString = inspiredByUrlString{
-            copy.inspiredByUrlString = inspiredByUrlString
-        }
         if let inspiredByRecipeUrlString = inspiredByRecipeUrlString{
             copy.inspiredByRecipeUrlString = inspiredByRecipeUrlString
         }
@@ -332,9 +328,6 @@ class Recipe : PFObject, PFSubclassing {
         }
         if let summary = summary{
             copy.summary = summary
-        }
-        if let prepTimeStr = prepTimeStr{
-            copy.prepTimeStr = prepTimeStr
         }
         copy.prepTime = prepTime
         if let prepTimeUnits = prepTimeUnits{
