@@ -57,7 +57,6 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
             recipe = Recipe()
         }
         
-//        addIngredientTableView.rowHeight = UITableViewAutomaticDimension
         addIngredientTvHeightConstraint.constant = addIngredientTvHeight
         addIngredientTableView.estimatedRowHeight = 50
         addIngredientTableView.dataSource = self
@@ -66,6 +65,12 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         addIngredientTableView.register(flexCellNib, forCellReuseIdentifier: IngredientFlexTVCell.name)
         
         directionsTextViewHeightConstraint.constant = directionsTextViewHeight
+        
+        // Style the directions text area so users know
+        // to type in the area.
+        recipeDirectionsTextView.layer.borderColor = UIColor.lightGray.cgColor
+        recipeDirectionsTextView.layer.borderWidth = 1
+        recipeDirectionsTextView.layer.cornerRadius = 5
         
         let contentWidth = scrollView.bounds.width
         let contentHeight = scrollView.bounds.height * 3
@@ -92,6 +97,7 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("TV Function: cell for row at")
+        
 //        let ingredient: Dictionary<String,AnyObject> = self.recipe.ingredients[indexPath.row]
         //use ingredient object instead
         let ingredientObject: Ingredient = self.recipe.ingredientObjList[indexPath.row]
@@ -99,6 +105,12 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: IngredientFlexTVCell.name, for: indexPath) as! IngredientFlexTVCell
 //        cell.ingredient = ingredient
         cell.ingredientObject = ingredientObject
+        
+//        let cellBkg = UIView()
+//        cellBkg.backgroundColor = UIColor(hue: 354.0, saturation: 0.86, brightness: 0.64, alpha: 0.5)
+//        
+//        cell.selectedBackgroundView = cellBkg
+        
         if let selectedIndexPath = selectedIndexPath{
             if selectedIndexPath == indexPath{
                 print("TV Function: cell for row at -> found selection")
