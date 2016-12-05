@@ -20,6 +20,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var loginLogoutBarButton: UIBarButtonItem!
     @IBOutlet weak var addRecipeButton: UIButton!
     
+    @IBOutlet weak var addButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var addRecipeBottomConstraint: NSLayoutConstraint!
     
     var controllerDataSource: String? = "database"
     var isFirstTimeViewAppears = true
@@ -42,6 +44,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         // This needs to be here instead of viewWillAppear because having this code there causes a bug where text keeps getting added to the placeholder.
         if controllerDataSource != "database" {
             addRecipeButton.isHidden = true
+            addButtonHeightConstraint.constant = 0
+            addRecipeBottomConstraint.constant = 0
 
             searchBar.placeholder = "\((searchBar.placeholder)!) or new search"
         }
