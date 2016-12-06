@@ -67,9 +67,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         } else {
-            //Bring in recipes from the api
-            query = RecipeListViewController.genericQuery
-            getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
+            if isFirstTimeViewAppears{
+                //Bring in recipes from the api
+                query = RecipeListViewController.genericQuery
+                getRecipeListResults(pageNum: RecipeListViewController.initialResultsIndex)
+            }
 
         }
         isFirstTimeViewAppears = false
@@ -151,7 +153,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         switch segue.identifier! {
             case "recipeViewSegue":
-                let destinationViewController = segue.destination as! RecipeViewController
+                let destinationNavCtrl = segue.destination as! UINavigationController
+                let destinationViewController = destinationNavCtrl.topViewController as! RecipeViewController
             
                 let cell = sender as! UITableViewCell
                 let indexPath = self.tableView.indexPath(for: cell)
@@ -162,8 +165,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             
             break
             case "newRecipeSegue":
-                let destinationVc = segue.destination as! RecipeEditViewController
-                destinationVc.setRecipe(recipe: nil)
+                let destinationNavCtrl = segue.destination as! UINavigationController
+                let destinationViewCtrl = destinationNavCtrl.topViewController as! RecipeEditViewController
+                destinationViewCtrl.setRecipe(recipe: nil)
             break
             default:
                 break

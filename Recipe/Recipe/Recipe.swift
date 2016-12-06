@@ -60,7 +60,10 @@ class Recipe : PFObject, PFSubclassing {
     }
     var ingredientObjList: [Ingredient] = [Ingredient]()
     
-    
+    enum SourceType: String {
+        case edamam = "edamam"
+        case database = "database"
+    }
     
     override init() {
         super.init()

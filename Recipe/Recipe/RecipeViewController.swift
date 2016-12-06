@@ -19,7 +19,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var prepTimeLabel: UILabel!
     @IBOutlet weak var prepTimeUnitLabel: UILabel!
     
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     @IBOutlet weak var ingredientTableViewHeightConstraint: NSLayoutConstraint!
     
@@ -48,7 +48,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // Don't allow editing of a recipe from an external source
         if sourceType == "edamam" {
-            editButton.isHidden = true
+            editButton.tintColor = UIColor.lightText
         }
     }
     
@@ -109,6 +109,16 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.performSegue(withIdentifier: "unwindToRecipeList", sender: self)
     }
     
+    @IBAction func didTapEdit(_ sender: UIBarButtonItem) {
+        if sourceType == "database"{
+            performSegue(withIdentifier: "editSegue", sender: self)
+        }
+    }
+    
+    @IBAction func didTapCopy(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "copySegue", sender: self)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipe.ingredients.count
     }
@@ -143,9 +153,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 recipeForNextVc = self.recipe.getCopy()
             }
         }
-        if let recipeEditVc = destinationVc as? RecipeEditViewController{
-//            recipeEditVc.recipe = recipeForNextVc
-            recipeEditVc.setRecipe(recipe: recipeForNextVc)
+        if let navCtrl = destinationVc as? UINavigationController{
+            if let recipeEditVc = navCtrl.topViewController as? RecipeEditViewController{
+                recipeEditVc.setRecipe(recipe: recipeForNextVc)
+            }
         }
     }
 }

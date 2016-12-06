@@ -385,31 +385,6 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
     }
     
     func getIngredientFromUi() -> Ingredient{
-//        if(quantity == 0 && units == ""){
-//            ingredientObject.quantity = 0
-//            ingredientObject.unit = ""
-//            ingredientObject.name = name!
-//            ingredientObject.alternativeText = name!
-//        }else{
-//            if let name = name{
-//                if name != ""{
-//                    ingredientObject.name = name
-//                }else{
-//                    ingredientObject.name = Ingredient.newIngredientName
-//                }
-//            }
-//            if let units = units{
-//                if units != ""{
-//                    ingredientObject.unit = units
-//                }
-//            }
-//            if let alternativeText = displayText{
-//                if alternativeText != ""{
-//                    ingredientObject.alternativeText = alternativeText
-//                }
-//            }
-//            ingredientObject.quantity = quantity
-//        }
         
         if let name = name{
             if name != ""{
