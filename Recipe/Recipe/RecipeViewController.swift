@@ -39,7 +39,10 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ingredientsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
         // This assumes there is always at least one ingredient
-        let tableViewHeight = CGFloat(ingredientsTableView.rowHeight) * CGFloat((ingredientsArray.count))
+        var tableViewHeight = CGFloat(ingredientsTableView.rowHeight) * CGFloat((ingredientsArray.count))
+        
+        // Restrict max height to 250
+        tableViewHeight = tableViewHeight < 250 ? tableViewHeight : 250
         
         ingredientTableViewHeightConstraint.constant = tableViewHeight
         
@@ -85,6 +88,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // Show the user that there is some scrollable content here
         directionsTextView.flashScrollIndicators()
+        ingredientsTableView.flashScrollIndicators()
         
         ingredientsTableView.reloadData()
     }
@@ -122,8 +126,6 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         return cell
     }
-
-
     
     // MARK: - Navigation
 

@@ -20,8 +20,6 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
     
     @IBOutlet weak var mainSizeConstraint: NSLayoutConstraint!
 
-    
-    
     var digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     var digitStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var fractionStrings = ["","1/16", "1/8", "1/4", "1/2", "2/3", "3/4"]
@@ -262,13 +260,13 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         if let label = view as? UILabel{
             label.text = pickerData[component][row]
-            label.font = UIFont.systemFont(ofSize: 10.0)
+            label.font = UIFont.systemFont(ofSize: 15.0)
             label.sizeToFit()
             return label
         }else{
             let label = UILabel()
             label.text = pickerData[component][row]
-            label.font = UIFont.systemFont(ofSize: 12.0)
+            label.font = UIFont.systemFont(ofSize: 15.0)
             label.sizeToFit()
             return label
         }
@@ -315,13 +313,13 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         self.hiddenViewConstraint = CGFloat(8.0)
         self.contentView.layoutIfNeeded()
         self.visibleViewConstraint = hiddenViewConstraint + editView.frame.height + 8.0
-        print("setConstraints: hide constraint: \(hiddenViewConstraint)")
-        print("setConstraints: show constraint: \(visibleViewConstraint)")
-        print("setConstraints: label: \(ingredientLabel.frame.maxY)")
+//        print("setConstraints: hide constraint: \(hiddenViewConstraint)")
+//        print("setConstraints: show constraint: \(visibleViewConstraint)")
+//        print("setConstraints: label: \(ingredientLabel.frame.maxY)")
         self.visibleHeight = ingredientLabel.frame.maxY + visibleViewConstraint + 8.0 + 0.0
         self.hiddenHeight = ingredientLabel.frame.maxY + hiddenViewConstraint + 8.0 + 0.0
-        print("setConstraints: visible height: \(visibleHeight)")
-        print("setConstraints: hidden height: \(hiddenHeight)")
+//        print("setConstraints: visible height: \(visibleHeight)")
+//        print("setConstraints: hidden height: \(hiddenHeight)")
     }
     
     private func setPickerValues(){
@@ -331,16 +329,17 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
     }
     
     func showEditView(){
-        print("Start show: state = \(editViewState)")
+//        print("Start show: state = \(editViewState)")
         self.editView.isHidden = false
         self.editView.alpha = 1.0
+        self.editView.layer.cornerRadius = 5
         self.mainSizeConstraint.constant = visibleViewConstraint
         if self.name == Ingredient.newIngredientName{
             self.name = ""
             ingredientLabel.text = displayText
         }
         self.contentView.layoutIfNeeded()
-        print("End show: state = \(editViewState), height = \(cellHeight), state = \(editViewState), name = \(name)")
+//        print("End show: state = \(editViewState), height = \(cellHeight), state = \(editViewState), name = \(name)")
     }
     
     func hideEditView(){
