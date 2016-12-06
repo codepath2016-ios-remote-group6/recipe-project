@@ -213,6 +213,11 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         print("constraint constant: \(mainSizeConstraint.constant)")
         print("constraint relation: \(mainSizeConstraint.relation.rawValue)")
         
+        let cellBkg = UIView()
+        cellBkg.backgroundColor = UIColor.white
+        
+        self.selectedBackgroundView = cellBkg
+        
         setConstraints()
         setView()
         setPickerValues()
@@ -329,17 +334,21 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
     }
     
     func showEditView(){
-//        print("Start show: state = \(editViewState)")
         self.editView.isHidden = false
         self.editView.alpha = 1.0
+        
+        self.editView.layer.backgroundColor = UIColor(hue: 7.0, saturation: 0.22, brightness: 0.90, alpha: 1.0).cgColor
         self.editView.layer.cornerRadius = 5
+        
+        customUnitsTextField.backgroundColor = UIColor.white
+        nameTextField.backgroundColor = UIColor.white
+
         self.mainSizeConstraint.constant = visibleViewConstraint
         if self.name == Ingredient.newIngredientName{
             self.name = ""
             ingredientLabel.text = displayText
         }
         self.contentView.layoutIfNeeded()
-//        print("End show: state = \(editViewState), height = \(cellHeight), state = \(editViewState), name = \(name)")
     }
     
     func hideEditView(){

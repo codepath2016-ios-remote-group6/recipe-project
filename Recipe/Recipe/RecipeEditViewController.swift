@@ -106,11 +106,6 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
 //        cell.ingredient = ingredient
         cell.ingredientObject = ingredientObject
         
-//        let cellBkg = UIView()
-//        cellBkg.backgroundColor = UIColor(hue: 354.0, saturation: 0.86, brightness: 0.64, alpha: 0.5)
-//        
-//        cell.selectedBackgroundView = cellBkg
-        
         if let selectedIndexPath = selectedIndexPath{
             if selectedIndexPath == indexPath{
                 print("TV Function: cell for row at -> found selection")
@@ -325,6 +320,10 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         }else{
             self.squareImageView.image = #imageLiteral(resourceName: "placeholder")
             self.panoramicImageView.image = #imageLiteral(resourceName: "placeholder")
+        }
+        
+        if recipe.ingredientObjList.count == 0 {
+            self.onAddIngredientClick(0)
         }
     }
     
