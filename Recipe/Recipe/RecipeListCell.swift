@@ -19,17 +19,8 @@ class RecipeListCell: UITableViewCell {
             self.recipeNameLabel.text = newValue?.name
             self.recipeSourceLabel.text = newValue?.inspiredBy
             newValue?.setImageIn(imageView: recipeImageView, placeholder: #imageLiteral(resourceName: "placeholder"))
-            //CV: @Iria I commented out the lines below to instead use the helper function above that accomodates imageFiles
-//            if let url = newValue?.imageUrl{
-//                self.recipeImageView.setImageWith(url)
-//            } else if let urlString = newValue?.imageUrlString{
-//                if let url = URL(string: urlString){
-//                    self.recipeImageView.setImageWith(url)
-//                }
-//            } else {
-//                // Use a default icon if there is no image.
-//                recipeImageView.image = UIImage(named: "recipe-icon")
-//            }
+
+            self.selectionStyle = UITableViewCellSelectionStyle.none
         }
     }
     
