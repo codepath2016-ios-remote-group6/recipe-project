@@ -199,7 +199,7 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
             let fractionPickerIndex = ingredientPicker.selectedRow(inComponent: 2)
             let fractionString = fractionStrings[fractionPickerIndex]
             
-            var wholeNumber = tens*10 + ones*1
+            let wholeNumber = tens*10 + ones*1
             if wholeNumber == 0{
                 return fractionString
             }else{

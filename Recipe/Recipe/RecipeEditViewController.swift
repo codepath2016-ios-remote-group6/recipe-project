@@ -321,6 +321,9 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func deleteCell(at indexPath: IndexPath){
+        if selectedIndexPath == indexPath{
+            selectedIndexPath = nil
+        }
         addIngredientTableView.beginUpdates()
         recipe.ingredientObjList.remove(at: indexPath.row)
         addIngredientTableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
