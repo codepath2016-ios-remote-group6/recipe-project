@@ -15,9 +15,9 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var directionsTextView: UITextView!
     @IBOutlet weak var recipeImageView: UIImageView!
     
-    @IBOutlet weak var difficultyLabel: UILabel!
-    @IBOutlet weak var prepTimeLabel: UILabel!
-    @IBOutlet weak var prepTimeUnitLabel: UILabel!
+//    @IBOutlet weak var difficultyLabel: UILabel!
+//    @IBOutlet weak var prepTimeLabel: UILabel!
+//    @IBOutlet weak var prepTimeUnitLabel: UILabel!
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     
@@ -36,7 +36,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ingredientsTableView.delegate = self
         ingredientsTableView.alwaysBounceVertical = false
         ingredientsTableView.allowsSelection = false
-        ingredientsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+//        ingredientsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
         // This assumes there is always at least one ingredient
         var tableViewHeight = CGFloat(ingredientsTableView.rowHeight) * CGFloat((ingredientsArray.count))
@@ -66,18 +66,18 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //            recipeImageView.image = UIImage(named: "placeholder")
 //        }
         recipeImageView.clipsToBounds = true
-        recipeNameLabel.text = recipe.name
+        recipeNameLabel.text = recipe.name?.uppercased()
         
-        difficultyLabel.text = recipe.getDifficulty()
+//        difficultyLabel.text = recipe.getDifficulty()
         
         // Only display prep time if one is set.
-        if recipe.prepTime > 0 {
-            prepTimeLabel.text = "\(Int(recipe.prepTime))"
-            prepTimeUnitLabel.text = recipe.prepTimeUnits
-        } else {
-            prepTimeLabel.text = ""
-            prepTimeUnitLabel.text = ""
-        }
+//        if recipe.prepTime > 0 {
+//            prepTimeLabel.text = "\(Int(recipe.prepTime))"
+//            prepTimeUnitLabel.text = recipe.prepTimeUnits
+//        } else {
+//            prepTimeLabel.text = ""
+//            prepTimeUnitLabel.text = ""
+//        }
         
         // Show a link if we are looking at a recipe copied from the API, otherwise show the directions
         if let inspiredByRecipeUrl = recipe.inspiredByRecipeUrl {

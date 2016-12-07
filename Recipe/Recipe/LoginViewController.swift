@@ -45,9 +45,9 @@ class LoginViewController: UIViewController {
         // Disable skip button for now because saving to phone is not implemented.
         skipButton.isHidden = true
         
-        signUpButton.layer.borderWidth = 3;
-        signUpButton.layer.borderColor = UIColor.white.cgColor
+        signUpButton.layer.cornerRadius = 20
         
+        loginButton.layer.cornerRadius = 20
         loginButton.layer.borderWidth = 3;
         loginButton.layer.borderColor = UIColor.white.cgColor
         
