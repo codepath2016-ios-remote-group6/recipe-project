@@ -21,6 +21,8 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     
+    @IBOutlet weak var viewDirectionsButton: UIButton!
+    
     @IBOutlet weak var ingredientTableViewHeightConstraint: NSLayoutConstraint!
     
     var recipe: Recipe!
@@ -38,6 +40,7 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ingredientsTableView.allowsSelection = false
 //        ingredientsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
+        viewDirectionsButton.layer.cornerRadius = 30
         // This assumes there is always at least one ingredient
         var tableViewHeight = CGFloat(ingredientsTableView.rowHeight) * CGFloat((ingredientsArray.count))
         
@@ -49,6 +52,9 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Don't allow editing of a recipe from an external source
         if sourceType == "edamam" {
             editButton.tintColor = UIColor.lightText
+            directionsTextView.isHidden = true
+        } else {
+            viewDirectionsButton.isHidden = true
         }
     }
     
@@ -135,6 +141,12 @@ class RecipeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.alternativeTextLabel.text = ingredient.alternativeText
         
         return cell
+    }
+
+    @IBAction func onViewDirectionButton(_ sender: AnyObject) {
+        if let inspiredByRecipeUrl = recipe.inspiredByRecipeUrl {
+            UIApplication.shared.open(inspiredByRecipeUrl)
+        }
     }
     
     // MARK: - Navigation

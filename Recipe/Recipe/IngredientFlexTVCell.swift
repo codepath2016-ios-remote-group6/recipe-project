@@ -337,9 +337,6 @@ class IngredientFlexTVCell: UITableViewCell, UIPickerViewDataSource, UIPickerVie
         self.editView.isHidden = false
         self.editView.alpha = 1.0
         
-        self.editView.layer.backgroundColor = UIColor(hue: 7.0, saturation: 0.22, brightness: 0.90, alpha: 1.0).cgColor
-        self.editView.layer.cornerRadius = 5
-        
         customUnitsTextField.backgroundColor = UIColor.white
         nameTextField.backgroundColor = UIColor.white
 

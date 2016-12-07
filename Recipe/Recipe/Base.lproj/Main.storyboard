@@ -268,24 +268,27 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeListCell" id="gOn-3g-nyX" customClass="RecipeListCell" customModule="Recipe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="28" width="1000" height="100"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gOn-3g-nyX" id="AEq-c7-FUX">
-                                                    <frame key="frameInset" width="342" height="99"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="gOn-3g-nyX" id="AEq-c7-FUX">
+                                                    <frame key="frameInset" width="818" height="100"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ytZ-9L-Wb5">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytZ-9L-Wb5">
+                                                            <frame key="frameInset" width="1000" height="1000"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="Cli-2w-Wdz"/>
                                                                 <constraint firstAttribute="height" constant="100" id="sUp-yY-sJe"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2x-lF-oSX">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2x-lF-oSX">
+                                                            <frame key="frameInset" width="1000" height="1000"/>
                                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgw-V9-s9a">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgw-V9-s9a">
+                                                            <frame key="frameInset" width="1000" height="1000"/>
                                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -377,6 +380,22 @@
                                             <constraint firstAttribute="height" constant="100" id="h7H-2d-uDr"/>
                                         </constraints>
                                     </imageView>
+                                    <view alpha="0.34999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FaL-q6-dRq">
+                                        <frame key="frameInset" minX="-20" width="383" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vZ-5v-Lax">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="4Rh-NC-Feq"/>
+                                            <constraint firstAttribute="width" constant="300" id="XEF-8C-aEf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMh-pQ-heh">
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                         <state key="normal" title="X">
@@ -396,7 +415,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="327" height="32"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pzO-rG-YYR" id="gQM-lw-Sia">
-                                                    <frame key="frameInset" width="327" height="31"/>
+                                                    <frame key="frameInset" width="327" height="32"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duu-qh-XWf">
@@ -456,17 +475,19 @@
                                             <constraint firstAttribute="height" constant="10" id="uug-MX-gR1"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vZ-5v-Lax">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTr-uR-FF3">
+                                        <color key="backgroundColor" red="0.368513333" green="0.56143830130000005" blue="0.15435553839999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="4Rh-NC-Feq"/>
-                                            <constraint firstAttribute="width" constant="300" id="XEF-8C-aEf"/>
+                                            <constraint firstAttribute="height" constant="60" id="1Cr-26-0Pr"/>
+                                            <constraint firstAttribute="width" constant="300" id="D4U-co-TLw"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                        <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <size key="shadowOffset" width="1" height="1"/>
-                                    </label>
+                                        <state key="normal" title="VIEW DIRECTIONS">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onViewDirectionButton:" destination="nmM-9m-AfT" eventType="touchUpInside" id="Igy-bS-17b"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -474,9 +495,10 @@
                                     <constraint firstItem="JFG-5I-jk8" firstAttribute="leading" secondItem="1aw-dv-I99" secondAttribute="leading" constant="8" id="5Mc-tM-5Ss"/>
                                     <constraint firstItem="OsE-a7-K34" firstAttribute="leading" secondItem="1aw-dv-I99" secondAttribute="leading" constant="-20" id="5RW-hC-olA"/>
                                     <constraint firstAttribute="trailing" secondItem="FSr-Ow-ueR" secondAttribute="trailing" constant="-20" id="AgW-Y9-DmR"/>
-                                    <constraint firstItem="NMh-pQ-heh" firstAttribute="top" secondItem="GqQ-Uk-PdQ" secondAttribute="bottom" constant="12" id="GBV-9Q-C4J"/>
                                     <constraint firstAttribute="trailing" secondItem="JFG-5I-jk8" secondAttribute="trailing" constant="8" id="GhQ-5q-fg4"/>
+                                    <constraint firstItem="NMh-pQ-heh" firstAttribute="top" secondItem="VTr-uR-FF3" secondAttribute="bottom" constant="8" id="Gz9-qO-vQc"/>
                                     <constraint firstAttribute="bottom" secondItem="NMh-pQ-heh" secondAttribute="bottom" constant="8" id="Rvf-cJ-5Pq"/>
+                                    <constraint firstItem="VTr-uR-FF3" firstAttribute="top" secondItem="GqQ-Uk-PdQ" secondAttribute="bottom" constant="8" id="Shr-ec-BH0"/>
                                     <constraint firstItem="OsE-a7-K34" firstAttribute="top" secondItem="FSr-Ow-ueR" secondAttribute="bottom" id="blv-zQ-heW"/>
                                     <constraint firstAttribute="trailing" secondItem="OsE-a7-K34" secondAttribute="trailing" constant="-20" id="cv0-aU-dsr"/>
                                     <constraint firstItem="FSr-Ow-ueR" firstAttribute="top" secondItem="1aw-dv-I99" secondAttribute="top" id="dQ7-Zf-3Td"/>
@@ -487,6 +509,7 @@
                                     <constraint firstItem="NMh-pQ-heh" firstAttribute="centerX" secondItem="1aw-dv-I99" secondAttribute="centerX" id="hUt-IO-b98"/>
                                     <constraint firstItem="6vZ-5v-Lax" firstAttribute="centerX" secondItem="FSr-Ow-ueR" secondAttribute="centerX" id="iyZ-Np-rvQ"/>
                                     <constraint firstItem="JFG-5I-jk8" firstAttribute="top" secondItem="FSr-Ow-ueR" secondAttribute="bottom" constant="18" id="obY-mc-wW7"/>
+                                    <constraint firstItem="VTr-uR-FF3" firstAttribute="centerX" secondItem="1aw-dv-I99" secondAttribute="centerX" id="zUX-n6-5pK"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -519,6 +542,7 @@
                         <outlet property="ingredientsTableView" destination="JFG-5I-jk8" id="VtB-ae-koz"/>
                         <outlet property="recipeImageView" destination="FSr-Ow-ueR" id="FEu-PZ-qIB"/>
                         <outlet property="recipeNameLabel" destination="6vZ-5v-Lax" id="KBw-IF-Uxi"/>
+                        <outlet property="viewDirectionsButton" destination="VTr-uR-FF3" id="94d-xb-W9s"/>
                         <segue destination="oYR-jA-yqp" kind="unwind" identifier="unwindToRecipeList" unwindAction="unwindToRecipeListWithSegue:" id="hrb-pe-Yvd"/>
                         <segue destination="KJq-X0-ELR" kind="show" identifier="copySegue" id="aIh-9y-lni"/>
                         <segue destination="KJq-X0-ELR" kind="show" identifier="editSegue" id="Dke-BK-KVG"/>
@@ -601,14 +625,14 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddIngredientListCell" rowHeight="54" id="Aht-nJ-KaP" customClass="AddIngredientListCell" customModule="Recipe" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="343" height="54"/>
+                                                <rect key="frame" x="0.0" y="28" width="1000" height="54"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aht-nJ-KaP" id="eCY-29-0v4">
-                                                    <frame key="frameInset" width="343" height="54"/>
+                                                    <frame key="frameInset" width="1000" height="54"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <pickerView contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Osy-hQ-LLA">
-                                                            <frame key="frameInset" minX="-1" minY="4" height="45" maxX="197"/>
+                                                            <frame key="frameInset" minX="-2" minY="4" height="45" maxX="198"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <connections>
                                                                 <outlet property="delegate" destination="qI3-SP-HaB" id="JM4-WB-sVJ"/>

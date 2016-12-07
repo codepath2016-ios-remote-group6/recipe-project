@@ -51,7 +51,6 @@
                                 </connections>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="5yu-Ld-DSJ" firstAttribute="leading" secondItem="X09-BY-ffX" secondAttribute="leading" id="5Ge-L2-kmW"/>
                             <constraint firstAttribute="bottom" secondItem="e1R-wt-kcd" secondAttribute="bottom" constant="8" id="FGK-TG-dJ5"/>
