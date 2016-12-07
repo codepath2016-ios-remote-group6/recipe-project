@@ -39,6 +39,7 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var squareImageView: UIImageView!
     @IBOutlet weak var panoramicImageView: UIImageView!
     
+    @IBOutlet weak var addIngredientButton: UIButton!
     
     
     @IBOutlet weak var errorViewHeightConstraint: NSLayoutConstraint!
@@ -75,6 +76,8 @@ class RecipeEditViewController: UIViewController, UITableViewDelegate, UITableVi
         addIngredientTableView.estimatedRowHeight = 50
         addIngredientTableView.dataSource = self
         addIngredientTableView.delegate = self
+        
+        addIngredientButton.layer.cornerRadius = 20
         
         addIngredientTableView.register(flexCellNib, forCellReuseIdentifier: IngredientFlexTVCell.name)
         
