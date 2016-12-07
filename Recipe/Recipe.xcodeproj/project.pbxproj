@@ -28,6 +28,12 @@
 		28CAFA2C1DE5B90600CEF6E3 /* IngredientFlexTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CAFA2A1DE5B90600CEF6E3 /* IngredientFlexTVCell.swift */; };
 		28CAFA2D1DE5B90600CEF6E3 /* IngredientFlexTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28CAFA2B1DE5B90600CEF6E3 /* IngredientFlexTVCell.xib */; };
 		28E159CE1DF7074100B31DDD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E159CD1DF7074100B31DDD /* Colors.swift */; };
+		28E159F61DF7934B00B31DDD /* IngredientsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E159F51DF7934B00B31DDD /* IngredientsView.xib */; };
+		28E159FC1DF796A200B31DDD /* IngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E159FB1DF796A200B31DDD /* IngredientsView.swift */; };
+		28E159FF1DF7A58800B31DDD /* IngredientTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E159FD1DF7A58800B31DDD /* IngredientTVCell.swift */; };
+		28E15A001DF7A58800B31DDD /* IngredientTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E159FE1DF7A58800B31DDD /* IngredientTVCell.xib */; };
+		28E15A021DF7AB8F00B31DDD /* DirectionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E15A011DF7AB8F00B31DDD /* DirectionsView.xib */; };
+		28E15A041DF7ADB100B31DDD /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E15A031DF7ADB100B31DDD /* DirectionsView.swift */; };
 		66D465CC43B56ECB24BA096E /* Pods_Recipe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF869BEB955DA1AA74F00A /* Pods_Recipe.framework */; };
 		8E2EFF651DE0E6A200A6E491 /* AddIngredientListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2EFF641DE0E6A200A6E491 /* AddIngredientListCell.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +62,12 @@
 		28CAFA2A1DE5B90600CEF6E3 /* IngredientFlexTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientFlexTVCell.swift; sourceTree = "<group>"; };
 		28CAFA2B1DE5B90600CEF6E3 /* IngredientFlexTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IngredientFlexTVCell.xib; sourceTree = "<group>"; };
 		28E159CD1DF7074100B31DDD /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		28E159F51DF7934B00B31DDD /* IngredientsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IngredientsView.xib; sourceTree = "<group>"; };
+		28E159FB1DF796A200B31DDD /* IngredientsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsView.swift; sourceTree = "<group>"; };
+		28E159FD1DF7A58800B31DDD /* IngredientTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientTVCell.swift; sourceTree = "<group>"; };
+		28E159FE1DF7A58800B31DDD /* IngredientTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IngredientTVCell.xib; sourceTree = "<group>"; };
+		28E15A011DF7AB8F00B31DDD /* DirectionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DirectionsView.xib; sourceTree = "<group>"; };
+		28E15A031DF7ADB100B31DDD /* DirectionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
 		8E2EFF641DE0E6A200A6E491 /* AddIngredientListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientListCell.swift; sourceTree = "<group>"; };
 		9BC98465461E91B4978B4FA7 /* Pods-Recipe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recipe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Recipe/Pods-Recipe.release.xcconfig"; sourceTree = "<group>"; };
 		9F62D52326437E1B0E751E5B /* Pods-Recipe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recipe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Recipe/Pods-Recipe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +186,12 @@
 			children = (
 				28CAFA2A1DE5B90600CEF6E3 /* IngredientFlexTVCell.swift */,
 				28CAFA2B1DE5B90600CEF6E3 /* IngredientFlexTVCell.xib */,
+				28E159F51DF7934B00B31DDD /* IngredientsView.xib */,
+				28E159FB1DF796A200B31DDD /* IngredientsView.swift */,
+				28E159FD1DF7A58800B31DDD /* IngredientTVCell.swift */,
+				28E159FE1DF7A58800B31DDD /* IngredientTVCell.xib */,
+				28E15A011DF7AB8F00B31DDD /* DirectionsView.xib */,
+				28E15A031DF7ADB100B31DDD /* DirectionsView.swift */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -259,7 +277,10 @@
 			files = (
 				0ACC4DB71DD1410C00701833 /* LaunchScreen.storyboard in Resources */,
 				0ACC4DB41DD1410C00701833 /* Assets.xcassets in Resources */,
+				28E15A021DF7AB8F00B31DDD /* DirectionsView.xib in Resources */,
 				0A6409CC1DDAD26700D906F9 /* default_recipes.json in Resources */,
+				28E159F61DF7934B00B31DDD /* IngredientsView.xib in Resources */,
+				28E15A001DF7A58800B31DDD /* IngredientTVCell.xib in Resources */,
 				28CAFA2D1DE5B90600CEF6E3 /* IngredientFlexTVCell.xib in Resources */,
 				281F248F1DE40AE20087891C /* Main.storyboard in Resources */,
 			);
@@ -320,7 +341,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28E159FF1DF7A58800B31DDD /* IngredientTVCell.swift in Sources */,
 				28515DF11DD3D959000756BA /* Recipe.swift in Sources */,
+				28E15A041DF7ADB100B31DDD /* DirectionsView.swift in Sources */,
 				282390A91DDBDB8C00454731 /* EdamamClient.swift in Sources */,
 				284F0AE91DDAB50B00434B8B /* IntroViewController.swift in Sources */,
 				28E159CE1DF7074100B31DDD /* Colors.swift in Sources */,
@@ -333,6 +356,7 @@
 				0A29038E1DDC0449006CDE8F /* ParseTests.swift in Sources */,
 				0A8480791DD8FE61009A3F5A /* IngredientListCell.swift in Sources */,
 				0AB0A28F1DD6ADBC001F53F3 /* RecipeListViewController.swift in Sources */,
+				28E159FC1DF796A200B31DDD /* IngredientsView.swift in Sources */,
 				284F0AE51DDA377300434B8B /* User.swift in Sources */,
 				0ACC4DAD1DD1410C00701833 /* AppDelegate.swift in Sources */,
 				0AB0A2931DD6ADDB001F53F3 /* RecipeEditViewController.swift in Sources */,

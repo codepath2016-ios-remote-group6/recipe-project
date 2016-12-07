@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IngredientsView">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="Vvx-hN-Xht"/>
+                <outlet property="tableView" destination="bTl-J6-K3r" id="BEG-IA-G4o"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bTl-J6-K3r">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="bTl-J6-K3r" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="HKv-Ka-Qbi"/>
+                <constraint firstAttribute="trailing" secondItem="bTl-J6-K3r" secondAttribute="trailing" constant="16" id="bpL-wg-IsL"/>
+                <constraint firstAttribute="bottom" secondItem="bTl-J6-K3r" secondAttribute="bottom" constant="16" id="cF6-gk-hLm"/>
+                <constraint firstItem="bTl-J6-K3r" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="rZc-IR-Gck"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
