@@ -27,7 +27,7 @@ class RecipeListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        recipeImageView.layer.cornerRadius = 4
+//        recipeImageView.layer.cornerRadius = 4
         recipeImageView.clipsToBounds = true
         // Initialization code
         

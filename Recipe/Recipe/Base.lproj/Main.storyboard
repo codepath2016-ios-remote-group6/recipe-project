@@ -274,21 +274,18 @@
                                                     <frame key="frameInset" width="342" height="79"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytZ-9L-Wb5">
-                                                            <frame key="frameInset" width="1000" height="1000"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ytZ-9L-Wb5">
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="80" id="Cli-2w-Wdz"/>
                                                                 <constraint firstAttribute="height" constant="79" id="sUp-yY-sJe"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2x-lF-oSX">
-                                                            <frame key="frameInset" width="1000" height="1000"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2x-lF-oSX">
                                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgw-V9-s9a">
-                                                            <frame key="frameInset" width="1000" height="1000"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgw-V9-s9a">
                                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -296,6 +293,7 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="sgw-V9-s9a" firstAttribute="leading" secondItem="ytZ-9L-Wb5" secondAttribute="trailing" constant="8" id="2H6-rk-Mb6"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="sgw-V9-s9a" secondAttribute="bottom" constant="8" id="6e3-Mk-DBk"/>
                                                         <constraint firstItem="ytZ-9L-Wb5" firstAttribute="leading" secondItem="AEq-c7-FUX" secondAttribute="leading" id="75P-Sp-i8n"/>
                                                         <constraint firstItem="ytZ-9L-Wb5" firstAttribute="top" secondItem="AEq-c7-FUX" secondAttribute="top" id="KgZ-5i-Qca"/>
                                                         <constraint firstItem="V2x-lF-oSX" firstAttribute="top" secondItem="AEq-c7-FUX" secondAttribute="topMargin" constant="4" id="aQT-Gw-LFN"/>
@@ -357,6 +355,7 @@
                         <outlet property="addButtonHeightConstraint" destination="21s-vF-sos" id="O1g-1y-qcO"/>
                         <outlet property="addRecipeBottomConstraint" destination="7jH-pd-0fI" id="SSB-2U-OY9"/>
                         <outlet property="addRecipeButton" destination="2W8-hf-Qsb" id="Z6o-9a-wp9"/>
+                        <outlet property="createBarButton" destination="lmg-iw-Yn2" id="WMZ-Ox-qql"/>
                         <outlet property="loginLogoutBarButton" destination="bT2-7R-j6L" id="Ygs-5W-8TS"/>
                         <outlet property="searchBar" destination="UZ4-23-JG4" id="sFw-FK-E9f"/>
                         <outlet property="tableView" destination="DuK-6y-eky" id="ZH2-PV-2gd"/>

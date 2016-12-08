@@ -13,12 +13,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private static let numResultsPerRequest = 30
     private static let initialResultsIndex = 0
-    private static let genericQuery = "recipe"
+    private static let genericQuery = "grill"
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loginLogoutBarButton: UIBarButtonItem!
     @IBOutlet weak var addRecipeButton: UIButton!
+    @IBOutlet weak var createBarButton: UIBarButtonItem!
     
     @IBOutlet weak var addButtonHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var addRecipeBottomConstraint: NSLayoutConstraint!
@@ -43,12 +44,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // This needs to be here instead of viewWillAppear because having this code there causes a bug where text keeps getting added to the placeholder.
         if controllerDataSource != "database" {
-            addRecipeButton.isHidden = true
-            addButtonHeightConstraint.constant = 0
-            addRecipeBottomConstraint.constant = 0
-
+            createBarButton.tintColor = UIColor.clear
             searchBar.placeholder = "\((searchBar.placeholder)!) or new search"
         }
+        addRecipeButton.isHidden = true
+        addButtonHeightConstraint.constant = 0
+        addRecipeBottomConstraint.constant = 0
 
         setupLoginLogoutButton()
     }
@@ -144,7 +145,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func didTapCreateButton(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "newRecipeSegue", sender: sender)
+        if controllerDataSource == "database" {
+            performSegue(withIdentifier: "newRecipeSegue", sender: sender)
+        }
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
