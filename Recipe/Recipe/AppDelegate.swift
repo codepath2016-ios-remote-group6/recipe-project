@@ -139,6 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Programatically create tab view
         let tabBarController = UITabBarController()
+//        tabBarController.tabBar.barTintColor = Colors.appPrimary
         tabBarController.tabBar.tintColor = UIColor(hue: 79.0, saturation: 0.0, brightness: 0.0, alpha: 0.8)
         
         tabBarController.viewControllers = [dbRecipeListNC, apiRecipeListNC]

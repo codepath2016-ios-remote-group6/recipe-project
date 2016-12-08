@@ -247,9 +247,9 @@
                                     <searchBar contentMode="redraw" placeholder="Filter Results" translatesAutoresizingMaskIntoConstraints="NO" id="UZ4-23-JG4">
                                         <color key="backgroundColor" red="0.4365651713" green="0.67000001669999998" blue="0.2251848327" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="bwu-oG-JEC"/>
+                                            <constraint firstAttribute="height" constant="40" id="bwu-oG-JEC"/>
                                         </constraints>
-                                        <color key="barTintColor" red="0.38653115719350933" green="0.59220753205128207" blue="0.20303519334605633" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pAY-YB-ahX">
@@ -339,13 +339,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="SEv-sn-4LZ">
                         <barButtonItem key="leftBarButtonItem" title="LOG OUT" id="bT2-7R-j6L">
-                            <color key="tintColor" red="0.31346118111345866" green="0.48025642695641013" blue="0.16465335414602114" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.37254901959999998" green="0.56078431370000004" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="didTapLogoutBarButton:" destination="h7f-Hc-T2r" id="GIP-ca-Cih"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="CREATE" id="lmg-iw-Yn2">
-                            <color key="tintColor" red="0.31346118109999999" green="0.48025642699999999" blue="0.16465335410000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.37254901959999998" green="0.56078431370000004" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="didTapCreateButton:" destination="h7f-Hc-T2r" id="B6e-7y-xSC"/>
                             </connections>
@@ -481,7 +481,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTr-uR-FF3">
-                                        <color key="backgroundColor" red="0.368513333" green="0.56143830130000005" blue="0.15435553839999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.37254901960784315" green="0.5607843137254902" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="1Cr-26-0Pr"/>
                                             <constraint firstAttribute="width" constant="300" id="D4U-co-TLw"/>
@@ -786,41 +786,52 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rE3-fh-xXn">
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panel1" translatesAutoresizingMaskIntoConstraints="NO" id="Gsk-xV-syf"/>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Browse popular recipe providers for a meal that suits your needs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bev-St-Vmc">
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                        <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Bev-St-Vmc" firstAttribute="centerX" secondItem="rE3-fh-xXn" secondAttribute="centerX" id="5Sh-Ik-gzK"/>
-                                    <constraint firstItem="Bev-St-Vmc" firstAttribute="top" secondItem="rE3-fh-xXn" secondAttribute="top" constant="150" id="Tdh-B8-6Wh"/>
-                                    <constraint firstItem="Bev-St-Vmc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rE3-fh-xXn" secondAttribute="leading" id="ev1-7T-Qpa"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Bev-St-Vmc" secondAttribute="trailing" id="ySv-BN-QFi"/>
+                                    <constraint firstItem="Gsk-xV-syf" firstAttribute="top" secondItem="rE3-fh-xXn" secondAttribute="top" id="EPd-Eb-fMX"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gsk-xV-syf" secondAttribute="trailing" id="LaD-SP-wvv"/>
+                                    <constraint firstItem="Gsk-xV-syf" firstAttribute="leading" secondItem="rE3-fh-xXn" secondAttribute="leading" id="R2U-3v-iMp"/>
+                                    <constraint firstItem="Bev-St-Vmc" firstAttribute="top" secondItem="rE3-fh-xXn" secondAttribute="top" constant="24" id="Tdh-B8-6Wh"/>
+                                    <constraint firstAttribute="bottom" secondItem="Gsk-xV-syf" secondAttribute="bottom" id="Tro-l5-ztK"/>
+                                    <constraint firstItem="Bev-St-Vmc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rE3-fh-xXn" secondAttribute="leading" constant="16" id="ev1-7T-Qpa"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Bev-St-Vmc" secondAttribute="trailing" constant="16" id="ySv-BN-QFi"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2KA-aB-sr7">
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panel2" translatesAutoresizingMaskIntoConstraints="NO" id="GTz-oP-X5j"/>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Feeling creative? Create your own recipe from scratch or clone your favorite recipe and make alterations as you see fit." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SI8-8S-7fs">
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                        <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.94117647059999998" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SI8-8S-7fs" secondAttribute="trailing" id="4np-QH-Qka"/>
+                                    <constraint firstAttribute="bottom" secondItem="GTz-oP-X5j" secondAttribute="bottom" id="2Db-TC-z2H"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SI8-8S-7fs" secondAttribute="trailing" constant="16" id="4np-QH-Qka"/>
+                                    <constraint firstItem="GTz-oP-X5j" firstAttribute="top" secondItem="2KA-aB-sr7" secondAttribute="top" id="Bm4-OD-gJ0"/>
                                     <constraint firstItem="SI8-8S-7fs" firstAttribute="centerX" secondItem="2KA-aB-sr7" secondAttribute="centerX" id="CF3-qM-hBq"/>
-                                    <constraint firstItem="SI8-8S-7fs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2KA-aB-sr7" secondAttribute="leading" id="xH7-xt-afk"/>
-                                    <constraint firstItem="SI8-8S-7fs" firstAttribute="top" secondItem="2KA-aB-sr7" secondAttribute="top" constant="150" id="xTw-rJ-JF4"/>
+                                    <constraint firstAttribute="trailing" secondItem="GTz-oP-X5j" secondAttribute="trailing" id="EfE-gO-UJG"/>
+                                    <constraint firstItem="GTz-oP-X5j" firstAttribute="leading" secondItem="2KA-aB-sr7" secondAttribute="leading" id="PxA-cu-lW2"/>
+                                    <constraint firstItem="SI8-8S-7fs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2KA-aB-sr7" secondAttribute="leading" constant="16" id="xH7-xt-afk"/>
+                                    <constraint firstItem="SI8-8S-7fs" firstAttribute="top" secondItem="2KA-aB-sr7" secondAttribute="top" constant="24" id="xTw-rJ-JF4"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZLx-oz-V4J">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Share your recipes with friends or make your recipes public to showcase your art." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1t-5P-nV1">
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <nil key="textColor"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panel3" translatesAutoresizingMaskIntoConstraints="NO" id="sfm-tj-RQ6"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="View your recipes in a clear UI to allow for an ease of execution in the kitchen" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1t-5P-nV1">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                        <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bln-oh-TTE">
@@ -834,11 +845,15 @@
                                 <color key="backgroundColor" red="0.0" green="0.7843137255" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="m1t-5P-nV1" firstAttribute="centerX" secondItem="ZLx-oz-V4J" secondAttribute="centerX" id="13R-7b-0xY"/>
+                                    <constraint firstAttribute="bottom" secondItem="sfm-tj-RQ6" secondAttribute="bottom" id="1bC-8u-Eje"/>
                                     <constraint firstItem="bln-oh-TTE" firstAttribute="centerX" secondItem="ZLx-oz-V4J" secondAttribute="centerX" id="95B-zf-P3f"/>
-                                    <constraint firstItem="m1t-5P-nV1" firstAttribute="top" secondItem="ZLx-oz-V4J" secondAttribute="top" constant="150" id="RYO-Ra-1T7"/>
-                                    <constraint firstItem="m1t-5P-nV1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZLx-oz-V4J" secondAttribute="leading" id="VXj-sz-F2M"/>
+                                    <constraint firstAttribute="trailing" secondItem="sfm-tj-RQ6" secondAttribute="trailing" id="G2j-As-mh4"/>
+                                    <constraint firstItem="m1t-5P-nV1" firstAttribute="top" secondItem="ZLx-oz-V4J" secondAttribute="top" constant="24" id="RYO-Ra-1T7"/>
+                                    <constraint firstItem="m1t-5P-nV1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZLx-oz-V4J" secondAttribute="leading" constant="16" id="VXj-sz-F2M"/>
                                     <constraint firstAttribute="bottom" secondItem="bln-oh-TTE" secondAttribute="bottom" constant="100" id="WA8-NT-imT"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="m1t-5P-nV1" secondAttribute="trailing" id="lbn-dV-xD1"/>
+                                    <constraint firstItem="sfm-tj-RQ6" firstAttribute="top" secondItem="ZLx-oz-V4J" secondAttribute="top" id="eUo-iY-jJP"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="m1t-5P-nV1" secondAttribute="trailing" constant="16" id="lbn-dV-xD1"/>
+                                    <constraint firstItem="sfm-tj-RQ6" firstAttribute="leading" secondItem="ZLx-oz-V4J" secondAttribute="leading" id="mzD-MY-BuI"/>
                                 </constraints>
                             </view>
                             <pageControl opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="GAs-hT-21Z">
@@ -881,7 +896,7 @@
             <objects>
                 <navigationController storyboardIdentifier="RecipeListNavController" automaticallyAdjustsScrollViewInsets="NO" id="LfT-WL-j2y" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="POW-c0-axr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="POW-c0-axr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -933,6 +948,9 @@
     </scenes>
     <resources>
         <image name="login-background" width="600" height="471"/>
+        <image name="panel1" width="1080" height="1920"/>
+        <image name="panel2" width="1080" height="1920"/>
+        <image name="panel3" width="1080" height="1920"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Hlf-1j-bfu"/>
