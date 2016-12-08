@@ -143,6 +143,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         User.logout()
     }
     
+    @IBAction func didTapCreateButton(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "newRecipeSegue", sender: sender)
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
